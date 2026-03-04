@@ -1,0 +1,74 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\usepackage[brazil]{babel}
+\usepackage{natbib}   % very common in economics
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE Lista 1 - Econometria I - 2026\\[0.5em]
+    %\large \today\\[0.5em]
+    \large Prof: André Luiz Pereira Mancha \par
+    \large Monitor: Tuffy Licciardi Issa  \par
+   % \small \href{mailto:tuffy@usp.br}{tuffy@usp.br} \quad
+%\href{https://github.com/Tuffyli}{github.com/tuffyli} \par
+    %\large Roll Number\par
+    %\large Class/Batch/Section\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+
+\begin{questions}
+
+    \question (1.2 \citep{wooldridge2016}) Uma das justificativas dos programas de treinamento pessoal é que eles melhoram a produtividade dos trabalhadores. Suponha que você seja questionado se mais treinamentos tornam os profissionais mais produtivos. No entanto, em vez de ter dados de trabalhadores individuais, você tem acesso aos dados de empresas industriais de São Paulo. Particularmente, de cada empresa, você tem informação sobre o número de horas de treinamento por trabalhador (\textit{treinamento}) e o número de itens sem defeito produzidos por trabalhador, por hora (\textit{produção}).
+    \begin{enumerate}[label=(\alph*)]
+    \item Especifique claramente o conceito de \textit{ceteris paribus} do experimento inevidente nessa questão política.
+    \item Parece razoável que a decisão de uma empresa em treinar seus empregados será independente das características dos trabalhadores? Quais são algumas das características, mensuráveis e não mensuráveis, dos trabalhadores?
+    \item Cite um fator, exceto as características dos trabalhadores, que pode afetar a produtividade do trabalhador
+    \item Se você encontrar uma correlação positiva entre \textit{treinamento} e \textit{produção}, você terá estabelecido de forma convincente que o treinamento pessoal torna os trabalhadores mais produtivos? Explique.
+    \end{enumerate}
+
+
+    
+    \question (1.3 \citep{wooldridge2016}) Suponha que a USP lhe peça para encontrar a relação entre horas semanais gastas estudando (\textit{estudo}) e horas semanais gastas trabalhando (\textit{trabalho}). Faz sentido caracterizar o problema como dedução, se o \textit{estudo} "induz" ao \textit{trabalho} ou o \textit{trabalho} "induz" ao \textit{estudo}? Explique.
+
+
+
+    \question (2.1 \citep{wooldridge2016}) Seja \textit{kids} o número de filhos de uma mulher, e \textit{educ} os anos de educação da mulher. Um modelo simples que relaciona a fertilidade a anos de educação é:\begin{equation*}
+        kids = \beta_0 + \beta_1educ + u \\ \text{,}
+    \end{equation*} em que \textit{u} é um erro não observável.
+    \begin{enumerate} [label = (\alph*)]
+        \item Que tipos de fatores estão contidos em \textit{u}? É provável que eles estejam correlacionados com o nível de educação?
+        \item Uma análise de regressão simples mostrará o efeito \textit{ceteris paribus} da educação sobre a fertilidade? Explique.
+    \end{enumerate}
+
+
+    \question (2.3 \citep{pereda_denisard}) Sabemos que correlação não implica causalidade. Justifique para os casos a seguir apontando o fator que invalida a causalidade
+    \begin{enumerate} [label = (\alph*)]
+        \item "Vários estudos apontavam inicialmente que as mulheres em menopausa que recebiam terapia de substituição hormonal (TSH) tinham também um menor risco de doença coronária. No entanto, estudos controlados e randomizados (mais rigorosos), feitos posteriormente, mostraram que a TSH causava na verdade um pequeno, mas significativo, aumento no risco de doença coronária. Uma reanálise dos estudos revelou que as mulheres que recebiam a TSH tinham também uma maior probabilidade de pertencer a uma classe socioeconômica superior, com melhor dieta e hábitos de exercício."
+        \item Em 1998, um médico britânico, Andrew Wakefield, publicou um estudo em que revelava uma correlação entre o autismo e a vacina anti-sarampo, parotidite e rubéola (VASPR). Seguiu-se uma onda de pânico que levou muitos pais a deixarem de vacinar os seus filhos e, como resultado, começaram a surgir novamente focos de sarampo por todo o mundo. O fato do autismo ser normalmente diagnosticado depois da criança ter tomado a vacina VASPR, levou muitos pais a ficarem convencidos da veracidade da causalidade. Vários outros investigadores tentaram também confirmar a ligação, mas nenhum teve sucesso. O estudo de Wakefield acabou por se revelar nada mais do que uma fraude, tendo sido retratado pela revista onde foi publicado.
+        \item "Quanto maiores são os pés de uma criança, maior a capacidade para resolver problemas de matemática".
+    \end{enumerate}
+
+    \question (1.3 \citep{pindyck_rubinfeld1998}) Suponha que são obtidas estimativas de mínimos quadrados para a relação:\begin{equation*}
+        Y = \beta_0 + \beta_1X
+    \end{equation*}
+      Após o término do trabalho, decide-se multiplicar as unidades da variável $X$ por um fator de 10. O que acontecerá com a inclinação e o intercepto (calculados pelo método dos mínimos quadrados)?
+
+    
+\end{questions}
+\bibliographystyle{apalike}   % or plainnat, econ, etc.
+\bibliography{refs}
+\end{document}
