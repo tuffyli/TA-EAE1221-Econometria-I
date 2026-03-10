@@ -12,7 +12,7 @@ O objetivo é fornecer suporte complementar aos alunos por meio de:
 ## Estrutura do Repositório
 
 - [Listas](./Listas/) – Listas aplicadas ao longo do semestre  
-- `R_Intro/` – Materiais introdutórios de R  
+- [Intro_R](./Intro_R/) – Materiais introdutórios de R  
 
 ## Bibliografia Principal
 
