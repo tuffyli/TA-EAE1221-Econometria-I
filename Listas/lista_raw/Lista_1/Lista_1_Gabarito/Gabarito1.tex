@@ -1,0 +1,120 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\usepackage{xcolor}
+\usepackage[brazil]{babel}
+\usepackage{natbib}   % very common in economics
+\usepackage{enumitem}
+
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+
+\renewenvironment{solution}
+  {\par\noindent\textbf{R:}\enspace\color{blue}}
+  {\par\color{black}}
+
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE Lista 1 - Econometria I - 2026\\[0.5em]
+    %\large \today\\[0.5em]
+    \large Prof: André Luiz Pereira Mancha \par
+    \large Monitor: Tuffy Licciardi Issa  \par
+   \small \href{mailto:tuffy@usp.br}{tuffy@usp.br} \quad
+\href{https://github.com/Tuffyli}{github.com/tuffyli} \par
+    %\large Roll Number\par
+    %\large Class/Batch/Section\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+
+
+\begin{questions}
+
+    \question (1.2 \citep{wooldridge2016}) Uma das justificativas dos programas de treinamento pessoal é que eles melhoram a produtividade dos trabalhadores. Suponha que você seja questionado se mais treinamentos tornam os profissionais mais produtivos. No entanto, em vez de ter dados de trabalhadores individuais, você tem acesso aos dados de empresas industriais de São Paulo. Particularmente, de cada empresa, você tem informação sobre o número de horas de treinamento por trabalhador (\textit{treinamento}) e o número de itens sem defeito produzidos por trabalhador, por hora (\textit{produção}).
+    \begin{enumerate}[label=(\alph*)]
+    \item Especifique claramente o conceito de \textit{ceteris paribus} do experimento inevidente nessa questão política.
+    \begin{solution}
+        O conceito de \textit{ceteris paribus} (tudo o mais constante) é que, com a aplicação do treinamento e mantendo-se inalteradas todas as demais características relevantes (do trabalhador e do ambiente de trabalho), seria possível identificar um aumento da produtividade, medido pelo número de itens sem defeito produzidos por trabalhador por hora. Esse é o cenário contrafactual no qual comparamos o mesmo trabalhador (ou empresa) com e sem treinamento, isolando o efeito do treinamento sobre a produção.
+    \end{solution}
+    \item Parece razoável que a decisão de uma empresa em treinar seus empregados será independente das características dos trabalhadores? Quais são algumas das características, mensuráveis e não mensuráveis, dos trabalhadores?
+    \begin{solution}
+        Não. A depender do treinamento, a empresa pode escolher aqueles que já apresentam um maior desempenho ou aqueles que ainda precisam melhorar sua produtividade. Mais provável de ocorrer algum tipo de \textbf{viés de seleção}.
+        \begin{itemize}
+            \item Dentre as características mensuráveis dos trabalhadores estão: escolaridade, sexo, experiência e idade.
+            \item Já para o grupo das não mensuráveis temos aptidões inatas como: facilidade em aprender, perseverança, motivação, entre outras.
+        \end{itemize}
+    \end{solution}
+    \item Cite um fator, exceto as características dos trabalhadores, que pode afetar a produtividade do trabalhador
+    \begin{solution}
+        O ambiente de trabalho e tecnologias empregadas na produção afetam a produtividade do trabalhador, sendo estas características escolhidas exogêneamente por parte das firmas.
+    \end{solution}
+    \item Se você encontrar uma correlação positiva entre \textit{treinamento} e \textit{produção}, você terá estabelecido de forma convincente que o treinamento pessoal torna os trabalhadores mais produtivos? Explique.
+    \begin{solution}
+        Não. \textbf{Correlação não implica causalidade}. Quando observamos uma correlação, nada pode ser aferido quanto ao seu efeito causal. Principalmente, por existir a possibilidade de causalidade reversa (se é que existe alguma causalidade). A mensuração de causalidade ocorre a partir de experimentos (ou \textit{quase-experimentos}). 
+    \end{solution}
+    \end{enumerate}
+
+
+    
+    \question (1.3 \citep{wooldridge2016}) Suponha que a USP lhe peça para encontrar a relação entre horas semanais gastas estudando (\textit{estudo}) e horas semanais gastas trabalhando (\textit{trabalho}). Faz sentido caracterizar o problema como dedução, se o \textit{estudo} "induz" ao \textit{trabalho} ou o \textit{trabalho} "induz" ao \textit{estudo}? Explique.
+    \begin{solution}
+        Não. Estabelecer uma relação entre os gastos semanais de hora não garante a existência de um efeito de "indução" (próximo de uma relação causal). Pode-se estar observando apenas uma escolha individual pautada na restrição temporal semanal. Além disso, fatores externos como a renda familiar podem predispor alguns estudantes a terem um \textit{baseline} de horas dedicadas ao estudo menor pela necessidade de trabalho.
+    \end{solution}
+
+
+
+    \question (2.1 \citep{wooldridge2016}) Seja \textit{kids} o número de filhos de uma mulher, e \textit{educ} os anos de educação da mulher. Um modelo simples que relaciona a fertilidade a anos de educação é:\begin{equation*}
+        kids = \beta_0 + \beta_1educ + u \\ \text{,}
+    \end{equation*} em que \textit{u} é um erro não observável.
+    \begin{enumerate} [label = (\alph*)]
+        \item Que tipos de fatores estão contidos em \textit{u}? É provável que eles estejam correlacionados com o nível de educação?
+        \begin{solution}
+            Variáveis que estão contidas em $u$ são: idade, renda, saúde reprodutiva, predisposição à maternidade, entre outras.
+            Sim. Dentre os exemplos listados a renda familiar está correlacionada com a educação, por exemplo.
+        \end{solution}
+        \item Uma análise de regressão simples mostrará o efeito \textit{ceteris paribus} da educação sobre a fertilidade? Explique.
+        \begin{solution}
+            Não. A regressão simples mostrará simplesmente a correlação entre a variável dependente e a independente. Isto, pois, como estabelecido no item anterior, temos a violação da hipótese de exogeneidade entre o termo de erro e a variável independente, isto é, $E[u|educ] \neq 0$.
+        \end{solution}
+    \end{enumerate}
+
+
+    \question (2.3 \citep{pereda_denisard}) Sabemos que correlação não implica causalidade. Justifique para os casos a seguir apontando o fator que invalida a causalidade
+    \begin{enumerate} [label = (\alph*)]
+        \item "Vários estudos apontavam inicialmente que as mulheres em menopausa que recebiam terapia de substituição hormonal (TSH) tinham também um menor risco de doença coronária. No entanto, estudos controlados e randomizados (mais rigorosos), feitos posteriormente, mostraram que a TSH causava na verdade um pequeno, mas significativo, aumento no risco de doença coronária. Uma reanálise dos estudos revelou que as mulheres que recebiam a TSH tinham também uma maior probabilidade de pertencer a uma classe socioeconômica superior, com melhor dieta e hábitos de exercício."
+        \begin{solution}
+            A maior probabilidade das mulheres que recebiam TSH pertencerem a uma classe socioeconômica superior evidencia o viés de seleção amostral, invalidando o efeito causal observado. Talvez adicionar uma variável de controle para a renda possa resolver a questão. 
+        \end{solution}
+        \item Em 1998, um médico britânico, Andrew Wakefield, publicou um estudo em que revelava uma correlação entre o autismo e a vacina anti-sarampo, parotidite e rubéola (VASPR). Seguiu-se uma onda de pânico que levou muitos pais a deixarem de vacinar os seus filhos e, como resultado, começaram a surgir novamente focos de sarampo por todo o mundo. O fato do autismo ser normalmente diagnosticado depois da criança ter tomado a vacina VASPR, levou muitos pais a ficarem convencidos da veracidade da causalidade. Vários outros investigadores tentaram também confirmar a ligação, mas nenhum teve sucesso. O estudo de Wakefield acabou por se revelar nada mais do que uma fraude, tendo sido retratado pela revista onde foi publicado.
+        \begin{solution}
+            Aqui há um claro problema na estruturação da estratégia de identificação. O autor ainda confunde o efeito de causalidade, uma vez que ele toma um ponto temporal anterior ao diagnóstico como gerador da causalidade.
+        \end{solution}
+        \item "Quanto maiores são os pés de uma criança, maior a capacidade para resolver problemas de matemática".
+        \begin{solution}
+            Esta vaga afirmação está omitindo variáveis como a idade das crianças, que, embora seja em certa medida capturada pelo tamanho dos pés, não possibilita o estabelecimento de uma relação causal. É natural que uma criança com mais anos de estudo apresente um pé maior e uma maior capacidade de resolver problemas matemáticos.
+        \end{solution}
+    \end{enumerate}
+
+    \question (1.3 \citep{pindyck_rubinfeld1998}) Suponha que são obtidas estimativas de mínimos quadrados para a relação:\begin{equation*}
+        Y = \beta_0 + \beta_1X
+    \end{equation*}
+      Após o término do trabalho, decide-se multiplicar as unidades da variável $X$ por um fator de 10. O que acontecerá com a inclinação e o intercepto (calculados pelo método dos mínimos quadrados)?
+      \begin{solution}
+          Ao multiplicarmos a variável independente, teremos as seguintes mudanças nos coeficientes estimados:
+          \begin{itemize}
+              \item $\beta_0$: Sem alterações. O intercepto permanecerá com o mesmo valor independentemente do fator que se multiplicar pela variável independente.
+              \item $\beta_1$: Redução do $\hat \beta_1$ estimado anteriormente de modo que $\hat \beta_1^* = \hat\beta_1/10$. O efeito mensurado com a multiplicação da variável independente terá de ser 10x menor do que a estimação anterior.
+          \end{itemize}
+      \end{solution}
+    
+\end{questions}
+\bibliographystyle{apalike}   % or plainnat, econ, etc.
+\bibliography{refs}
+\end{document}
