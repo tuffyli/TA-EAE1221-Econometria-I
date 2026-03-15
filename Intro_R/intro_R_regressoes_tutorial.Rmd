@@ -1,0 +1,290 @@
+---
+title: "Primeiro Contato com o R"
+author: "Tuffy Licciardi Issa"
+date: "15/03/2026"
+output:
+  pdf_document:
+    toc: true
+    number_sections: true
+  html_document:
+    toc: true
+    number_sections: true
+    theme: readable
+fontsize: 11pt
+geometry: margin=1in
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+# Apresentação
+
+Este material foi preparado como apoio para o **primeiro contato com o R**. A ideia é que você use este arquivo `.Rmd` como um roteiro prático para:
+
+- entender a lógica básica do R;
+- criar objetos;
+- trabalhar com vetores e `data.frame`s;
+- instalar e carregar pacotes;
+- importar bases;
+- transformar dados;
+- rodar **regressões simples no R**;
+- modificar o código e testar novas especificações.
+
+Ao longo do material, você encontrará explicações curtas e blocos de código prontos para rodar.
+
+# Comentários e operações básicas
+
+No R, usamos o símbolo `#` para fazer comentários. Tudo o que estiver após `#` na mesma linha **não será executado**.
+
+## Exemplos de operações básicas
+
+```{r operacoes-basicas}
+1 + 1
+2 - 1
+3 * 4
+10 / 2
+```
+
+Você também pode usar parênteses para organizar contas:
+
+```{r parenteses}
+(2 + 3) * 4
+10 / (2 + 3)
+```
+
+# Criando objetos no R
+
+Para criar um objeto no R, usamos o operador de atribuição `<-`.
+
+```{r criando-objetos}
+objeto <- 1
+objeto
+```
+
+Esse comando significa que o valor `1` foi armazenado no objeto chamado `objeto`.
+
+Você pode guardar números, textos, vetores, tabelas e muitos outros tipos de informação em objetos.
+
+## Exemplo com texto
+
+```{r texto}
+nome_aluna <- "Maria"
+nome_aluna
+```
+
+# Vetores
+
+Vetores são uma das estruturas mais importantes do R. Para criá-los, usamos a função `c()`.
+
+```{r vetores}
+vetor <- c(1, 2, 3, 4, 5)
+vetor
+```
+
+Você pode fazer operações com vetores:
+
+```{r operacoes-vetor}
+vetor + 1
+mean(vetor)
+sum(vetor)
+length(vetor)
+```
+
+# Criando um data frame
+
+Um `data.frame` é uma tabela em que cada coluna representa uma variável e cada linha representa uma observação.
+
+```{r dataframe}
+df <- data.frame(
+  id = c(1, 2, 3),
+  nome = c("Alice", "Bob", "Charlie"),
+  idade = c(25, 30, 35)
+)
+
+df
+```
+
+## Outras formas de visualizar o objeto
+
+```{r visualizar-dataframe}
+print(df)
+str(df)
+summary(df)
+```
+
+- `print(df)`: imprime a tabela;
+- `str(df)`: mostra a estrutura da base;
+- `summary(df)`: traz um resumo estatístico das variáveis.
+
+# Instalação e carregamento de pacotes
+
+Pacotes são conjuntos de funções que ampliam as possibilidades do R.
+
+## Instalação
+
+A instalação precisa ser feita apenas uma vez em cada computador:
+
+```{r instalar-pacotes, eval=FALSE}
+install.packages("tidyverse")
+install.packages("wooldridge")
+install.packages("ggplot2")
+install.packages("readxl")
+```
+
+## Carregamento
+
+Depois de instalar, é preciso carregar os pacotes sempre que iniciar uma nova sessão:
+
+```{r carregar-pacotes}
+library(tidyverse)
+library(wooldridge)
+library(ggplot2)
+library(readxl)
+```
+
+# Abrindo uma base do pacote `wooldridge`
+
+O pacote `wooldridge` é muito útil para os cursos introdutórios de econometria (como este), pois traz várias bases prontas para exercícios. Assim, para os exemplos que se seguirão utilizarei as bases desse pacote. No entanto, mais ao final do documento eu apresento como exportar uma base de dados externa (inflação).
+
+```{r base-wooldridge}
+data("traffic1")
+summary(traffic1)
+```
+
+Se quiser observar as primeiras linhas da base:
+
+```{r head-traffic1}
+head(traffic1)
+```
+
+# Introdução a regressões no R
+
+Uma das aplicações mais importantes do R em Econometria é rodar regressões.
+
+A função mais usada para regressão linear simples é `lm()`, que significa **linear model**.
+
+A estrutura básica é:
+
+```{r estrutura-lm, eval=FALSE}
+modelo <- lm(y ~ x, data = base)
+```
+
+onde:
+
+- `y` é a variável dependente;
+- `x` é a variável explicativa;
+- `base` é o nome do banco de dados.
+
+# Exemplo de regressão simples
+
+Vamos usar uma base do pacote `wooldridge`. Abaixo, usaremos `wage1`, muito comum em introduções à econometria.
+
+```{r carregar-wage1}
+data("wage1")
+head(wage1)
+```
+
+Agora vamos rodar uma regressão simples em que o salário (`wage`) depende da escolaridade (`educ`):
+
+```{r regressao-simples}
+reg_simples <- lm(wage ~ educ, data = wage1)
+summary(reg_simples)
+```
+
+## Como interpretar esse comando?
+
+- `lm(wage ~ educ, data = wage1)` estima a relação entre `wage` e `educ`;
+- `summary(reg_simples)` mostra os coeficientes, erros-padrão, estatística t, p-valores e R².
+
+# Como ler a saída de uma regressão
+
+Ao rodar `summary(reg_simples)`, alguns elementos merecem atenção:
+
+## Coeficientes
+
+- **Intercept**: valor esperado de `wage` quando `educ = 0`;
+- **educ**: variação média em `wage` associada a um aumento de uma unidade em `educ`.
+
+## Erro padrão (Std. Error)
+
+O **erro padrão** mede a incerteza da estimativa do coeficiente.
+
+## p-valor
+
+O p-valor ajuda a avaliar se o coeficiente é estatisticamente diferente de zero.
+
+## R-squared
+
+O R² mede a proporção da variação da variável dependente explicada pelo modelo.
+
+# Importando dados externos
+
+Muitas vezes trabalharemos com arquivos externos, como `.csv` ou `.xlsx`.
+
+No exemplo abaixo, usamos `read.csv2()` para importar uma base em `.csv`. O `.csv2` é utilizado neste caso onde o arquivo apresenta a separação dos valores com `;` e a vírgula é usada como separador decimal, o que é comum em arquivos gerados por programas em português. Se o seu arquivo tiver a separação de valores com `,` e o ponto como separador decimal, use `read.csv()`. No caso de arquivos em formato Excel, use `read_excel()` do pacote `readxl`.
+
+Uma coisa importantíssima é que, para importar um arquivo, você precisa indicar o caminho correto onde ele está salvo no seu computador. O caminho é a sequência de pastas que leva até o arquivo. As barras do caminhos devem ser invertidas (ou seja, usar `\\` ou `/`), pois o R interpreta a barra normal (`\`) como um caractere de escape.
+
+```{r importar-csv, eval=FALSE}
+df_inflacao <- read.csv2( #Note a direção das barras no caminho abaixo
+  "C:/Users/tuffy/Documents/Monitoria/EAE-1221/Intro_R/Bases/inflacao_anual.csv", 
+  header = TRUE,
+  skip = 1
+)
+```
+
+Depois, podemos visualizar a base:
+
+```{r visualizar-csv, eval=FALSE}
+df_inflacao
+```
+
+### Observação importante sobre caminhos
+
+Se você estiver usando outro computador, o caminho do arquivo provavelmente será diferente. Nesse caso, basta substituir o endereço entre aspas pelo local em que o arquivo estiver salvo no seu computador.
+
+## Transformando dados: de wide para long
+
+Bases de dados nem sempre vêm no formato ideal para análise. Um caso comum é quando os dados estão em formato **wide**, isto é, com várias colunas representando períodos.
+
+Para reorganizar a base, podemos usar funções do `tidyverse`, como `filter()`, `mutate()` e `pivot_longer()`.
+
+```{r transformar-long, eval=FALSE}
+df_long <- df_inflacao %>%
+  filter(X == "Brasil") %>%
+  mutate(across(-X, as.numeric)) %>%
+  pivot_longer(
+    cols = -X,
+    names_to = c("mes", "ano"),
+    names_sep = "\\.",
+    values_to = "inflacao"
+  ) %>%
+  select(-X)
+
+df_long
+```
+
+## O que esse código faz?
+
+- `filter(X == "Brasil")`: mantém apenas as linhas referentes ao Brasil;
+- `mutate(across(-X, as.numeric))`: transforma as colunas numéricas em números;
+- `pivot_longer(...)`: reorganiza as colunas em formato longo;
+- `select(-X)`: remove a coluna `X` ao final.
+
+
+# Conclusão
+Neste material, vimos os primeiros passos no R:
+
+- Operações básicas;
+- Criação de objetos;
+- Vetores e `data.frame`s;
+- Instalação e carregamento de pacotes;
+- Importação e transformação de dados;
+- Regressões simples.
+
+A partir daqui, o mais importante é praticar: rodar o código, modificar variáveis, testar novas bases e interpretar os resultados.
