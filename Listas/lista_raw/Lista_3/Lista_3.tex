@@ -1,0 +1,116 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\usepackage[brazil]{babel}
+\usepackage{natbib}   % very common in economics
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+\usepackage{booktabs}
+
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE Lista 3 - Econometria I - 2026\\[0.5em]
+    %\large \today\\[0.5em]
+    \large Prof: André Luiz Pereira Mancha \par
+    \large Monitor: Tuffy Licciardi Issa  \par
+    %\large Roll Number\par
+    %\large Class/Batch/Section\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+
+\begin{questions}
+
+    \question (3.5 \citep{wooldridge2016}) Em um estudo que relaciona a nota média em curso superior (\textit{GPA}) ao tempo gasto em várias atividades, você distribui uma pesquisa para vários estudantes. Os estudantes devem responder quantas horas eles despendem, em cada seama, em quatro atividades: estudo (\textit{study}), sono (\textit{sleep}), trabalho (\textit{work}) e lazer (\textit{leisure}). Toda atividade é colocada em uma das quatro categorias, de modo que, para cada estudante, a soma das horas nas quatro atividades deve ser igual a 168.
+    \begin{enumerate}[label=(\alph*)]
+    \item No modelo:\begin{equation*}
+        colGPA = \beta_0 + \beta_1study +\beta_2sleep + \beta_3work + \beta_4 leisure + u,
+    \end{equation*} faz sentido manter \textit{sleep}, \textit{work} e \textit{leisure} fixos, enquanto \textit{study} varia?
+    \item Explique a razão desse modelo violar a Hipótese RLM.3.
+    \item Como você poderia reformular o modelo de modo que seus parâmetros tivessem uma interpretação útil e ele satisfizesse a Hipótese RLM.3?
+    \end{enumerate}
+\
+\
+
+
+    
+    \question (3.3 \citep{wooldridge2016}) O modelo seguinte é uma versão simplificada do modelo de regressão múltipla usado por Biddle e Hamermesh (1990) para estudar a escolha entre o tempo gasto dormindo e trabalhando e para observar outros fatores que afetam o sono:\begin{equation*}
+        sleep = \beta_0 + \beta_1 totwrk + \beta_2educ + \beta_3age + u
+    \end{equation*} em que \textit{sleep} e \textit{totwrk} (trabalho total) são mensurados em minutos por semana e \textit{educ} e \textit{age} são mensurados em anos.
+    \begin{enumerate}[label=(\alph*)]
+    \item Se os adultos escolhem dormir e trabalhar, qual é o sinal de $\beta_1$?
+    \item Que sinais você espera que $\beta_2$ e $\beta_3$ terão?
+    \item Usando os dados do arquivo SLEEP75, a equação estimada é:\begin{equation*} 
+                \widehat{sleep} = 3.638,25 - 0,148ttowrk - 11,13educ + 2,20 age \end{equation*}\begin{equation*}                n = 706, \ \ \ \ R^2 = 0,113 
+    \end{equation*} Se alguém trabalha cinco horas a mais por semana, qual é a queda, em minutos, no valor esperado de \textit{sleep}? Esse valor representa uma mudança grande?
+    \item Discuta o sinal e a magnitude do coeficiente de \textit{educ}.
+    \item Você diria que $totwrk$, $educ$ e $age$ explicam muito a variação de \textit{sleep}? Quais outros fatores poderiam afetar o tempo gasto dormindo? É provável que sejam correlacionados com $totwrk$?
+    
+    \end{enumerate}
+
+
+\
+\
+
+
+    \question (3.2 \citep{wooldridge2010}) Os dados do arquivo WAGE2, sobre homens e mulheres que trabalham, foram utilizados para estimar a seguinte equação:\begin{equation*}
+        \widehat{educ} = 10,36 - 0,094sibs + 0,131meduc + 0,210feduc
+    \end{equation*} \begin{equation*}
+        n = 722, \ \ \ \ R^2 = 0,214
+    \end{equation*} em que \textit{educ} é anos de escolaridade formal, \textit{sibs} é o número de irmãos, \textit{meduc} é anos de escolaridade formal da mãe, e \textit{feduc} é anos de escolaridade formal do pai.
+    \begin{enumerate} [label = (\alph*)]
+        \item \textit{sibs} tem efeito esperado? Explique. Mantendo \textit{meduc} e \textit{feduc} fixos, quanto deveria \textit{sibs} aumentar para reduzir os anos previstos de educação formal em um ano? (Uma resposta incompleta é aceitável aqui.)
+        \item Discuta a interpretação do coeficiente \textit{meduc}.
+        \item Suponha que o Homem A não tenha irmãos e que sua mãe e seu pai tenham, cada um, 12 anos de educação formal. Suponha também que o Homem B não tenha irmãos e sua mãe e seu pai tenham, cada um, 16 anos de educação formal. Qual é a diferença prevista em anos de educação formal entre A e B?
+    \end{enumerate}
+\
+\
+
+\question (3.3 \citep{wooldridge2010}) O salário incial (mediano) para recém-formados em Direito é determinado pela equação:\begin{equation*}
+    \log(salary) = \beta_0 + \beta_1LSAT + \beta_2GPA + \beta_3\log(libvol) + \beta_4\log(cost) + \beta_5rank + u
+\end{equation*} em que \textit{LSAT} é a nota mediana do LSAT (nota de ingresso no curso de Direito) dos recém-formados, \textit{GPA} é a nota mediana dos recém-formados nas disciplinas do curso de Direito, \textit{libvol} é o número de volumes da biblioteca da escola de Direito, \textit{cost} é o custo anual da escola de Direito e \textit{rank} é a classificação da escola de Direito (com \textit{rank = 1} sendo o melhor posto de classificação).
+\begin{enumerate}[label=(\alph*)]
+    \item Explique a razão por que esperamos $\beta_5 \leq 0$.
+    \item Quais são os sinais que você espera para os outros parâmetros de inclinação? Justifique sua resposta.
+    \item Utilizando os dados do arquivo LAWSCH85, a equação estimada é:
+    \begin{equation*}\begin{aligned}
+        \widehat{\log(salary)} =\; & 8,33 + 0,0047LSAT + 0,248colGPA +0,095\log(libvol)\\ & + \; 0,038\log(cost) -0,0033rank
+        \end{aligned}
+    \end{equation*} \begin{equation*}
+        n = 136, \ \ \ \ R^2 = 0,842
+    \end{equation*} Qual é a diferença \textit{ceteris paribus} prevista no salário para as escolas com um \textit{colGPA} mediano diferente em um ponto? (Descreva em resposta percentual.)
+    \item Interprete o coeficiente da variável $\log(libvol)$.
+    \item Você diria que é mais razoável frequentar uma escola de Direito que tem uma classificação melhor? Qual é a diferença no salário inicial esperado para uma escola que tem uma classificação igual a 20?
+\end{enumerate}
+
+\
+\
+
+
+\question (3.CS \citep{wooldridge2016})\footnote{Esta é uma questão computacional. Para instalar o \texttt{R} e o \texttt{RStudio} veja o passo a passo aqui: \href{https://rstudio-education.github.io/hopr/starting.html}{https://rstudio-education.github.io/hopr/starting.html}. Caso tenha dúvidas quanto à linguagem, consulte o material disponibilizado no Moodle, e recomendo também o seguinte material de introdução ao \texttt{R}: \href{https://fhnishida.netlify.app/project/rec5004/sec2/}{https://fhnishida.netlify.app/project/rec5004/sec2/} } Use os dados do arquivo HPRICE1 para estimar o modelo:\begin{equation*}
+    price = \beta_0 + \beta_1sqrft + \beta_2bdrms + u
+\end{equation*} Em que \textit{price} é o preço da residência medido em milhares de dólares.
+    \begin{enumerate} [label = (\alph*)]
+\item Escreva os resultados em forma de equação.
+\item Qual é o aumento estimado do preço de uma casa com um quarto a mais, mantendo a área constante?
+\item Qual é o aumento estimado do preço de uma casa com um quarto adicional de 140 pés quadrados? Compare isso com sua resposta do item (b).
+\item Qual porcentagem de variação do preço é explicada pela área e número de quartos?
+\item A primeira casa da amostra tem $sqrtft = 2.438$ e $bdrms = 4$. Encontre o preço de venda previsto dessa casa a partir da linha de regressão MQO.
+\item O preço de venda real da primeira casa da amostra foi US\$300.000 (assim, $price = 300$). Encontre o resíduo para esta casa. O valor sugere que o comprador pagou pouco ou muito pela casa?
+    \end{enumerate}
+    
+\end{questions}
+\newpage
+\bibliographystyle{apalike}   % or plainnat, econ, etc.
+\bibliography{refs}
+\end{document}
