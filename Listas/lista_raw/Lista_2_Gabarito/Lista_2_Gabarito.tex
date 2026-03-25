@@ -1,0 +1,278 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\usepackage{xcolor}
+\usepackage[brazil]{babel}
+\usepackage{natbib}   % very common in economics
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+
+
+
+\renewenvironment{solution}
+  {\par\noindent\textbf{R:}\enspace\color{blue}}
+  {\par\color{black}}
+
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE Lista 2 Gabarito - Econometria I - 2026\\[0.5em]
+    %\large \today\\[0.5em]
+    \large Prof: André Luiz Pereira Mancha \par
+    \large Monitor: Tuffy Licciardi Issa  \par
+   \small \href{mailto:tuffy@usp.br}{tuffy@usp.br} \quad
+\href{https://github.com/Tuffyli}{github.com/tuffyli} \par
+    %\large Roll Number\par
+    %\large Class/Batch/Section\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+
+\begin{questions}
+
+    \question (2.4 \citep{wooldridge2016}) Os dados do arquivo BWGHT contêm infomrações de nascimentos por mulheres nos Estados Unidos. As duas variáveis de interesse são: a variável dependente, peso dos recém-nascidos em onças (\textit{bwght}), e a variável explicativa, número de médio de cigarros que a mãe fumou por dia durante a gravidez (\textit{cigs}). A seguinte regressão simples foi estimada usando dados de $n = 1.388$ nascimentos.\begin{equation*}
+        \widehat{bwght} = 119,77 - 0,514 \cdot cigs
+    \end{equation*}
+    \begin{enumerate}[label=(\alph*)]
+    \item Qual é o peso de nascimento previsto quando $cigs = 0$? E quando $cigs = 20$ (um maço por dia)? Comente a diferença.
+    \item O modelo de regressão simples necessariamente captura uma relação causal entre o peso de nascimento da criança e os hábitos de fumar da mãe? Explique.
+    \item Para prever um peso de nascimento de 125 onças, qual deveria ser a magnitude de $cigs$? Comente.
+    \item A proporção de mulheres que não fumaram durante a gravidez na amostra é de cerca de 0,85. Isso ajuda a reconciliar a sua conclusão do item (c)?
+    \end{enumerate}
+
+\begin{solution}
+        \begin{enumerate}[label=(\alph*)]
+    \item $\widehat{bwght}(0)=119{,}77$, \quad $\widehat{bwght}(20)=109{,}49$. Diferença de $10{,}28$ mais cigarros correlacionado com menor peso.
+    \item Não. Lembrem-se da máxima \textbf{Correlação não implica causalidade}.
+    \item  $cigs \approx -10{,}17$
+    \item Sim. Com poucas observações fumantes, a regressão pode estar superestimando $\hat\beta_1 = 0,514$.
+    \end{enumerate}
+\end{solution}
+    
+    \question (2.8 \citep{wooldridge2016}) Considere o modelo de regressão simples padrão $y = \beta_0 + \beta_1x + u$ sob as hipóteses de Gauss-Markov RLS.1 a RLS.5. Os estimadores usuais $\hat{\beta}_0$ e $\hat{\beta}_1$ são não viesados para seus respectivos parâmetros populacionais. Seja $\tilde{\beta}_1$ o estimador de $\beta_1$ obtido ao assumir que o intercepto é zero.
+    \begin{enumerate}[label=(\alph*)]
+    \item Encontre E($\tilde{\beta}_1$) em termos de $x_i$, $\beta_0$ e $\beta_1$. Verifique que se $\tilde \beta_1$ é não viesado para $\beta_1$ quando o intercepto populacional ($\beta_0$) é zero. Há outros casos em que $\tilde \beta_1$ é não viesado?
+
+    \item Encontre a variância de $\tilde \beta_1$. [Dica: a variância não depende de $\beta_0$.]
+
+    \item Mostre que Var($\tilde \beta_1$) $\leq$ Var($\hat \beta_1$). [Dica: para qualquer amostra de dados, $\sum^n_{i = 1}x^2_i \geq \sum^n_{i=1}(x - \bar{x})^2$, com a desigualdade estrita preponderando, a não ser que $\bar{x} = 0$.]
+
+    \item Comente a relação entre viés e variância ao escolher entre $\hat \beta_1$ e $\tilde \beta_1$.
+    \end{enumerate}
+\begin{solution}
+    \begin{enumerate}[label = (\alph*)]
+        \item $E[\tilde \beta_1] = \beta_0 \frac{\sum x_i}{\sum x_i^2} + \beta_1$. Em caso de $\beta_0 = 0$, temos que $E[\tilde \beta_1] = \beta_1$, ou seja, sem viés. Outro caso seria se $\sum x_i = 0$.
+
+
+        
+        \item Vamos fazer o passo a passo da derivação. Para obter a variância condicional em \(X\), note que os dois primeiros termos são constantes. Portanto,
+            \[
+            \mathrm{Var}(\tilde{\beta}_1 \mid X)
+            =
+            \mathrm{Var}\left(
+            \frac{\sum_{i=1}^n x_i u_i}{\sum_{i=1}^n x_i^2}
+            \;\middle|\;
+            X
+            \right).
+            \]
+            
+            Como \(\sum_{i=1}^n x_i^2\) é constante condicionalmente a \(X\), podemos fatorá-lo:
+            \[
+            \mathrm{Var}(\tilde{\beta}_1 \mid X)
+            =
+            \frac{1}{\left(\sum_{i=1}^n x_i^2\right)^2}
+            \mathrm{Var}\left(
+            \sum_{i=1}^n x_i u_i
+            \;\middle|\;
+            X
+            \right).
+            \]
+            
+            Agora, como se trata da variância de uma soma ao longo das observações,
+            \[
+            \mathrm{Var}\left(
+            \sum_{i=1}^n x_i u_i
+            \;\middle|\;
+            X
+            \right)
+            =
+            \sum_{i=1}^n x_i^2 \mathrm{Var}(u_i\mid X)
+            +
+            2\sum_{i<j} x_i x_j \mathrm{Cov}(u_i,u_j\mid X).
+            \]
+            
+            Sob as hipóteses usuais do modelo,
+            \[
+            \mathrm{Var}(u_i\mid X)=\sigma^2
+            \quad \text{e} \quad
+            \mathrm{Cov}(u_i,u_j\mid X)=0 \ \text{para } i\neq j.
+            \]
+            
+            Logo,
+            \[
+            \mathrm{Var}\left(
+            \sum_{i=1}^n x_i u_i
+            \;\middle|\;
+            X
+            \right)
+            =
+            \sigma^2 \sum_{i=1}^n x_i^2.
+            \]
+            
+            Substituindo de volta,
+            \[
+            \mathrm{Var}(\tilde{\beta}_1 \mid X)
+            =
+            \frac{1}{\left(\sum_{i=1}^n x_i^2\right)^2}
+            \left(
+            \sigma^2 \sum_{i=1}^n x_i^2
+            \right)
+            =
+            \frac{\sigma^2}{\sum_{i=1}^n x_i^2}.
+            \]
+            
+            Portanto,
+            \[
+            \boxed{
+            \mathrm{Var}(\tilde{\beta}_1 \mid X)
+            =
+            \frac{\sigma^2}{\sum_{i=1}^n x_i^2}
+            }.
+            \]
+        \item Vale que
+            \[
+            \sum_{i=1}^n x_i^2
+            =
+            \sum_{i=1}^n (x_i-\bar{x})^2 + n\bar{x}^2.
+            \]
+            
+            Como \(n\bar{x}^2 \geq 0\), segue que
+            \[
+            \sum_{i=1}^n x_i^2 \geq \sum_{i=1}^n (x_i-\bar{x})^2.
+            \]
+            Onde $\sum^n_{i = 1}x^2_i \geq \sum^n_{i=1}(x - \bar{x})^2$, pode ser transformado em:\[\frac{1}{\sum^n_{i = 1}x^2_i} \leq \frac{1}{\sum^n_{i=1}(x - \bar{x})^2}\]
+            de modo que $Var(\tilde{\beta}_1) =\frac{\sigma^2}{\sum x_i^2} \le \frac{\sigma^2}{\sum (x_i-\bar x)^2} = Var(\hat{\beta}_1)$ \hfill $\blacksquare$
+        \item Há um trade-off entre viés e variância. $\tilde \beta_1$ pode ser mais preciso, mas se $\beta_0 \neq 0$ e $\sum x_i \neq 0$ há viés. Sem a devida justificativa é arriscado impor o intercepto igual a zero na sua regressão.
+        
+    \end{enumerate}
+\end{solution}
+
+
+
+    \question (2.2 \citep{wooldridge2010}) A tabela seguinte contém variáveis $supGPA$ (nota média em curso superior nos Estados Unidos) e \textit{ACT} (nota do teste de avaliação de conhecimentos para ingresso em curso superior nos Estados Unidos) com as notas hipotéticas de oito estudantes de curso superior. O \textit{GPA} está baseado em uma escala de quatro pontos e foi arredondado para um dígito após o ponto decimal. A nota \textit{ACT} baseia-se em uma escala de 36 pontos e foi arredondada para um número inteiro.
+
+    \begin{table}[bhtp]
+        \centering
+        \begin{tabular}{c|cc}
+            \toprule
+            \midrule
+            \multicolumn{1}{c}{Estudante} & $supGPA$  & \textit{ACT} \\
+            \midrule
+             1 & 2,8 & 21\\
+             2 & 3,4 & 24\\
+             3 & 3,0 & 26\\
+             4 & 3,5 & 27\\
+             5 & 3,6 & 29\\
+             6 & 3,0 & 25\\
+             7 & 2,7 & 25\\
+             8 & 3,7 & 30\\
+             \midrule
+             \bottomrule
+        \end{tabular}
+    \end{table}
+    \begin{enumerate} [label = (\alph*)]
+        \item Estime a relação entre \textit{GPA} e \textit{ACT} usando MQO; isto é, obtenha as estimativas de intercepto e de inclinação da equação:\begin{equation*}
+            \widehat{GPA} = \hat \beta_0 + \hat \beta_1 act
+        \end{equation*} Comente a direção da relação. O intercepto tem uma interpretação útil aqui? Explique. Qual deveria ser o valor previsto pelo \textit{GPA} se a nota \textit{ACT} aumentasse em cinco pontos?
+        \item Calcule os valores estimados e os resíduos de cada observação e verifique que a soma dos resíduos é (aproximadamente) zero.
+        \item Qual o valor previsto de ${GPA}$ quando $ACT = 20$?
+        \item Quanto da variação de \textit{GPA} dos 8 estudantes é explicado pelo \textit{ACT}? Explique.
+    \end{enumerate}
+\begin{solution}
+    \begin{enumerate}[label = (\alph*)]
+        \item $\hat\beta_1 = 0,1022$ ,$\hat\beta_o = 0,5681$. O intercepto exibe o GPA caso um aluno tire 0 em \textit{ACT}, um cenário improvável dada a necessidade desta avaliação para o ingresso nos cursos e pela a amostra já ser composta de alunos do ensino superior. Direção positiva: maior nota no \textit{ACT} relacionada com maior \textit{GPA}. Aumento de 5 pontos seria $0,511$ no GPA.
+        \item 0,0002 $\approx 0$.
+
+    \begin{table}[h]
+            \centering
+            \caption{Resíduos}
+            \begin{tabular}{c|c}
+            \toprule
+            \midrule
+               1  & 0,0857 \\
+               2  &  0,3791\\
+               3  &  0,2253\\
+               4  &  0,1725\\
+               5  &  0,0681\\
+               6  &  -0,1231\\
+               7  &  -0,4231\\
+               8  &  0,0659\\
+               \midrule
+               \bottomrule
+            \end{tabular}
+            \label{tab:placeholder}
+        \end{table}
+\item $\widehat{GPA}(20)=2{,}6121$.
+\item $R^2 \approx 0{,}577$. Modos de calcular o $R^2$:\begin{equation}
+    R^2 = \frac{SQE}{SQT} = \frac{\sum^n_{i=1}(\hat y_i - \bar y)^2}{\sum(y_i - \bar y)^2}
+\end{equation}
+\begin{equation}
+    R^2 = 1- \frac{SQR}{SQT} =1- \frac{\sum^n_{i=1}(\hat u_i )^2}{\sum^n_{i=1}(y_i - \bar y)^2}
+\end{equation}
+O R-quadrado é a razão entre a variação explicada e a variação total.
+\end{enumerate}
+
+\end{solution}
+
+\question (12 (ANPEC, 2005)) Um pesquisador estima o seguinte modelo de regressão simples: $Y_i = \beta_0 + \beta_1X_i + e_i$. Outro pesquisador estima o mesmo modelo, mas com escalas diferentes para $Y_i$ e $X_i$. O segundo modelo é: $Y^*_i = \beta_o^* + \beta_1^*X^*_i + e_i^*$, em que $Y^*_i = \omega_1Y_i$, $X^*_i = \omega_2X_i$, e $\omega_1$ e $\omega_2$ são constantes maiores do que zero. Responda com F ou V e explique.
+\begin{enumerate}[label=(\arabic*), start=0]
+    \item Os estimadores de Mínimos Quadrados Ordinários de $\beta_0$ e $\beta_1$ são iguais aos de $\beta_0^*$ e $\beta_1^*$
+    \item Se $\hat \sigma^{*2}$ é a variância estimada de $e^*_i$ e $\hat \sigma^2$ é a variância estimada de $e_i$, então $\hat\sigma^{*2} = w^2_1\hat\sigma^2$.
+    \item As variâncias dos estimadores dos parâmetros no primeiro modelo são maiores do que as variâncias dos estimadores do segundo modelo.
+    \item Os coeficientes de determinação são iguais nos dois modelos.
+    \item A transformação de escalada de ($Y_i$, $X_i$) para ($Y_i^*$, $X_i^*$) não afeta as propriedades de Mínimos Quadrados Ordinários dos parâmetros.
+\end{enumerate}
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*), start = 0]
+        \item F
+        \item V
+        \item F
+        \item V
+        \item V
+    \end{enumerate}
+\end{solution}
+
+\question (2.4 \citep{wooldridge2010}) Suponha que você está interessado em estimar o efeito das horas gastas com um curso de preparação para o vestibular (\textit{horas}) no total das notas do vestibular (\textit{ENEM}). A população é composta por todos os pré-universitários graduados no ensino médio em determinado ano.
+    \begin{enumerate} [label = (\alph*)]
+\item Suponha que lhe tenha sido dada uma subvenção para executar um experimento controlado. Explique como você estruturaria o experimento de forma a estimar o efeito causal de \textit{horas} no ENEM.
+\item Considere o caso mais realístico em que os alunos decidem quanto tempo gastarão com um curso de preparação, e você só pode fazer amostragens aleatórias do \textit{ENEM} e \textit{horas} da população. Escreva o modelo populacional da seguinte forma:\begin{equation*}
+    ENEM = \beta_0 + \beta_1 horas + u
+\end{equation*} em que, como sempre, num modelo com um intercepto, podemos assumir $E[u] = 0$. Liste pelo menos dois fatores contidos em $u$. Existe a probabilidade de eles terem correlação negativa ou positiva com \textit{horas}?
+\item Na equação da parte (b), qual deveria ser o sinal de $\beta_1$ se o curso de preparação for eficaz?
+\item Na equação da parte (b), qual é a interpretação de $\beta_0$?
+    \end{enumerate}
+\begin{solution}
+    \begin{enumerate} [label = (\alph*)]
+        \item Aleatorização dos alunos participantes do curso preparatório do vestibular (grupo tratado e controle comparáveis). Depois comparar as médias finais entre grupos.
+        \item Dois fatores são, habilidade inata e renda familiar. Ambos fatores provavelmente apresentam correlação positiva.
+        \item $\beta_1 > 0$
+        \item $\beta_0$ é a nota média no ENEM para um aluno com $horas = 0$
+        
+    \end{enumerate}
+\end{solution}
+    
+\end{questions}
+\bibliographystyle{apalike}   % or plainnat, econ, etc.
+\bibliography{refs}
+\end{document}
