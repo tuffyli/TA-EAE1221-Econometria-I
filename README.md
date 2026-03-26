@@ -16,6 +16,7 @@ O objetivo é fornecer suporte complementar aos alunos por meio de:
 
 ## Bibliografia Principal
 
-Tenho buscado exercícios em:
+Os exercícios e materiais deste repositório têm como principais referências:
 
-- WOOLDRIDGE, Jeffrey M. *Introdução à Econometria: Uma Abordagem Moderna*. 4ª ed. São Paulo: Cengage Learning Brasil, 2023.
+- **WOOLDRIDGE, Jeffrey M.** *Introdução à Econometria: Uma Abordagem Moderna*. 4. ed. São Paulo: Cengage Learning Brasil, 2023.  
+- **WOOLDRIDGE, Jeffrey M.** *Introductory Econometrics: A Modern Approach*. 5th ed. Mason, OH: South-Western Cengage Learning, 2016.
