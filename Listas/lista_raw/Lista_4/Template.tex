@@ -1,0 +1,113 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\usepackage[brazil]{babel}
+\usepackage{natbib}   % very common in economics
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+\usepackage{booktabs}
+
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE Lista 4 - Econometria I - 2026\\[0.5em]
+    %\large \today\\[0.5em]
+    \large Prof: André Luiz Pereira Mancha \par
+    \large Monitor: Tuffy Licciardi Issa  \par
+    %\large Roll Number\par
+    %\large Class/Batch/Section\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+\newcommand{\qstar}{\hspace{-0.6em}\textsuperscript{*}\hspace{0.2em}}
+
+\begin{questions}
+
+    \question (9 (ANPEC, 2021)) Considere as suposições do Modelo Linear Clássico de Regressão. Julgue e justifique as afirmativas abaixo.
+    \begin{enumerate}[label=(\arabic*), start=0]
+    \item A suposição de exogeneidade dos regressores garante que os estimadores de Mínimos Quadrados Ordinários serão não viesados.
+    \item As suposições de Gauss-Markov garantem que os estimadores de Mínimos Quadrados sejam os estimadores de menor variância dentre todos os possíveis estimadores não viesados.
+    \item A colinearidade entre os regressores implica que os estimadores de Mínimos Quadrados Ordinários serão viesados.
+    \item A colinearidade entre os regressores implica sempre em aumento na variância dos estimadores de Mínimos Quadrados Ordinários.
+    \item A suposição de homocedasticidade dos erros garante que os estimadores de Mínimos Quadrados Ordinários sejam não viesados e consistentes.
+    \end{enumerate}
+\
+\
+
+
+    
+    \question\qstar (3.8 \citep{wooldridge2016}) Suponha que a produtividade média do trabalhador da indústria (\textit{avgprod}) dependa de dois fatores - horas médias de treinamento do trabalhador (\textit{avgtrain}) e aptidão média do trabalhador (\textit{avgabil)}:\begin{equation*}
+        avgprod = \beta_0 + \beta_1avgtrain + \beta_3 avgabil + u\text{.}
+    \end{equation*}Suponha que essa equação satisfaça as hipóteses de Gauss-Markov. Se um subsídio foi dado às empresas cujos trabalhadores têm uma aptidão menor que a média, de modo que \textit{avgtrain} e \textit{avgabil} sejam negativamente correlacionados, qual é o provável viés em $\tilde\beta_1$ obtido na regressão simples de \textit{avgprod} sobre \textit{avgtrain}?
+
+
+\
+\
+
+
+    \question (3.10 \citep{wooldridge2010}) Suponha que o modelo populacional que determina $y$ seja: \begin{equation*}
+        y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3 + u \text{,}
+    \end{equation*} e esse modelo satisfaz as hipóteses de RLM1 a RLM4. Entretanto, estimamos o modelo que omite $x_3$. Sejam $\tilde\beta_0$, $\tilde\beta_1$ e $\tilde\beta_2$ os estimadores em MQO da regressão de $y$ sobre $x_1$ e $x_2$. Mostre que o valor esperado de $\tilde\beta_1$ (dados os valores das variáveis independentes da amostra é \begin{equation*}
+        E[\tilde\beta_1] = \beta_1 + \beta_3\frac{\sum^n_{i=1}\hat r_{i1}x_{i3}}{\sum^n_{i=1}\hat r^2_{i1}}
+    \end{equation*} em que os $\hat r_{i1}$ são os resíduos de MQO da regressão de $x_1$ sobre $x_2$.[\textit{Sugestão}: a fórmula de $\tilde\beta_1$ é proveniente da equação (3.22). Coloque $y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2}+\beta_3x_{i3} + u_i$ nessa equação. Após alguma álgebra, aplique o operador expectativa, tratando $x_{i3}$ e $\hat r_{i1}$ como não aleatórios.]
+\
+\
+\
+
+
+\question\qstar (3.15 \citep{wooldridge2016}) As equações estimadas a seguir utilizam os dados do arquivo MLB1, que contém informações sobre salários dos jogadores da liga principal de beisebol. A variável dependente, \textit{lsalary}, é o log do salário. As duas variáveis explicativas são anos na liga principal (\textit{years}) e rebatidas que levaram a correr para próxima base por ano (\textit{rbisyr})\begin{equation*}\begin{split}
+        \widehat{lsalary} = &12,373 + 0,177 years\\
+        \quad & (0,098) \quad(0,0132) \end{split}
+\end{equation*}\begin{equation*}
+    n = 353, \quad SQR = 326,196, \quad EPR = 0,964, \quad R^2 = 0,337
+\end{equation*}
+
+
+\begin{equation*}\begin{split}
+        \widehat{lsalary} = & 11,861 + 0,0904 years + 0,0302rbisyr\\
+        \quad & (0,084) \quad(0,0118) \quad\quad \quad (0,0020) \end{split}
+\end{equation*}\begin{equation*}
+    n = 353, \quad SQR = 198,475, \quad EPR = 0,753, \quad R^2 = 0,597
+\end{equation*}
+\begin{enumerate}[label=(\alph*)]
+    \item Quantos graus de liberdade existem em cada regressão?
+    \item Por que o EPR é menor na segunda regressão do que na primeira?
+    \item O coeficiente de correlação amostral ente \textit{years} e \textit{rbisyr} é cerca de 0,487. Isso faz sentido?
+    \item Qual o fator de inflação de variância (existe só um) dos coeficientes de inclinação da regressão múltipla? Você diria que já colinearidade baixa, moderada ou alta entre \textit{years} e \textit{rbisyr}?
+    \item Por que o erro padrão do coeficiente em \textit{years} na regressão múltipla é mais baixo do que sua contraparte na regressão simples?
+    \item Comente a mudança do R-quadrado entre as duas regressões.
+\end{enumerate}
+
+\
+\
+
+
+\question\qstar (3.C8 \citep{wooldridge2016})\footnote{Esta é uma questão computacional. Para instalar o \texttt{R} e o \texttt{RStudio} veja o passo a passo aqui: \href{https://rstudio-education.github.io/hopr/starting.html}{https://rstudio-education.github.io/hopr/starting.html}. Caso tenha dúvidas quanto à linguagem, consulte o material disponibilizado no Moodle, e recomendo também o seguinte material de introdução ao \texttt{R}: \href{https://fhnishida.netlify.app/project/rec2301/sec2/}{https://fhnishida.netlify.app/project/rec2301/sec2/} }
+Use os dados do arquivo DISCRIM para responder essa questão. São dados sobre preços de vários itens em restaurantes de \textit{fast-food} e características da população dividida por CEP em Nova Jersey e Pensilvânia. A ideia é ver se os restaurantes cobram preços mais altos em áreas com maior concentração de negros.
+    \begin{enumerate} [label = (\alph*)]
+\item Encontre os valores médios da proporção de negros (\textit{prpblck}) e renda (\textit{income}) na amostra, além de seus desvios-padrão. Quais são as unidades de medida de \textit{prpblck} e \textit{income}?
+\item Considere um modelo para explicar o preço do refrigerante, \textit{psoda}, em termos de proporção da população que é negra e com renda mediana: \begin{equation*}
+    psoda = \beta_0 + \beta_1prpblck + \beta_2income + u
+\end{equation*} Estime o modelo por MQO e registre os resultados em forma de equação, incluindo o tamanho da amostra e o R-quadrado. (Não use notação científica ao relatar as estimativas.) Interprete o coeficiente sobre \textit{prpblck}. Você acha que é economicamente grande?
+\item Compare a estimativa do item (b) com a estimativa de regressão simples de \textit{psoda} sobre \textit{prpblck}. O efeito de discriminação é maior ou menor quando se controla a renda?
+\item Um modelo com elasticidade-preço constante em relação à renda pode ser mais adequado. Registre as estimativas do modelo\begin{equation*}
+    \log(psoda) = \beta_0 + \beta_1prpblck + \beta_2\log(income) + u
+\end{equation*} Se \textit{prpblck} aumenta $0,22$ (20 pontos percentuais), qual é a alteração percentual estimada em \textit{psoda}? [\textit{Dica}: A resposta é 2.xx, você deve encontrar o "xx".]
+\item Agora adiciona a variável \textit{prppov} à regressão do item (d). O que acontece com $\hat\beta_{prpblck}$?
+\item Encontre a correlação entre $\log(income)$ e \textit{prppov}. É aproximadamente o que você esperava?
+\item Avalie a seguinte afirmação: "\textit{Como log(income) e prppov são altamente correlacionadas, elas não têm que estar na mesma regressão}".
+    \end{enumerate}
+    
+\end{questions}
+\newpage
+\bibliographystyle{apalike}   % or plainnat, econ, etc.
+\bibliography{refs}
+\end{document}
