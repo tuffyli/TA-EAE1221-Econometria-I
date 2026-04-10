@@ -1,0 +1,137 @@
+---
+title: "Gabarito Questões Computacionais"
+author: "Tuffy"
+date: "2026-03-27"
+output: pdf_document
+---
+
+
+# Lista 3-10 – Econometria I – 2026
+
+**Prof.:** André Luiz Pereira Mancha  
+**Monitor:** Tuffy Licciardi Issa  
+Email: tuffy@usp.br  
+GitHub: https://github.com/Tuffyli  
+
+---
+# Lista 3
+## Questão 5)
+
+Vamos começar abrindo a base de dados solicitadas pelo exercício.
+```{r a, waning=FALSE, messge=FALSE}
+# Lembre-se de certificar que o pacote 'wooldridge' esteja instalado e 
+#carregado para acessar a base de dados 'wage1'.
+library(wooldridge)
+
+# Carregando a base de dados 'hprice1'
+data("hprice1")
+# Visualizando as primeiras linhas da base de dados para entender sua estrutura
+head(hprice1)
+```
+
+- **(a)** 
+
+Vamos começar estimando os betas desta regressão utilizando o método de Mínimos Quadrados Ordinários (OLS). Para isso, utilizaremos a função `lm()` do R, que é a função padrão para realizar regressões lineares.
+```{r}
+# Estimando a regressão utilizando OLS
+out <- lm(price ~ sqrft + bdrms, data = hprice1)
+
+#'Para vizualizar os resultados de forma mais organizada, podemos armazenar
+#'o modelo em um objeto e depois usar a função summary() para obter um resumo detalhado 
+#'dos resultados.
+
+summary(out)
+```
+
+```{r, warning=FALSE, message=FALSE}
+# Para visualizar os resultados de forma mais organizada, podemos usar o stargazer
+library(stargazer)
+
+stargazer(out, type = "text")
+```
+Agora podemos reescrever a regressão substituindo os coeficientes estimados pelos seus valores numéricos. 
+
+Chegando em: 
+$$
+\widehat{price} = -21.77 + 0.122\,sqrft + 13.85\,bdrms
+$$
+- **(b)** 
+
+O aumento estimado do preço de uma casa com um quarto a mais (mantida a área constante) é dado pelo coeficiente da variável `bdrms`, que é 13.85. Isso significa que, em média, uma casa com um quarto a mais tem um preço estimado de US$ 13.850,00 a mais do que uma casa com um quarto a menos, mantendo a área constante.
+
+
+
+- **(c)**
+
+O aumento estimado do preço de uma casa com um quarto adicional de 140 pés quadrados é dado pelo coeficiente da variável `sqrft`, que é 0.122 adicionado ao aumento do preço devido ao quarto adicional. O aumento total seria:
+$$
+\text{Aumento total} = 0.122 \times 140 + 13.85 = 17.08 + 13.85 = 30.93
+$$
+Ou se preferir, podemos calcular diretamente utilizando a fórmula da regressão:
+$$
+\widehat{price} = -21.77 + 0.122 \times 140 + 13.85 = -21.77 + 17.08 + 13.85 = 30.93
+$$
+Portanto, o aumento estimado do preço de uma casa com um quarto adicional de 140 pés quadrados é de aproximadamente US$ 30.930,00.
+
+
+- **(d)**
+
+Para observarmos a porcentagem da variação do preço que é explicada pela área e pelo número de quartos e pela área total, devemos olhar para o valor do R² da regressão. O R² é uma medida que indica a proporção da variação na variável dependente (preço) que é explicada pelas variáveis independentes (área e número de quartos).
+
+```{r}
+# Obtendo o valor do R² da regressão
+r_squared <- summary(out)$r.squared #$r.squared é a forma de acessar o valor
+#'do R² a partir do resumo do modelo
+
+#'No R $ é usado para acessar elementos específicos de um objeto, e 
+#'summary(out) retorna um objeto que contém várias informações sobre a regressão,
+#' incluindo o R².
+
+# Exibindo o valor do R²
+r_squared
+```
+
+Com este resultado podemos concluir que aproximadamente 63,2% da variação no preço das casas é explicada pela área e pelo número de quartos, o que indica que essas variáveis são bastante importantes para explicar as diferenças nos preços das casas na base de dados `hprice1`.
+
+
+- **(e)**
+
+Dada a casa com `sqrft` = 2438 e `bdrms` = 4, podemos usar a equação da regressão para estimar o preço dessa casa. Substituindo os valores na equação:
+$$
+\widehat{price} = -21.77 + 0.122 \times 2438 + 13.85 \times 4 = -21.77 + 297.436 + 55.4 = 331.066
+$$
+Portanto, o preço estimado para uma casa com 2438 pés quadrados e 4 quartos é de aproximadamente US$ 331.066,00.
+
+- **(f)**
+
+Dado preço de venda da primeira casa foi de US$300.000. Para encontrarmos o resíduo dessa casa, precisamos calcular a diferença entre o preço real e o preço estimado pela regressão. 
+Primeiro, vamos acessar as variáveis `sqrft` e `bdrms` da primeira casa na base de dados para calcular o preço estimado.
+
+```{r}
+# Acessando as variáveis da primeira casa
+sqrft_first <- hprice1$sqrft[1] # Área da primeira casa
+bdrms_first <- hprice1$bdrms[1] # Número de quartos da primeira casa
+
+# Calculando o preço estimado para a primeira casa
+estimated_price_first <- -21.77 + 0.122 * sqrft_first + 13.85 * bdrms_first
+
+# Preço real da primeira casa
+real_price_first <- hprice1$price[1]
+
+# Calculando o resíduo
+residual_first <- real_price_first - estimated_price_first
+
+# Exibindo o resíduo
+residual_first
+```
+
+O resíduo da primeira casa é a diferença entre o preço real e o preço estimado, e representa a parte do preço que não é explicada pelas variáveis `sqrft` e `bdrms` na regressão. Vemos que o resíduo é de aproximadamente -31.066,00, o que indica que o preço real da casa é menor do que o preço estimado pela regressão (superestimado). Isso pode ser devido a outros fatores que não foram incluídos na regressão, como localização, estado de conservação, entre outros.
+
+Portanto, podemos concluir que o comprador acabou pagando mais pela casa do que a precificação do nosso modelo.
+
+
+# Lista 4
+
+## Questão 5)
+
+
