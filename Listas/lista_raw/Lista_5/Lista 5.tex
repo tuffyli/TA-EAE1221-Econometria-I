@@ -1,0 +1,137 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\usepackage[brazil]{babel}
+\usepackage{natbib}   % very common in economics
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+\usepackage{booktabs}
+
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE Lista 5 - Econometria I - 2026\\[0.5em]
+    %\large \today\\[0.5em]
+    \large Prof: André Luiz Pereira Mancha \par
+    \large Monitor: Tuffy Licciardi Issa  \par
+    %\large Roll Number\par
+    %\large Class/Batch/Section\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+\newcommand{\qstar}{\hspace{-0.6em}\textsuperscript{*}\hspace{0.2em}}
+
+\begin{questions}
+
+    \question\qstar (4.7 \cite{wooldridge2010}) Considere a equação: \[
+    \widehat{supGPA} = 1,39 + 0,412emGPA + 0,015ACT -0,083 faltas
+    \]\vspace{-2.0em}\[
+    \phantom{\widehat{su-}} (0,033)  \phantom{ + } (0,094) \phantom{----} (0.011)\phantom{ ---} (0,026)
+    \]\vspace{-1.0em}\[
+    n = 141,\quad \quad  R^2 =0,234
+    \] que poderia também ser usada para estudar os efeitos de faltas às aulas sobre GPA em curso superior.
+    \begin{enumerate}[label=(\alph*)]
+    \item Usando a aproximação normal padronizada, encontre o intervalo de confiança de 95\% para $\beta_{emGPA}$.
+    \item Você pode rejeitar a hipótese $\text{H}_0: \beta_{emGPA} = 0,4$ contra a hipótese alternativa bilateral no nível de 5\%?
+    \item Você pode rejeitar a hipótese $\text{H}_0: \beta_{emGPA} = 1$ contra a hipótese alternativa bilateral no nível de 5\%?
+    \end{enumerate}
+
+    \
+\
+\
+
+
+\question (4.3 \citep{wooldridge2016}) A variável \textit{rdintens} corresponde aos gastos com pesquisa e desenvolvimento (P\&D) como uma porcentagem de vendas. As vendas são mensuradas em milhões de dólares. A vairável \textit{profmarg} corresponde aos lucros como uma porcentagem das vendas.
+Usando os dados do arquivo RDCHEM de 32 empresas da indústria química, estimou-se a seguinte equação:
+\begin{equation*}
+    \widehat{rditens} = 0,472 + 0,321\log(sales) + 0,050profmarg
+\end{equation*} \vspace{-2em}
+\begin{equation*}
+    \phantom{} (1,369)\phantom{-} (0,216) \phantom{-----} (0,046)
+\end{equation*}\begin{equation*}
+    n = 32, \ R^2 = 0,099. 
+\end{equation*}
+\begin{enumerate}[label = (\alph*)]
+    \item Interprete o coeficiente de $\log(sales)$. Em particular, se \textit{sales} aumenta em 10\%, qual é a variação percentual estimada em \textit{rditens}? Esse efeito é economicamente grande?
+    \item Teste a hipótese de que a intensidade de P\&D não varia com \textit{sales} contra a alternativa de que P\&D aumenta com vendas. Teste em níveis de 5\% e 10\%.
+    \item Interprete o coeficiente na \textit{profmarg}. Ele é economicamente grande?
+    \item O \textit{profmarg} tem um efeito estatisticamente significante sobre \textit{rditens}?
+\end{enumerate}
+\
+\
+
+
+    
+    \question (4.9 \citep{wooldridge2010}) As taxas de aluguel são influenciadas pela população de estudantes em uma cidade onde há universidades? Seja \textit{alug} o aluguel médio mensal pago pela unidade alugada em uma determinada cidade, onde há universidades. Seja \textit{pop} o total da população da cidade, \textit{rendmed}, a renda média da cidade e \textit{pctstu}, a população de estudantes como um percentual da população total. Um modelo para testar essa relação é:
+    \[
+    \log(alug) = \beta_0 + \beta_1\log(pop) + \beta_2\log(rendmed) + \beta_3pctestu + u.
+    \]
+    \begin{enumerate}[label = (\alph*)]
+        \item Formule a hipótese nula de que o tamanho da população estudantil relativo à população das cidades não tem efeito \textit{ceteris paribus} sobre os aluguéis mensais. Formule a alternativa de que há um efeito.
+        \item Quais sinais você espera para $\beta_1$ e $\beta_2$?
+        \item A equação estimada, usando os dados de 1990 de 64 cidades com universidades do arquivo RENTAL.RAW é:
+        \[
+        \widehat{\log(alug)} = 0,043 + 0,066\log(pop) + 0,0507\log(rendmed) + 0,0056pctestu
+        \]\vspace{-2.0em}\[
+        \phantom{--} (0,0844) \phantom{-} (0,039) \phantom{----} (0,0081) \phantom{-------} (0,0017)
+        \]\vspace{-1.em}\[
+        n = 64, \quad R^2 = 0,458.
+        \] O que está errado com a seguinte afirmação? \textit{"Um aumento de 10\% na população está associado a um aumento de cerca de 6,6\% no aluguel"}?
+        \item Teste a hipótese formulada em (a) no nível de 1\%.
+    \end{enumerate}
+    
+
+\
+\
+
+
+\question\qstar (4.10 \citep{wooldridge2016}) A análise de regressão pode ser usada para testar se o mercado usa eficientemente as informações ao avaliar ações. Seja \textit{return} o retorno de possuir ações de uma empresa ao longo de um período de quatro anos, do final de 1990 até o final de 1994. A \textit{hipótese dos mercados eficientes} diz que estes retornos não devem ser sistematicamente relacionados à informação conhecida em 1990. Se as características conhecidas da empresa no início do período ajudassem a prever os retornos das ações, poderíamos usar essas informações para escolher ações.
+Para 1990, seja \textit{dkr} a relação dívida-capital de uma empresa, sejam \textit{eps} os ganhos por ação, seja \textit{netinc} a renda líquida e seja \textit{salary} a remuneração total dos CEOs da empresa.
+\begin{enumerate}[label = (\alph*)]
+    \item Usando dados do arquivo RETURN, estimou-se a seguinte equação:
+    \begin{equation*}
+        \widehat{return} = -14,37 + 0,321dkr + 0,043eps - 0,0051nentic + 0,0035 salary
+    \end{equation*}\vspace{-2em}\begin{equation*}
+        \phantom{--} (6,89) \phantom{-}(0,0201) \phantom{--} (0,078) \phantom{--} (0,0047) \phantom{---} (0,0022)
+    \end{equation*}\begin{equation*}
+        n = 142, \ R^2 = 0,0395
+    \end{equation*} Teste se as variáveis explicativas são conjuntamente significantes ao nível de 5\%. Alguma variável explicativa é individualmente significante?
+    \item Agora, nova estimação do modelo usando a formal log para \textit{netinc} e \textit{salary} forneceu a seguinte equação:    \begin{equation*}
+        \widehat{return} = -36,30 + 0,327dkr + 0,069eps - 4,74\log(nentic) + 7,24 \log(salary)
+    \end{equation*}\vspace{-2em}\begin{equation*}
+        \phantom{} (39,37) \phantom{-}(0,203) \phantom{--} (0,080) \phantom{---} (3,39) \phantom{-----} (6,31)
+    \end{equation*}\begin{equation*}
+        n = 142, \ R^2 = 0,0330
+    \end{equation*}Alguma de suas conclusões de (a) mudou?
+    \item Nessa amostra algumas empresas têm zero de dívidas e outras têm ganhos negativos. Deveríamos tentar usar log(\textit{dkr}) e log(\textit{eps}) para vermos se isso melhorará o ajustamento? Explique.
+    \item Em geral a evidência da previsibilidade dos retornos é forte ou fraca?
+\end{enumerate}
+\
+\
+
+
+\question\qstar (4.C9 \citep{wooldridge2016})\footnote{Esta é uma questão computacional. Para instalar o \texttt{R} e o \texttt{RStudio} veja o passo a passo aqui: \href{https://rstudio-education.github.io/hopr/starting.html}{https://rstudio-education.github.io/hopr/starting.html}. Caso tenha dúvidas quanto à linguagem, consulte o material disponibilizado no Moodle, e recomendo também o seguinte material de introdução ao \texttt{R}: \href{https://fhnishida.netlify.app/project/rec2301/sec2/}{https://fhnishida.netlify.app/project/rec2301/sec2/} }
+Use os dados do arquivo DISCRIM para responder essa questão.
+    \begin{enumerate} [label = (\alph*)]
+\item Use MQO para estimar o modelo\begin{equation*}
+    \log(psoda) = \beta_0 + \beta_1prpblck + \beta_2\log(income) + \beta_3 prppov + u
+\end{equation*} e reporte os resultados de forma usual. $\beta_0$ é estatisticamente diferente de zero a um nível de 5\% contra a alternativa bilateral? E a um nível de 1\%?
+\item Qual é a correlação entre log(\textit{income}) e \textit{prppov}? Cada uma das variáveis é estatisticamente significante em qualquer caso? Registre os p-valores bilaterais.
+\item O intercepto da regressão do item (b) teve um significado interessante? Explique.
+\item Encontre o p-valor do teste $\text{H}_0: \beta_2 =1$ contra $\text{H}_1: \beta_2 <1$. Você rejeita  $\text{H}_0$ ao nível de significância de 1\%?
+\item Se você fizer uma regressão simples de \textit{nettfa} sobre \textit{inc}, o coeficiente estimado de renda seria muito diferente do estimado do item (b)? Por que sim ou não?
+    \end{enumerate}
+    
+\end{questions}
+\newpage
+\bibliographystyle{apalike}   % or plainnat, econ, etc.
+\bibliography{refs}
+\end{document}
