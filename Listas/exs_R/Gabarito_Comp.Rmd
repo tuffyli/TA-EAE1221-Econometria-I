@@ -129,9 +129,88 @@ O resíduo da primeira casa é a diferença entre o preço real e o preço estim
 
 Portanto, podemos concluir que o comprador acabou pagando mais pela casa do que a precificação do nosso modelo.
 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+rm(list = ls()) # Limpa o ambiente de trabalho para evitar conflitos com outras questões
+```
 
 # Lista 4
 
 ## Questão 5)
 
+Vamos começar abrindo os dados solicitados pelo exercício.
+```{r}
 
+data("discrim")
+
+head(discrim)
+```
+
+-**(a)**
+
+Primeiro vamos encontrar a proporção de negros e renda, além dos desvios padrão
+```{r}
+# Evita notação científica
+options(scipen = 999)
+
+summary(discrim)
+#Pelo summary podemos notar a presença de valores NA
+
+# Médias
+mean_blck <- mean(discrim$prpblck, na.rm = TRUE) #Omitimos as Missing Values
+mean_inco <- mean(discrim$income, na.rm = TRUE)
+
+
+#Desvios padrão
+dp_blck <- sd(discrim$prpblck, na.rm = TRUE)
+dp_inco <- sd(discrim$income, na.rm = TRUE)
+
+#Print dos resultados.
+print(paste0("Para a variável prpblck, temos média:", round(mean_blck, digits = 4),
+             "e dp: ", round(dp_blck, digits = 4)))
+
+print(paste0("Para a variável prpblck, temos média:", round(mean_inco, digits = 4),
+             "e dp: ", round(dp_inco, digits = 4)))
+
+```
+A primeira variável $prpblck$ apresenta a proporção de negros por localidade, variando entre 0 e 1.
+Por outro lado, a variável $income$ apresenta a renda média familiar em dólares.
+
+- **(b)**
+
+Faremos a regressão de modo que:
+
+```{r, warning=F}
+out <- lm(lpsoda ~ prpblck + income, data = discrim)
+
+stargazer(out, type = "text")
+```
+
+Temos da tabela que o tamanho amostral é de 401 observações. Com um
+R$^2$ reportado de 0,068, i.e., 6,8%.
+
+O coeficiente estimado de $prpblck$ é 0,111, estatisticamente significativo a 5%. Como a variável dependente está em log e $prpblck$ está em nível, esse coeficiente indica que um aumento de 1 unidade em $prpblck$ está associado a um aumento aproximado de 11,1% no preço do refrigerante. Assim, um aumento de 0,10 em $prpblck$ (10 pontos percentuais) está associado a um aumento aproximado de 1,11% no preço do refrigerante.
+
+Um efeito desta magnitude não necessariamente é economicamente grande.
+
+- **(c)**
+
+Faremos a regressão simples deste modelo:
+```{r, warning=FALSE}
+out_simple <- lm(lpsoda ~ prpblck, data = discrim)
+
+stargazer(out_simple, type = "text")
+```
+O coeficiente estimado de $prpblck$ na regressão simples é 0,062, estatisticamente significativo a 5%. Isso indica que um aumento de 1 unidade em $prpblck$ está associado a um aumento aproximado de 6,2% no preço do refrigerante. Assim, um aumento de 0,10 em $prpblck$ (10 pontos percentuais) está associado a um aumento aproximado de 0,62% no preço do refrigerante.
+
+Observamos um efeito menor quando não controlamos pela variável de $income$.
+
+- **(d)**
+
+Fazendo a regressão para o modelo de elasticidade-preço:
+```{r, warning=FALSE}
+out3 <- lm(lpsoda ~ prpblck + lincome, data = discrim)
+
+stargazer(out3, type = "text")
+```
+
+Tem
