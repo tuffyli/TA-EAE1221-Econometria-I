@@ -213,4 +213,43 @@ out3 <- lm(lpsoda ~ prpblck + lincome, data = discrim)
 stargazer(out3, type = "text")
 ```
 
-Tem
+Temos que o coeficiente estimado de $prpblck$ é 0,122, estatisticamente significativo a 5%. 
+
+Para acessar a elasticidade-preço, usaremos a nossa conhecida relação log-lin.
+```{r}
+#delta %
+
+delta <- 100*(0.122)*0.22
+
+delta
+```
+ Onde o valor 2.xx procurado é de xx = 684. Logo a variação percentual final será de 2,68%
+
+- **(e)**
+
+Vamos adicionar a variável $prppov$ à regressão do item anterior:
+```{r, warning=FALSE}
+out4 <- lm(lpsoda ~ prpblck + lincome + prppov, data = discrim)
+
+stargazer(out4, type = "text")
+```
+Nota-se que a magnitude da variável $prpblck$ caiu drasticamente, ainda permanecendo significativa a 5%.
+
+ - **(f)**
+
+Para encontrarmos a correlação entre as duas variáveis, podemos usar a função `cor()` do R:
+```{r}
+# Calculando a correlação entre lincome e prppov
+
+cor(discrim$lincome, discrim$prppov, use = "complete.obs") # use = "complete.obs" para lidar com os NA
+
+```
+Vemos uma correlação negativa de -0,84 entre as variáveis $lincome$ e $prppov$, indicando que locais com maior renda média familiar tendem a ter uma menor proporção de pessoas vivendo abaixo da linha de pobreza. Ademais esta correlção é esperada, uma vez que regiões com maiores valores de income naturalmente exibirão menores indices de pobreza.
+
+- **(g)**
+
+A afirmação está incorreta. O fato de `log(income)` e `prppov` apresentarem correlação alta (\(-0{,}85\)) indica colinearidade elevada, mas isso não significa que elas não possam estar na mesma regressão.
+
+A alta colinearidade tende a inflar os erros-padrão dos coeficientes, dificultando a identificação precisa dos efeitos individuais de cada variável. No entanto, isso não implica viés nos estimadores de MQO e não exige, por si só, a exclusão de uma das variáveis.
+
+Se ambas forem relevantes do ponto de vista teórico, elas podem permanecer na regressão. O problema principal é de **precisão**, e não de **viés**.
