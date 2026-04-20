@@ -1,0 +1,257 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
+\usepackage{xcolor}
+\usepackage[brazil]{babel}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+
+\renewenvironment{solution}
+  {\par\noindent\textbf{R:}\enspace\color{blue}}
+  {\par\color{black}}
+
+\thispagestyle{empty}
+
+\begin{document}
+
+\begingroup
+    \centering
+    \LARGE Lista 6 Gabarito - Econometria I - 2026\\[0.5em]
+    \large Prof: Andre Luiz Pereira Mancha \par
+    \large Monitor: Tuffy Licciardi Issa \par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}
+\newcommand{\qstar}{\hspace{-0.6em}\textsuperscript{*}\hspace{0.2em}}
+
+\begin{questions}
+
+\question\qstar (4.11 \citep{wooldridge2016}) A tabela seguinte foi criada ao usar os dados do arquivo \texttt{CEOSAL2}, onde erros padrao estao entre parenteses abaixo dos coeficientes:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\hline
+\\[-1.0ex]
+& \multicolumn{3}{c}{Variavel dependente: $\log(salary)$} \\[1.5ex]
+\cline{2-4}\\[-1.0ex]
+Variaveis Independentes & (1) & (2) & (3) \\[1.5ex]
+\hline
+$\log(sales)$   & 0.224 & 0.158 & 0.188 \\
+                & (0.027) & (0.040) & (0.040) \\[0.2cm]
+
+$\log(mktval)$  & --- & 0.101 & 0.097 \\
+                & --- & (0.050) & (0.049) \\[0.2cm]
+
+$profmarg$      & --- & -0.0023 & -0.0022 \\
+                & --- & (0.0022) & (0.0021) \\[0.2cm]
+
+$ceoten$        & --- & --- & 0.0174 \\
+                & --- & --- & (0.0057) \\[0.2cm]
+
+$comten$        & --- & --- & -0.0092 \\
+                & --- & --- & (0.0033) \\[0.2cm]
+
+intercepto      & 4.94 & 4.62 & 4.57 \\
+                & (0.20) & (0.25) & (0.25) \\[0.2cm]
+
+Observacoes     & 177 & 177 & 177 \\
+R-quadrado      & 0.281 & 0.304 & 0.353 \\
+\midrule
+\bottomrule
+\end{tabular}
+\end{table}
+
+A variavel \texttt{mktval} e o valor de mercado da empresa, \texttt{profmarg} e o lucro como porcentagem das vendas, \texttt{ceoten} corresponde aos anos de trabalho como diretor-executivo na atual empresa, e \texttt{comten} e o total de anos na empresa.
+
+\begin{enumerate}[label=(\roman*)]
+    \item Comente os efeitos de \texttt{profmarg} sobre o salario dos diretores-executivos.
+    \item O valor de mercado tem um efeito significante? Explique.
+    \item Interprete os coeficientes de \texttt{ceoten} e \texttt{comten}. As variaveis sao estatisticamente significantes?
+    \item A evidencia indica que, permanecendo muito tempo na empresa, mantendo fixos os outros fatores, esta associada a salarios mais baixos?
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}[label=(\roman*)]
+    \item O coeficiente de \texttt{profmarg} e pequeno e negativo. Nas colunas (2) e (3), um aumento de 1 ponto percentual em \texttt{profmarg} esta associado a uma queda de aproximadamente \(0,23\%\) e \(0,22\%\) no salario, ceteris paribus. Portanto, o efeito economico e bastante pequeno.
+
+    \item Sim, o efeito e marginalmente significante. Nas colunas (2) e (3),
+    \[
+    t=\frac{0,101}{0,050}\approx 2,02
+    \qquad \text{e} \qquad
+    t=\frac{0,097}{0,049}\approx 1,98.
+    \]
+    Logo, pelo criterio usual de 5\%, o valor de mercado tem efeito estatisticamente significante. Como o modelo e log-log nessa variavel, um aumento de 1\% em \texttt{mktval} aumenta o salario em cerca de \(0,10\%\).
+
+    \item Em (3), \texttt{ceoten} tem coeficiente \(0,0174\): um ano adicional como CEO na firma aumenta o salario em aproximadamente \(1,74\%\), ceteris paribus. Ja \texttt{comten} tem coeficiente \(-0,0092\): um ano adicional de tempo total na empresa reduz o salario em cerca de \(0,92\%\), mantidos os demais fatores fixos. As estatisticas t sao
+    \[
+    t_{ceoten}=\frac{0,0174}{0,0057}\approx 3,05
+    \qquad \text{e} \qquad
+    t_{comten}=\frac{-0,0092}{0,0033}\approx -2,79.
+    \]
+    Portanto, ambas sao estatisticamente significantes a 5\%.
+
+    \item Se mantivermos \texttt{ceoten} fixo, maior \texttt{comten} esta associada a salarios menores, pois o coeficiente estimado e negativo. Mas, para um CEO que permanece mais um ano na empresa e mais um ano no cargo, o efeito liquido seria
+    \[
+    0,0174 - 0,0092 = 0,0082,
+    \]
+    isto e, cerca de \(0,82\%\) a mais no salario. Entao a leitura de salario menor vale apenas ao manter \texttt{ceoten} constante.
+\end{enumerate}
+\end{solution}
+
+\
+\
+\\
+
+\question (8 (ANPEC, 2012), \citep{pereda_denisard}) Usando uma base de dados que tem informacoes de 65.535 trabalhadores, queremos verificar se existe desigualdade salarial entre os setores da economia. Considere que a economia esta dividida em quatro setores: industria, comercio, servicos e construcao. Cada um dos trabalhadores esta em um dos quatro setores e eles sao mutuamente exclusivos. Seja \(Y_i\) o salario mensal do trabalhador \(i\) e definimos para cada setor uma variavel binaria que e igual a 1 se o trabalhador pertence ao setor e 0 caso contrario. Estimando um modelo linear de regressao, obtemos o seguinte resultado:
+
+\[
+\hat{Y}_i = 4{,}00 + 0{,}12\,educ_i + 0{,}03\,idade_i + 0{,}40\,homem_i - 0{,}05\,DI_i - 0{,}15\,DC_i - 0{,}25\,DCons_i
+\]
+\vspace{-0.8cm}
+\[
+\quad (0{,}02)\quad (0{,}008)\quad (0{,}0001)\qquad (0{,}0005)\qquad (0{,}0011)\qquad (0{,}003)\qquad (0{,}005)
+\]
+\[
+R^2 = 0{,}83
+\]
+
+Em que \textit{educ} representa o numero de anos de estudo de cada trabalhador, \textit{idade} e medida em anos, \textit{homem} e uma variavel binaria que assume valor igual a 1 se e homem e 0 caso contrario, \(DI\) representa a dummy para industria, \(DC\) para comercio e \(DCons\) para construcao. Entre parenteses encontra-se o erro-padrao de cada estimativa.
+
+Baseado nas informacoes anteriores, julgue as seguintes afirmativas:
+
+\begin{enumerate}[label=(\arabic*)]
+    \item Com base nos resultados anteriores e possivel rejeitar ao nivel de 5\% de significancia a hipotese nula de que o salario do setor da industria e igual ao salario do setor de servicos para trabalhadores com o mesmo nivel educacional, a mesma idade e do mesmo sexo. A hipotese alternativa e que os salarios nestes setores sejam diferentes.
+
+    \item Com base nos resultados anteriores e possivel rejeitar ao nivel de 5\% de significancia a hipotese nula de que o salario no setor de construcao e igual ao salario no setor de comercio, mantendo educacao, idade e sexo fixos. A hipotese alternativa e que os salarios nesses setores sejam diferentes.
+
+    \item Com base nos resultados anteriores, e possivel rejeitar ao nivel de 5\% de significancia a hipotese nula de que os salarios nos 4 setores da economia sao iguais, mantendo constante educacao, idade e sexo.
+
+    \item Os resultados do modelo anterior permitem testar a hipotese nula de que o retorno salarial entre homem e mulher e diferente para cada nivel educacional, ao nivel de 5\% de significancia.
+
+    \item Com base nos resultados anteriores, podemos testar a hipotese de que o intercepto do modelo linear de salario em funcao de educacao, idade e setor para homem e diferente do intercepto do mesmo modelo linear de salario para mulher.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{V}. O grupo-base e servicos, entao a hipotese de igualdade entre industria e servicos equivale a testar \(H_0:\beta_{DI}=0\). Como
+    \[
+    t=\frac{-0,05}{0,003}\approx -16,67,
+    \]
+    rejeitamos \(H_0\) com folga a 5\%.
+
+    \item \textbf{F}. Igualdade entre construcao e comercio exige testar
+    \[
+    H_0:\beta_{DCons}=\beta_{DC}
+    \quad \Leftrightarrow \quad
+    H_0:\beta_{DCons}-\beta_{DC}=0.
+    \]
+    Para isso, precisamos do erro-padrao da diferenca, o que requer a covariancia entre os estimadores. Essa informacao nao foi fornecida.
+
+    \item \textbf{V}. Igualdade salarial nos quatro setores implica
+    \[
+    H_0:\beta_{DI}=\beta_{DC}=\beta_{DCons}=0.
+    \]
+    Como as tres dummies setoriais aparecem individualmente muito significantes, ha evidencia suficiente para rejeitar a hipotese conjunta.
+
+    \item \textbf{F}. Para testar se o retorno salarial de educacao difere entre homens e mulheres, seria preciso incluir um termo de interacao como \(homem_i \times educ_i\). O modelo estimado nao contem essa interacao.
+
+    \item \textbf{V}. O coeficiente de \(homem_i\) mede justamente a diferenca de intercepto entre homens e mulheres, mantendo fixos educacao, idade e setor. Portanto, essa hipotese pode ser testada.
+\end{enumerate}
+\end{solution}
+
+\
+\\
+
+\question\qstar (5.1 \citep{wooldridge2016}) No modelo de regressao simples sob os RLM.1 ate RLM.4, afirmamos que o estimador de inclinacao, $\hat\beta_1$, e consistente com $\beta_1$. Usando $\beta_0 = \overline y - \hat\beta_1\overline x_1$, demonstre que plim $\hat\beta_0 = \beta_0$. [Voce precisara usar a consistencia de $\hat\beta_1$ e a lei dos grandes numeros, juntamente com o fato de que $\beta_0 = \text{E}[y] - \beta_1\text{E}[x_1]$].
+
+\begin{solution}
+Temos
+\[
+\hat\beta_0=\bar y - \hat\beta_1\bar x_1.
+\]
+Tomando plim em ambos os lados,
+\[
+\plim \hat\beta_0 = \plim \bar y - (\plim \hat\beta_1)(\plim \bar x_1).
+\]
+Pela lei dos grandes numeros,
+\[
+\plim \bar y = E[y]
+\qquad \text{e} \qquad
+\plim \bar x_1 = E[x_1].
+\]
+Pela consistencia de \(\hat\beta_1\),
+\[
+\plim \hat\beta_1 = \beta_1.
+\]
+Logo,
+\[
+\plim \hat\beta_0 = E[y] - \beta_1E[x_1].
+\]
+Mas, por definicao do modelo populacional,
+\[
+\beta_0 = E[y] - \beta_1E[x_1].
+\]
+Portanto,
+\[
+\boxed{\plim \hat\beta_0 = \beta_0.}
+\]
+\end{solution}
+
+\
+\\
+
+\question (5.2 \citep{wooldridge2016}) Suponha que o modelo:
+\begin{equation}
+    pctstck = \beta_0 + \beta_1funds + \beta_2risktol + u
+\end{equation}
+satisfaca as quatro primeiras hipoteses de Gauss-Markov, em que \texttt{pctstck} e a porcentagem da pensao de um trabalhador investida no mercado de acoes, \texttt{funds} e o numero de fundos mutuos que o trabalhador pode escolher e \texttt{risktol} e alguma medida de tolerancia a risco (\texttt{risktol} maior significa que a pessoa tem maior tolerancia a risco). Se \texttt{funds} e \texttt{risktol} sao positivamente correlacionados, qual e a inconsistenca em $\tilde\beta_1$, o coeficiente de inclinacao da regressao de \texttt{pctstck} sobre \texttt{funds}?
+
+\begin{solution}
+Ao omitir \texttt{risktol} e estimar a regressao curta, temos vies por variavel omitida. Em amostras grandes,
+\[
+\plim \tilde\beta_1
+=
+\beta_1 + \beta_2\frac{\Cov(funds,risktol)}{\Var(funds)}.
+\]
+Logo, a inconsistenca e
+\[
+\plim \tilde\beta_1 - \beta_1
+=
+\beta_2\frac{\Cov(funds,risktol)}{\Var(funds)}.
+\]
+Como \texttt{funds} e \texttt{risktol} sao positivamente correlacionados, o termo
+\[
+\frac{\Cov(funds,risktol)}{\Var(funds)}
+\]
+e positivo. Alem disso, maior tolerancia a risco tende a aumentar a parcela investida em acoes, de modo que \(\beta_2>0\). Portanto, a inconsistenca e \textbf{positiva}: \(\tilde\beta_1\) superestima \(\beta_1\).
+\end{solution}
+
+\
+\\
+
+\question\qstar (5.C1 \citep{wooldridge2016})\footnote{Esta e uma questao computacional. Para instalar o \texttt{R} e o \texttt{RStudio} veja o passo a passo aqui: \href{https://rstudio-education.github.io/hopr/starting.html}{https://rstudio-education.github.io/hopr/starting.html}. Caso tenha duvidas quanto a linguagem, consulte o material disponibilizado no Moodle, e recomendo tambem o seguinte material de introducao ao \texttt{R}: \href{https://fhnishida.netlify.app/project/rec2301/sec2/}{https://fhnishida.netlify.app/project/rec2301/sec2/} }
+Use os dados do arquivo \texttt{WAGE1} para resolver este exercicio.
+
+\begin{enumerate}[label = (\alph*)]
+\item Estime a equacao
+\[
+    wage = \beta_0 + \beta_1 educ + \beta_2 exper + \beta_3 tenure + u
+\]
+Salve os residuos e trace um histograma.
+\item Repita o item (a), mas com \(\log(wage)\) como a variavel dependente.
+\item Voce diria que a Hipotese RLM.6 esta mais proxima de ser satisfeita pelo modelo nivel-nivel ou pelo modelo semilog?
+\end{enumerate}
+
+\end{questions}
+\newpage
+\bibliographystyle{apalike}
+\bibliography{refs}
+\end{document}

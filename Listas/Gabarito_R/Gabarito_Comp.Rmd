@@ -1,0 +1,462 @@
+---
+title: "Gabarito Questoes Computacionais"
+author: "Tuffy"
+date: "2026-04-20"
+output: pdf_document
+---
+
+# Lista 3 a 11 - Econometria I - 2026
+
+**Prof.:** Andre Luiz Pereira Mancha  
+**Monitor:** Tuffy Licciardi Issa  
+Email: tuffy@usp.br  
+GitHub: https://github.com/Tuffyli
+
+---
+
+# Lista 3
+
+## Questao 5)
+
+Vamos comecar abrindo a base de dados solicitada pelo exercicio.
+
+```{r lista3-setup, warning=FALSE, message=FALSE}
+library(wooldridge)
+library(stargazer)
+
+data("hprice1")
+head(hprice1)
+```
+
+- **(a)**
+
+Vamos estimar por MQO a regressao pedida:
+
+```{r lista3-a}
+mod3 <- lm(price ~ sqrft + bdrms, data = hprice1)
+summary(mod3)
+stargazer(mod3, type = "text", digits = 4)
+coef(mod3)
+```
+
+Assim, a equacao estimada fica:
+
+$$
+\widehat{price} = \hat\beta_0 + \hat\beta_1\,sqrft + \hat\beta_2\,bdrms
+$$
+
+com os coeficientes numericos dados na saida acima.
+
+- **(b)**
+
+O efeito de um quarto adicional, mantendo a area fixa, e dado pelo coeficiente de `bdrms`.
+
+```{r lista3-b}
+coef(mod3)["bdrms"]
+```
+
+Ou seja, um quarto a mais aumenta o preco previsto em `r round(coef(mod3)["bdrms"], 3)` mil dolares, ceteris paribus.
+
+- **(c)**
+
+Se o quarto adicional vier acompanhado de 140 pes quadrados extras, o aumento previsto no preco sera:
+
+```{r lista3-c}
+delta_price <- 140 * coef(mod3)["sqrft"] + coef(mod3)["bdrms"]
+delta_price
+```
+
+Portanto, o aumento estimado e de `r round(delta_price, 3)` mil dolares.
+
+- **(d)**
+
+O percentual da variacao de `price` explicado por `sqrft` e `bdrms` e medido pelo \(R^2\).
+
+```{r lista3-d}
+summary(mod3)$r.squared
+```
+
+Assim, o modelo explica aproximadamente `r round(100 * summary(mod3)$r.squared, 2)`% da variacao do preco.
+
+- **(e)**
+
+Para `sqrft = 2438` e `bdrms = 4`, a previsao e:
+
+```{r lista3-e}
+nova_casa <- data.frame(sqrft = 2438, bdrms = 4)
+predict(mod3, newdata = nova_casa)
+```
+
+- **(f)**
+
+O residuo da primeira observacao e o preco observado menos o preco previsto.
+
+```{r lista3-f}
+preco_previsto_1 <- fitted(mod3)[1]
+preco_observado_1 <- hprice1$price[1]
+residuo_1 <- resid(mod3)[1]
+
+preco_previsto_1
+preco_observado_1
+residuo_1
+```
+
+Se o residuo for negativo, o modelo superestimou o preco da casa. Se for positivo, o modelo subestimou.
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+# Lista 4
+
+## Questao 5)
+
+Vamos carregar novamente os pacotes e a base usada no exercicio.
+
+```{r lista4-setup, warning=FALSE, message=FALSE}
+library(wooldridge)
+library(stargazer)
+
+options(scipen = 999)
+data("discrim")
+head(discrim)
+```
+
+- **(a)**
+
+Primeiro, calculamos medias e desvios-padrao de `prpblck` e `income`.
+
+```{r lista4-a}
+mean_prpblck <- mean(discrim$prpblck, na.rm = TRUE)
+sd_prpblck <- sd(discrim$prpblck, na.rm = TRUE)
+
+mean_income <- mean(discrim$income, na.rm = TRUE)
+sd_income <- sd(discrim$income, na.rm = TRUE)
+
+data.frame(
+  variavel = c("prpblck", "income"),
+  media = c(mean_prpblck, mean_income),
+  desvio_padrao = c(sd_prpblck, sd_income)
+)
+```
+
+`prpblck` e uma proporcao, variando entre 0 e 1. `income` mede renda familiar mediana em dolares.
+
+- **(b)**
+
+Aqui estava o erro principal do arquivo anterior: o enunciado pede a regressao com `psoda`, e nao com `lpsoda`.
+
+```{r lista4-b, warning=FALSE, message=FALSE}
+mod4_b <- lm(psoda ~ prpblck + income, data = discrim)
+summary(mod4_b)
+stargazer(mod4_b, type = "text", digits = 4)
+coef(mod4_b)
+```
+
+Como o modelo esta em nivel-nivel, o coeficiente de `prpblck` mede a variacao em dolares no preco do refrigerante para um aumento de uma unidade em `prpblck`. Como uma unidade equivale a 100 pontos percentuais, um aumento de 0,10 em `prpblck` implica variacao prevista de:
+
+```{r lista4-b-efeito}
+efeito_10pp_psoda <- 0.10 * coef(mod4_b)["prpblck"]
+efeito_10pp_psoda
+```
+
+Ou seja, `r round(efeito_10pp_psoda, 4)` dolar por refrigerante. Isso permite discutir se o efeito e economicamente grande ou pequeno.
+
+- **(c)**
+
+Agora estimamos a regressao simples de `psoda` sobre `prpblck`.
+
+```{r lista4-c, warning=FALSE, message=FALSE}
+mod4_c <- lm(psoda ~ prpblck, data = discrim)
+summary(mod4_c)
+stargazer(mod4_c, type = "text", digits = 4)
+coef(mod4_c)
+```
+
+Comparando o coeficiente de `prpblck` em (b) e (c), vemos como o controle por renda altera o efeito estimado.
+
+- **(d)**
+
+Agora estimamos o modelo semilog pedido pelo item:
+
+```{r lista4-d, warning=FALSE, message=FALSE}
+mod4_d <- lm(lpsoda ~ prpblck + lincome, data = discrim)
+summary(mod4_d)
+stargazer(mod4_d, type = "text", digits = 4)
+coef(mod4_d)
+```
+
+Em um modelo log-nivel, a variacao percentual aproximada em `psoda` para um aumento de 0,22 em `prpblck` e:
+
+```{r lista4-d-delta}
+delta_pct <- 100 * coef(mod4_d)["prpblck"] * 0.22
+delta_pct
+```
+
+Logo, a variacao percentual estimada e de aproximadamente `r round(delta_pct, 2)`%.
+
+- **(e)**
+
+Agora adicionamos `prppov` ao modelo do item anterior.
+
+```{r lista4-e, warning=FALSE, message=FALSE}
+mod4_e <- lm(lpsoda ~ prpblck + lincome + prppov, data = discrim)
+summary(mod4_e)
+stargazer(mod4_e, type = "text", digits = 4)
+coef(mod4_e)
+```
+
+O ponto central e comparar os coeficientes de `prpblck` em `mod4_d` e `mod4_e`. Em geral, ao incluir `prppov`, a magnitude de `prpblck` cai, mostrando que parte do efeito anterior refletia diferencas de pobreza entre localidades.
+
+- **(f)**
+
+```{r lista4-f}
+corr_lincome_prppov <- cor(discrim$lincome, discrim$prppov, use = "complete.obs")
+corr_lincome_prppov
+```
+
+A correlacao e fortemente negativa, o que faz sentido: areas com maior renda tendem a ter menor proporcao de pessoas abaixo da linha de pobreza.
+
+- **(g)**
+
+A afirmacao esta incorreta. Colinearidade alta entre `lincome` e `prppov` pode inflar erros-padrao e reduzir a precisao das estimativas individuais, mas nao gera vies de MQO nem obriga a retirar uma das variaveis. Se ambas forem relevantes do ponto de vista teorico, podem permanecer no modelo.
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+# Lista 5
+
+## Questao 5)
+
+Agora fazemos o gabarito computacional da Lista 5 usando a base `DISCRIM`, exatamente como pedido no enunciado da lista.
+
+```{r lista5-setup, warning=FALSE, message=FALSE}
+library(wooldridge)
+library(stargazer)
+
+options(scipen = 999)
+data("discrim")
+
+head(discrim)
+```
+
+- **(a)**
+
+Vamos estimar por MQO o modelo pedido:
+
+```{r lista5-a-modelo}
+mod5_a <- lm(lpsoda ~ prpblck + lincome + prppov, data = discrim)
+summary(mod5_a)
+stargazer(mod5_a, type = "text", digits = 4)
+coef(mod5_a)
+```
+
+Com isso, a equacao estimada pode ser escrita como:
+
+$$
+\widehat{\log(psoda)} = -1.463 + 0.0728\,prpblck + 0.137\,lincome + 0.380\,prppov
+$$
+
+Temos \(n =\) `r nobs(mod5_a)` observacoes e \(R^2 \approx\) `r round(summary(mod5_a)$r.squared, 4)`.
+
+Agora vamos verificar se o intercepto e estatisticamente diferente de zero a 5\% e a 1\%.
+
+```{r lista5-a-intercepto}
+coef(summary(mod5_a))["(Intercept)", ]
+```
+
+O p-valor bilateral do intercepto e aproximadamente `r signif(coef(summary(mod5_a))["(Intercept)", "Pr(>|t|)"], 4)`. Portanto, rejeitamos \(H_0:\beta_0=0\) tanto a 5\% quanto a 1\%.
+
+- **(b)**
+
+Agora calculamos a correlacao entre `lincome` e `prppov` e registramos os p-valores das duas variaveis no modelo estimado em (a).
+
+```{r lista5-b-cor}
+cor(discrim$lincome, discrim$prppov, use = "complete.obs")
+```
+
+```{r lista5-b-pvalores}
+coef(summary(mod5_a))[c("lincome", "prppov"), c("Estimate", "Std. Error", "Pr(>|t|)")]
+```
+
+A correlacao entre `lincome` e `prppov` e aproximadamente `r round(cor(discrim$lincome, discrim$prppov, use = "complete.obs"), 4)`, isto e, fortemente negativa. Mesmo assim, no modelo do item (a), ambas permanecem estatisticamente significantes:
+
+- p-valor bilateral de `lincome`: `r signif(coef(summary(mod5_a))["lincome", "Pr(>|t|)"], 4)`;
+- p-valor bilateral de `prppov`: `r signif(coef(summary(mod5_a))["prppov", "Pr(>|t|)"], 4)`.
+
+- **(c)**
+
+O intercepto mede o valor previsto de \(\log(psoda)\) quando `prpblck = 0`, `lincome = 0` e `prppov = 0`. Em particular, `lincome = 0` significaria `income = 1`, o que nao e um valor economicamente plausivel para a renda mediana de um CEP. Portanto, embora o intercepto seja estatisticamente diferente de zero, ele **nao tem interpretacao economica muito interessante** neste contexto.
+
+- **(d)**
+
+Agora calculamos o p-valor do teste
+
+$$
+H_0:\beta_2 = 1
+\qquad \text{contra} \qquad
+H_1:\beta_2 < 1,
+$$
+
+em que \(\beta_2\) e o coeficiente de `lincome`.
+
+```{r lista5-d-teste}
+beta2_hat <- coef(mod5_a)["lincome"]
+se_beta2 <- coef(summary(mod5_a))["lincome", "Std. Error"]
+t_beta2 <- (beta2_hat - 1) / se_beta2
+pval_beta2 <- pt(t_beta2, df = df.residual(mod5_a))
+
+beta2_hat
+se_beta2
+t_beta2
+pval_beta2
+```
+
+Como a estatistica t e aproximadamente `r round(t_beta2, 3)` e o p-valor unilateral e praticamente zero, rejeitamos \(H_0\) ao nivel de 1\%. Ou seja, ha evidencia fortissima de que o coeficiente de `lincome` e menor do que 1.
+
+- **(e)**
+
+O item (e) do PDF parece conter um lapso de edicao, pois menciona `nettfa` e `inc`, variaveis que nao pertencem a base `DISCRIM`. Para manter a logica do exercicio, vamos comparar o coeficiente de renda do modelo completo com o coeficiente de uma regressao simples de `lpsoda` sobre `lincome`.
+
+```{r lista5-e-regsimples}
+mod5_e <- lm(lpsoda ~ lincome, data = discrim)
+summary(mod5_e)
+coef(summary(mod5_e))
+```
+
+No modelo simples, o coeficiente de `lincome` e aproximadamente `r round(coef(mod5_e)["lincome"], 4)`, enquanto no modelo do item (a) ele e `r round(coef(mod5_a)["lincome"], 4)`.
+
+Portanto, o coeficiente estimado de renda **muda bastante** quando passamos da regressao simples para a regressao multipla. Isso acontece porque `lincome` esta correlacionada com `prpblck` e `prppov`, de modo que, ao omitir essas variaveis, a regressao simples sofre de vies por variavel omitida.
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+# Lista 6
+
+## Questao 5)
+
+Agora fazemos o gabarito computacional da Lista 6 com os dados `WAGE1`.
+
+```{r lista6-setup, warning=FALSE, message=FALSE}
+library(wooldridge)
+library(stargazer)
+data("wage1")
+
+head(wage1)
+```
+
+Vamos definir uma funcao simples para medir a assimetria dos residuos.
+
+```{r lista6-helper}
+skew_manual <- function(x) {
+  m <- mean(x)
+  s <- sd(x)
+  mean((x - m)^3) / (s^3)
+}
+```
+
+- **(a)**
+
+Estimamos a regressao em nivel e salvamos os residuos.
+
+```{r lista6-a-modelo}
+mod6_a <- lm(wage ~ educ + exper + tenure, data = wage1)
+summary(mod6_a)
+stargazer(mod6_a, type = "text", digits = 4)
+coef(mod6_a)
+```
+
+Com isso, a equacao estimada pode ser escrita como:
+
+$$
+\widehat{wage} = -2.873 + 0.599\,educ + 0.022\,exper + 0.169\,tenure
+$$
+
+Logo, mantidos os demais fatores constantes:
+
+- um ano adicional de estudo aumenta o salario horario previsto em aproximadamente US$ 0,60;
+- um ano adicional de experiencia aumenta o salario previsto em cerca de US$ 0,02;
+- um ano adicional de tempo no emprego atual aumenta o salario previsto em cerca de US$ 0,17.
+
+```{r lista6-a-residuos}
+res6_a <- resid(mod6_a)
+summary(res6_a)
+skew_manual(res6_a)
+```
+
+```{r lista6-a-hist, fig.width=7, fig.height=4}
+hist(
+  res6_a,
+  breaks = 30,
+  col = "lightblue",
+  border = "white",
+  main = "Residuos do modelo em nivel",
+  xlab = "Residuo"
+)
+abline(v = 0, col = "red", lwd = 2)
+```
+
+No modelo em nivel, os residuos apresentam assimetria positiva forte. Isso aparece tanto visualmente no histograma quanto na medida de assimetria:
+
+- assimetria aproximada dos residuos: `r round(skew_manual(res6_a), 3)`;
+- valor maximo do residuo: `r round(max(res6_a), 3)`;
+- valor minimo do residuo: `r round(min(res6_a), 3)`.
+
+Ou seja, ha uma cauda direita bem mais longa do que a esquerda, o que sugere afastamento da normalidade.
+
+- **(b)**
+
+Agora repetimos o procedimento com `log(wage)` como variavel dependente.
+
+```{r lista6-b-modelo}
+mod6_b <- lm(lwage ~ educ + exper + tenure, data = wage1)
+summary(mod6_b)
+stargazer(mod6_b, type = "text", digits = 4)
+coef(mod6_b)
+```
+
+Agora a equacao estimada fica:
+
+$$
+\widehat{\log(wage)} = 0.284 + 0.092\,educ + 0.004\,exper + 0.022\,tenure
+$$
+
+Como o modelo e semilog, os coeficientes podem ser lidos aproximadamente como efeitos percentuais:
+
+- um ano adicional de estudo esta associado a um salario cerca de `r round(100 * coef(mod6_b)["educ"], 2)`% maior;
+- um ano adicional de experiencia esta associado a um salario cerca de `r round(100 * coef(mod6_b)["exper"], 2)`% maior;
+- um ano adicional de tenure esta associado a um salario cerca de `r round(100 * coef(mod6_b)["tenure"], 2)`% maior.
+
+```{r lista6-b-residuos}
+res6_b <- resid(mod6_b)
+summary(res6_b)
+skew_manual(res6_b)
+```
+
+```{r lista6-b-hist, fig.width=7, fig.height=4}
+hist(
+  res6_b,
+  breaks = 30,
+  col = "lightgreen",
+  border = "white",
+  main = "Residuos do modelo semilog",
+  xlab = "Residuo"
+)
+abline(v = 0, col = "red", lwd = 2)
+```
+
+Aqui os residuos ficam muito mais simetricos em torno de zero:
+
+- assimetria aproximada dos residuos: `r round(skew_manual(res6_b), 3)`;
+- valor maximo do residuo: `r round(max(res6_b), 3)`;
+- valor minimo do residuo: `r round(min(res6_b), 3)`.
+
+Visualmente, o histograma do modelo semilog fica bem mais proximo de uma distribuicao em forma de sino.
+
+- **(c)**
+
+Comparando os histogramas e as medidas de assimetria, o modelo semilog fica claramente mais proximo de satisfazer a hipotese RLM.6. No modelo em nivel, a assimetria dos residuos e de cerca de `r round(skew_manual(res6_a), 3)`, enquanto no modelo com `log(wage)` ela cai para aproximadamente `r round(skew_manual(res6_b), 3)`.
+
+A intuicao economica tambem ajuda: salarios em nivel costumam ser bastante assimetricos, com alguns valores muito altos puxando a distribuicao para a direita. Ao tomar log, comprimimos essa cauda longa e obtemos residuos mais equilibrados ao redor de zero. Portanto, a melhor resposta para o item (c) e que a hipotese de normalidade fica mais plausivel no **modelo semilog**.
