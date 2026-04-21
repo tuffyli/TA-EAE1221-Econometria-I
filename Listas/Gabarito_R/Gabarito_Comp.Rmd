@@ -317,17 +317,49 @@ Como a estatistica t e aproximadamente `r round(t_beta2, 3)` e o p-valor unilate
 
 - **(e)**
 
-O item (e) do PDF parece conter um lapso de edicao, pois menciona `nettfa` e `inc`, variaveis que nao pertencem a base `DISCRIM`. Para manter a logica do exercicio, vamos comparar o coeficiente de renda do modelo completo com o coeficiente de uma regressao simples de `lpsoda` sobre `lincome`.
+Agora adicionamos `log(hseval)` ao modelo:
 
-```{r lista5-e-regsimples}
-mod5_e <- lm(lpsoda ~ lincome, data = discrim)
+```{r lista5-e-modelo}
+mod5_e <- lm(lpsoda ~ prpblck + lincome + prppov + lhseval, data = discrim)
 summary(mod5_e)
-coef(summary(mod5_e))
+stargazer(mod5_e, type = "text", digits = 4)
+coef(mod5_e)
 ```
 
-No modelo simples, o coeficiente de `lincome` e aproximadamente `r round(coef(mod5_e)["lincome"], 4)`, enquanto no modelo do item (a) ele e `r round(coef(mod5_a)["lincome"], 4)`.
+Com a nova variavel, a equacao estimada fica:
 
-Portanto, o coeficiente estimado de renda **muda bastante** quando passamos da regressao simples para a regressao multipla. Isso acontece porque `lincome` esta correlacionada com `prpblck` e `prppov`, de modo que, ao omitir essas variaveis, a regressao simples sofre de vies por variavel omitida.
+$$
+\widehat{\log(psoda)} = -0.842 + 0.0976\,prpblck - 0.0530\,lincome + 0.0521\,prppov + 0.1213\,lhseval
+$$
+
+O coeficiente de `lhseval` e aproximadamente `0.1213`. Como temos um modelo log-log nessa variavel, ele e uma elasticidade: um aumento de 1\% no valor das casas da regiao esta associado a um aumento de aproximadamente `0.12\%` no preco do refrigerante, ceteris paribus.
+
+Agora vamos observar o que acontece com a significancia individual de `lincome` e `prppov`.
+
+```{r lista5-e-individual}
+coef(summary(mod5_e))[c("lincome", "prppov", "lhseval"), c("Estimate", "Std. Error", "Pr(>|t|)")]
+```
+
+Depois da inclusao de `lhseval`, tanto `lincome` quanto `prppov` deixam de ser individualmente significantes aos niveis usuais:
+
+- p-valor de `lincome`: `r signif(coef(summary(mod5_e))["lincome", "Pr(>|t|)"], 4)`;
+- p-valor de `prppov`: `r signif(coef(summary(mod5_e))["prppov", "Pr(>|t|)"], 4)`.
+
+Ja `lhseval` permanece fortemente significante.
+
+Por fim, vamos testar se `lincome` e `prppov` sao conjuntamente significativas.
+
+```{r lista5-e-conjunto}
+mod5_e_restrito <- lm(lpsoda ~ prpblck + lhseval, data = discrim)
+anova(mod5_e_restrito, mod5_e)
+```
+
+O p-valor do teste F conjunto e aproximadamente `r signif(anova(mod5_e_restrito, mod5_e)$"Pr(>F)"[2], 4)`. Portanto, rejeitamos a hipotese nula de que os coeficientes de `lincome` e `prppov` sejam ambos zero ao nivel de 5\%.
+
+Em resumo:
+
+- `lincome` e `prppov` nao sao individualmente significantes depois da inclusao de `lhseval`;
+- mas elas sao **conjuntamente significativas** a 5\%.
 
 ```{r, echo=FALSE}
 rm(list = ls())
