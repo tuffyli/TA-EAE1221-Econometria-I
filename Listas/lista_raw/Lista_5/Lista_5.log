@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.10)  20 APR 2026 11:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.10)  21 APR 2026 10:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**"./Lista 5.tex"
-(Lista 5.tex
+**./Lista_5.tex
+(Lista_5.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/exam\exam.cls
@@ -434,11 +434,11 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 tex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count361
-) (Lista 5.aux
+) (Lista_5.aux
 Package babel Info: 'brazil' activates 'portuges' shorthands.
 (babel)             Reported on input line 15.
 )
-\openout1 = `"Lista 5.aux"'.
+\openout1 = `Lista_5.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
@@ -494,9 +494,9 @@ LaTeX Font Info:    ... okay on input line 15.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 15.
-(Lista 5.out) (Lista 5.out)
+(Lista_5.out) (Lista_5.out)
 \@outlinefile=\write3
-\openout3 = `"Lista 5.out"'.
+\openout3 = `Lista_5.out'.
 
 
 Overfull \hbox (17.62482pt too wide) in paragraph at lines 26--31
@@ -522,24 +522,24 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/Users/tuffy/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-[3] (Lista 5.bbl) [4]
+[3] (Lista_5.bbl) [4]
 This exam contains 5 questions with 0 parts, 0 subparts, and 0 subsubparts.
-(Lista 5.aux)
+(Lista_5.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
-Package rerunfilecheck Info: File `"Lista 5".out' has not changed.
+Package rerunfilecheck Info: File `Lista_5.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 12372 strings out of 467871
- 191736 string characters out of 5418376
- 642992 words of memory out of 5000000
- 41096 multiletter control sequences out of 15000+600000
+ 12369 strings out of 467871
+ 191657 string characters out of 5418376
+ 642988 words of memory out of 5000000
+ 41093 multiletter control sequences out of 15000+600000
  635783 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,79p,695b,734s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,693b,734s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx12.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmmi12.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -554,7 +554,7 @@ Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12
 .pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
 cm/cmtt10.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/symbols/msbm10.pfb>
-Output written on "Lista 5.pdf" (4 pages, 161232 bytes).
+Output written on Lista_5.pdf (4 pages, 161234 bytes).
 PDF statistics:
  131 PDF objects out of 1000 (max. 8388607)
  34 named destinations out of 1000 (max. 500000)
