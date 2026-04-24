@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.10)  20 APR 2026 12:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.10)  23 APR 2026 23:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -461,24 +461,24 @@ Package babel Info: 'brazil' activates 'portuges' shorthands.
 )
 \openout1 = `Lista_6_Gabarito.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -530,27 +530,27 @@ ii
 \makeMPintoPDFobject=\count367
 \everyMPtoPDFconversion=\toks31
 )
-Package hyperref Info: Link coloring OFF on input line 19.
+Package hyperref Info: Link coloring OFF on input line 22.
  (Lista_6_Gabarito.out) (Lista_6_Gabarito.out)
 \@outlinefile=\write3
 \openout3 = `Lista_6_Gabarito.out'.
 
 
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 27--32
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 30--35
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 27--32
+Underfull \hbox (badness 10000) in paragraph at lines 30--35
 
  []
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 35.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
 
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -559,190 +559,22 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/Users/tuffy/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 109--112
+Underfull \hbox (badness 10000) in paragraph at lines 112--115
 
  []
 
 [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 170--172
+Underfull \hbox (badness 10000) in paragraph at lines 173--175
 
  []
 
-! Undefined control sequence.
-l.182 \plim
-            \hat\beta_0 = \plim \bar y - (\plim \hat\beta_1)(\plim \bar x_1).
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.182 \plim \hat\beta_0 = \plim
-                                \bar y - (\plim \hat\beta_1)(\plim \bar x_1).
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.182 \plim \hat\beta_0 = \plim \bar y - (\plim
-                                                \hat\beta_1)(\plim \bar x_1).
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.182 ... \plim \bar y - (\plim \hat\beta_1)(\plim
-                                                   \bar x_1).
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.186 \plim
-            \bar y = E[y]
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.188 \plim
-            \bar x_1 = E[x_1].
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.192 \plim
-            \hat\beta_1 = \beta_1.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.196 \plim
-            \hat\beta_0 = E[y] - \beta_1E[x_1].
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> \m@th $\displaystyle \plim 
-                                      \hat \beta _0 = \beta _0.$
-l.204 \boxed{\plim \hat\beta_0 = \beta_0.}
-                                          
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 208--210
+Underfull \hbox (badness 10000) in paragraph at lines 211--213
 
  []
 
 [4]
-! Undefined control sequence.
-l.220 \plim
-            \tilde\beta_1
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> \Cov 
-                (funds,risktol)
-l.222 ..._2\frac{\Cov(funds,risktol)}{\Var(funds)}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> \Var 
-                (funds)
-l.222 ..._2\frac{\Cov(funds,risktol)}{\Var(funds)}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.226 \plim
-            \tilde\beta_1 - \beta_1
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> \Cov 
-                (funds,risktol)
-l.228 ..._2\frac{\Cov(funds,risktol)}{\Var(funds)}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> \Var 
-                (funds)
-l.228 ..._2\frac{\Cov(funds,risktol)}{\Var(funds)}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> \Cov 
-                (funds,risktol)
-l.232 \frac{\Cov(funds,risktol)}{\Var(funds)}
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> \Var 
-                (funds)
-l.232 \frac{\Cov(funds,risktol)}{\Var(funds)}
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 237--239
+Underfull \hbox (badness 10000) in paragraph at lines 240--242
 
  []
 
@@ -757,10 +589,10 @@ Package rerunfilecheck Info: File `Lista_6_Gabarito.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13290 strings out of 467871
- 204926 string characters out of 5418376
- 667552 words of memory out of 5000000
- 41989 multiletter control sequences out of 15000+600000
+ 13293 strings out of 467871
+ 204939 string characters out of 5418376
+ 667595 words of memory out of 5000000
+ 41992 multiletter control sequences out of 15000+600000
  636259 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,79p,709b,750s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -778,7 +610,7 @@ Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12
 .pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
 cm/cmtt10.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmtt12.pfb>
-Output written on Lista_6_Gabarito.pdf (7 pages, 172502 bytes).
+Output written on Lista_6_Gabarito.pdf (7 pages, 172565 bytes).
 PDF statistics:
  150 PDF objects out of 1000 (max. 8388607)
  39 named destinations out of 1000 (max. 500000)
