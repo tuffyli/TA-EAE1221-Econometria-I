@@ -365,3 +365,130 @@ Em resumo:
 rm(list = ls())
 ```
 
+# Lista 6
+
+## Questao 5)
+
+Agora fazemos o gabarito computacional da Lista 6 com os dados `WAGE1`.
+
+```{r lista6-setup, warning=FALSE, message=FALSE}
+library(wooldridge)
+library(stargazer)
+data("wage1")
+
+head(wage1)
+```
+
+Vamos definir uma funcao simples para medir a assimetria dos residuos.
+
+```{r lista6-helper}
+skew_manual <- function(x) {
+  m <- mean(x)
+  s <- sd(x)
+  mean((x - m)^3) / (s^3)
+}
+```
+
+- **(a)**
+
+Estimamos a regressao em nivel e salvamos os residuos.
+
+```{r lista6-a-modelo}
+mod6_a <- lm(wage ~ educ + exper + tenure, data = wage1)
+summary(mod6_a)
+stargazer(mod6_a, type = "text", digits = 4)
+coef(mod6_a)
+```
+
+Com isso, a equacao estimada pode ser escrita como:
+
+$$
+\widehat{wage} = -2.873 + 0.599\,educ + 0.022\,exper + 0.169\,tenure
+$$
+
+Logo, mantidos os demais fatores constantes:
+
+- um ano adicional de estudo aumenta o salario horario previsto em aproximadamente US$ 0,60;
+- um ano adicional de experiencia aumenta o salario previsto em cerca de US$ 0,02;
+- um ano adicional de tempo no emprego atual aumenta o salario previsto em cerca de US$ 0,17.
+
+```{r lista6-a-residuos}
+res6_a <- resid(mod6_a)
+summary(res6_a)
+skew_manual(res6_a)
+```
+
+```{r lista6-a-hist, fig.width=7, fig.height=4}
+hist(
+  res6_a,
+  breaks = 30,
+  col = "lightblue",
+  border = "white",
+  main = "Residuos do modelo em nivel",
+  xlab = "Residuo"
+)
+abline(v = 0, col = "red", lwd = 2)
+```
+
+No modelo em nivel, os residuos apresentam assimetria positiva forte. Isso aparece tanto visualmente no histograma quanto na medida de assimetria:
+
+- assimetria aproximada dos residuos: `r round(skew_manual(res6_a), 3)`;
+- valor maximo do residuo: `r round(max(res6_a), 3)`;
+- valor minimo do residuo: `r round(min(res6_a), 3)`.
+
+Ou seja, ha uma cauda direita bem mais longa do que a esquerda, o que sugere afastamento da normalidade.
+
+- **(b)**
+
+Agora repetimos o procedimento com `log(wage)` como variavel dependente.
+
+```{r lista6-b-modelo}
+mod6_b <- lm(lwage ~ educ + exper + tenure, data = wage1)
+summary(mod6_b)
+stargazer(mod6_b, type = "text", digits = 4)
+coef(mod6_b)
+```
+
+Agora a equacao estimada fica:
+
+$$
+\widehat{\log(wage)} = 0.284 + 0.092\,educ + 0.004\,exper + 0.022\,tenure
+$$
+
+Como o modelo e semilog, os coeficientes podem ser lidos aproximadamente como efeitos percentuais:
+
+- um ano adicional de estudo esta associado a um salario cerca de `r round(100 * coef(mod6_b)["educ"], 2)`% maior;
+- um ano adicional de experiencia esta associado a um salario cerca de `r round(100 * coef(mod6_b)["exper"], 2)`% maior;
+- um ano adicional de tenure esta associado a um salario cerca de `r round(100 * coef(mod6_b)["tenure"], 2)`% maior.
+
+```{r lista6-b-residuos}
+res6_b <- resid(mod6_b)
+summary(res6_b)
+skew_manual(res6_b)
+```
+
+```{r lista6-b-hist, fig.width=7, fig.height=4}
+hist(
+  res6_b,
+  breaks = 30,
+  col = "lightgreen",
+  border = "white",
+  main = "Residuos do modelo semilog",
+  xlab = "Residuo"
+)
+abline(v = 0, col = "red", lwd = 2)
+```
+
+Aqui os residuos ficam muito mais simetricos em torno de zero:
+
+- assimetria aproximada dos residuos: `r round(skew_manual(res6_b), 3)`;
+- valor maximo do residuo: `r round(max(res6_b), 3)`;
+- valor minimo do residuo: `r round(min(res6_b), 3)`.
+
+Visualmente, o histograma do modelo semilog fica bem mais proximo de uma distribuicao em forma de sino.
+
+- **(c)**
+
+Comparando os histogramas e as medidas de assimetria, o modelo semilog fica claramente mais proximo de satisfazer a hipotese RLM.6. No modelo em nivel, a assimetria dos residuos e de cerca de `r round(skew_manual(res6_a), 3)`, enquanto no modelo com `log(wage)` ela cai para aproximadamente `r round(skew_manual(res6_b), 3)`.
+
+A intuicao economica tambem ajuda: salarios em nivel costumam ser bastante assimetricos, com alguns valores muito altos puxando a distribuicao para a direita. Ao tomar log, comprimimos essa cauda longa e obtemos residuos mais equilibrados ao redor de zero. Portanto, a melhor resposta para o item (c) e que a hipotese de normalidade fica mais plausivel no **modelo semilog**.
