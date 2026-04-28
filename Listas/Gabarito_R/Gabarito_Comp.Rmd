@@ -492,3 +492,116 @@ Visualmente, o histograma do modelo semilog fica bem mais proximo de uma distrib
 Comparando os histogramas e as medidas de assimetria, o modelo semilog fica claramente mais proximo de satisfazer a hipotese RLM.6. No modelo em nivel, a assimetria dos residuos e de cerca de `r round(skew_manual(res6_a), 3)`, enquanto no modelo com `log(wage)` ela cai para aproximadamente `r round(skew_manual(res6_b), 3)`.
 
 A intuicao economica tambem ajuda: salarios em nivel costumam ser bastante assimetricos, com alguns valores muito altos puxando a distribuicao para a direita. Ao tomar log, comprimimos essa cauda longa e obtemos residuos mais equilibrados ao redor de zero. Portanto, a melhor resposta para o item (c) e que a hipotese de normalidade fica mais plausivel no **modelo semilog**.
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+# Lista 7
+
+## Questao 5)
+
+Agora resolvemos a questao computacional da Lista 7 usando a base `NBASAL`.
+
+```{r lista7-setup, warning=FALSE, message=FALSE}
+library(wooldridge)
+library(stargazer)
+
+data("nbasal")
+head(nbasal)
+```
+
+- **(i)**
+
+Estimamos primeiro a regressao de `points` sobre `exper`, `exper^2`, `age` e `coll`.
+
+```{r lista7-i-modelo}
+mod7_i <- lm(points ~ exper + I(exper^2) + age + coll, data = nbasal)
+summary(mod7_i)
+stargazer(mod7_i, type = "text", digits = 4)
+coef(mod7_i)
+```
+
+Podemos escrever a equacao estimada como:
+
+$$
+\widehat{points} = 35.218 + 2.364\,exper - 0.0770\,exper^2 - 1.074\,age - 1.286\,coll
+$$
+
+Assim, `exper` tem efeito positivo no inicio da carreira, mas com retornos decrescentes por causa do termo quadratico negativo. Alem disso, `coll` aparece com coeficiente negativo e estatisticamente significativo.
+
+- **(ii)**
+
+O efeito marginal de `exper` sobre `points` e:
+
+$$
+\frac{\partial \widehat{points}}{\partial exper} = \hat\beta_1 + 2\hat\beta_2 exper.
+$$
+
+Logo, o ponto em que um ano adicional de experiencia passa a reduzir os pontos por jogo e:
+
+```{r lista7-ii-turning}
+turning_point <- -coef(mod7_i)["exper"] / (2 * coef(mod7_i)["I(exper^2)"])
+turning_point
+```
+
+Isto e, aproximadamente `r round(turning_point, 2)` anos de experiencia. Isso ate faz algum sentido economico, porque jogadores muito experientes podem passar do auge fisico e produtivo. Ainda assim, esse ponto esta bem no fim de uma carreira longa na NBA.
+
+- **(iii)**
+
+O coeficiente negativo de `coll` provavelmente reflete selecao por talento. Jogadores mais talentosos muitas vezes entram mais cedo na NBA, sem permanecer muitos anos na universidade. Portanto, condicional a idade e experiencia na liga, mais anos de faculdade podem estar associados a jogadores que demoraram mais para atingir o nivel da NBA, o que ajuda a explicar menor pontuacao media.
+
+- **(iv)**
+
+Agora adicionamos `age^2` ao modelo.
+
+```{r lista7-iv-modelo}
+mod7_iv <- lm(points ~ exper + I(exper^2) + age + I(age^2) + coll, data = nbasal)
+summary(mod7_iv)
+stargazer(mod7_iv, type = "text", digits = 4)
+coef(mod7_iv)
+```
+
+O p-valor de `age^2` e:
+
+```{r lista7-iv-pvalor}
+coef(summary(mod7_iv))["I(age^2)", "Pr(>|t|)"]
+```
+
+Como esse p-valor e aproximadamente `r signif(coef(summary(mod7_iv))["I(age^2)", "Pr(>|t|)"], 4)`, nao ha evidencia de que o termo quadratico em `age` seja necessario. Isso sugere que, uma vez controlados experiencia e anos de faculdade, a idade nao parece ter um efeito curvo separado relevante sobre `points`.
+
+- **(v)**
+
+Agora estimamos a regressao de `log(wage)` sobre `points`, `exper`, `exper^2`, `age` e `coll`.
+
+```{r lista7-v-modelo}
+mod7_v <- lm(lwage ~ points + exper + I(exper^2) + age + coll, data = nbasal)
+summary(mod7_v)
+stargazer(mod7_v, type = "text", digits = 4)
+coef(mod7_v)
+```
+
+A equacao estimada fica:
+
+$$
+\widehat{\log(wage)} = 6.779 + 0.0777\,points + 0.2178\,exper - 0.00708\,exper^2 - 0.0481\,age - 0.0403\,coll
+$$
+
+Os resultados sugerem que:
+
+- um ponto adicional por jogo esta associado a um salario cerca de `r round(100 * coef(mod7_v)["points"], 2)`% maior;
+- experiencia tem efeito positivo, mas decrescente;
+- `age` e `coll` nao sao individualmente significativos nessa especificacao.
+
+- **(vi)**
+
+Por fim, testamos se `age` e `coll` sao conjuntamente significativos na regressao do item (v).
+
+```{r lista7-vi-teste}
+mod7_vi_restrito <- lm(lwage ~ points + exper + I(exper^2), data = nbasal)
+anova(mod7_vi_restrito, mod7_v)
+```
+
+O p-valor do teste F conjunto e aproximadamente `r signif(anova(mod7_vi_restrito, mod7_v)$"Pr(>F)"[2], 4)`. Portanto, nao rejeitamos a hipotese nula de que `age` e `coll` sejam conjuntamente iguais a zero.
+
+Isso sugere que, uma vez controlados produtividade (`points`) e tempo de servico (`exper` e `exper^2`), idade e educacao nao parecem ter efeitos separados estatisticamente detectaveis sobre salario nessa amostra.

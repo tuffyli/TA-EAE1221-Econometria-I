@@ -1,0 +1,162 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
+\usepackage{xcolor}
+\usepackage[brazil]{babel}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+
+\renewenvironment{solution}
+{\par\noindent\textbf{R:}\enspace\color{blue}}
+{\par\color{black}}
+
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}
+
+\begin{document}
+
+\begingroup
+    \centering
+    \LARGE Lista 8 - Econometria I - 2026\\[0.5em]
+    %\large \today\\[0.5em]
+    \large Prof: Andre Luiz Pereira Mancha \par
+    \large Monitor: Tuffy Licciardi Issa \par
+    %\large Roll Number\par
+    %\large Class/Batch/Section\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}
+\newcommand{\qstar}{\hspace{-0.6em}\textsuperscript{*}\hspace{0.2em}}
+
+\begin{questions}
+
+\question (7.5, \citep{wooldridge2016}) No Exemplo (7.2)
+\[
+colGPA = \beta_0 + \gamma_0PC + \beta_1hsGPA + \beta_2ACT + u
+\]
+defina \textit{noPC} como uma variável \textit{dummy} igual a um se o aluno não possuir um PC, e zero caso contrario.
+\begin{enumerate}[label=(\roman*)]
+    \item Se \textit{noPC} for usada no lugar de \textit{PC} na equação (7.6)
+    \[
+    \widehat{colGPA} = 1,26 + 0,157PC + 0,447hsGPA + 0,0087ACT
+    \]
+    \[
+    \quad \quad \quad (0,33) \quad (0,57) \quad \quad \quad(0,094)  \quad  \quad \quad \quad (0,0105)
+    \]
+    \[
+    n = 105, R^2 =0,219
+    \]
+    , o que acontece com o intercepto na equação estimada? Qual sera o coeficiente de \textit{noPC}? [Dica: Escreva \(PC = 1 - noPC\) e agregue isso na equação \(colGPA = \hat\beta_0 + \hat\delta_0 PC + \hat\beta_1 hsGPA + \hat\beta_2 ACT\).]
+    \item O que acontecera com o \(R\)-quadrado se \textit{noPC} for usado em lugar de \textit{PC}?
+    \item As variáveis \textit{PC} e \textit{noPC} deveriam ser incluídas como variaveis independentes no modelo? Explique.
+\end{enumerate}
+
+\vspace{0.7cm}
+
+\question (2, \citep{wooldridge2016}) As seguintes equações foram estimadas utilizando os dados contidos no arquivo \texttt{BWGHT}:
+
+\[
+\widehat{\log(bwght)} = 4{,}66 - 0{,}0044\,cigs + 0{,}0093\,\log(faminc) + 0{,}016\,parity
+\]
+\[
+\hspace{1.7cm} (0{,}22)\;(0{,}0009)\hspace{0.5cm}(0{,}0059)\hspace{1.1cm}(0{,}006)
+\]
+\[
+\hspace{2.1cm} +\; 0{,}027\,male + 0{,}055\,white
+\]
+\[
+\hspace{2.7cm} (0{,}010)\hspace{1.2cm}(0{,}013)
+\]
+\[
+n = 1{.}388,\; R^2 = 0{,}0472
+\]
+
+e
+
+\[
+\widehat{\log(bwght)} = 4{,}65 - 0{,}0052\,cigs + 0{,}0110\,\log(faminc) + 0{,}017\,parity
+\]
+\[
+\hspace{1.7cm} (0{,}38)\;(0{,}0010)\hspace{0.5cm}(0{,}0085)\hspace{1.1cm}(0{,}006)
+\]
+\[
+\hspace{1.4cm} +\; 0{,}034\,male + 0{,}045\,white - 0{,}0030\,motheduc + 0{,}0032\,fatheduc
+\]
+\[
+\hspace{2.2cm} (0{,}011)\hspace{1.0cm}(0{,}015)\hspace{0.9cm}(0{,}0030)\hspace{0.9cm}(0{,}0026)
+\]
+\[
+n = 1{.}191,\; R^2 = 0{,}0493
+\]
+
+As variáveis são definidas como no Exemplo 4.9, mas adicionamos uma variável \textit{dummy} para o caso de a criança ser do sexo masculino e uma variável \textit{dummy} que indica se a criança e classificada como branca.
+\begin{enumerate}[label=(\roman*)]
+    \item Na primeira equação, interprete o coeficiente da variável \textit{cigs}. Particularmente, qual e o efeito no peso dos recém-nascidos se a mãe fumar dez ou mais cigarros por dia?
+    \item Quanto se espera que um recém-nascido branco pese a mais que uma criança não branca, mantendo fixos todos os outros fatores na primeira equação? A diferença e estatisticamente significante?
+    \item Comente sobre o efeito estimado e a significância estatística de \textit{motheduc}.
+    \item Com a informação dada, por que você não terá condições de calcular a estatística \(F\) da significância conjunta de \textit{motheduc} e \textit{fatheduc}? O que você teria de fazer para calcular a estatística \(F\)?
+\end{enumerate}
+
+\vspace{0.7cm}
+
+\question\qstar  (7.3, \citep{wooldridge2016}) Utilizando os dados contidos no arquivo \texttt{GPA2}, a seguinte equacao foi estimada:
+
+\[
+\widehat{sat} = 1{.}028{,}10 + 19{,}30\,hsize - 2{,}19\,hsize^2 - 45{,}09\,female
+\]
+\[
+\hspace{1.7cm} (6{,}29)\hspace{1.0cm}(3{,}83)\hspace{1.0cm}(0{,}53)\hspace{1.0cm}(4{,}29)
+\]
+\[
+\hspace{2.2cm} -\; 169{,}81\,black + 62{,}31\,female \cdot black
+\]
+\[
+\hspace{2.8cm} (12{,}71)\hspace{1.1cm}(18{,}15)
+\]
+\[
+n = 4{.}137,\; R^2 = 0{,}0858
+\]
+
+A variável \textit{sat} e a pontuação combinada de matemática e habilidade verbal do estudante para ingresso em curso superior (SAT); \textit{hsize} e o tamanho da classe do aluno no Ensino Médio, em centenas; \textit{female} e uma variável \textit{dummy} para gênero; \textit{black} e uma variável \textit{dummy} da raca igual a um para negros, e zero, caso contrario.
+\begin{enumerate}[label=(\roman*)]
+    \item Existe forte evidencia de que \(hsize^2\) deva ser incluida no modelo? Dessa equação, qual e o tamanho otimo da classe no Ensino Médio?
+    \item Mantendo fixo \textit{hsize}, qual e a diferença estimada na nota SAT entre mulheres não negras e homens não negros? Quão e estatisticamente significante essa diferença estimada?
+    \item Qual e a diferença estimada na \textit{sat} entre homens não negros e homens negros? Teste a hipótese nula de que não ha diferença entre suas notas, contra a hipótese alternativa de que existe uma diferença.
+    \item Qual e a diferença estimada na nota \textit{sat} entre mulheres negras e mulheres não negras? O que você necessitaria fazer para verificar se a diferença e estatisticamente significante?
+\end{enumerate}
+
+\vspace{0.7cm}
+
+\question\qstar (7.8, \citep{wooldridge2016}) Suponha que você colete dados de uma pesquisa sobre salários, educação, experiencia e gênero. Alem disso, solicita informações sobre o uso de maconha. A pergunta original e: ``Em quantas ocasiões distintas, no mês passado, você fumou maconha?''.
+\begin{enumerate}[label=(\roman*)]
+    \item Escreva uma equação que permita a você estimar os efeitos do uso de maconha sobre os salários com todos os outros fatores controlados. Você deve ter condições de fazer declarações do tipo: ``Estima-se que fumar maconha cinco vezes ou mais por mês altera os salários em \(x\%\)''.
+    \item Escreva um modelo que permita verificar se o uso de drogas tem efeitos diferentes sobre os salários dos homens e das mulheres. Como você verificaria que não existem diferenças nos efeitos do uso de drogas nos homens e nas mulheres?
+    \item Suponha que você considere ser melhor avaliar o uso de maconha colocando as pessoas em uma de quatro categorias: não usuário, usuário leve (uma a cinco vezes por mês), usuário moderado (seis a dez vezes por mês), e usuário inveterado (mais de dez vezes por mês). Agora escreva um modelo que permita estimar os efeitos da maconha sobre os salários.
+    \item Usando o modelo do item (iii), explique em detalhe como testar a hipótese nula de que o uso de maconha não tem efeito sobre o salario. Seja bastante especifico e inclua uma relação cuidadosa de graus de liberdade.
+    \item Quais são alguns dos problemas potenciais de procurar inferência causal utilizando os dados da pesquisa que você coletou?
+\end{enumerate}
+
+\vspace{0.7cm}
+
+\question\qstar (7.C6, \citep{wooldridge2016}) Use os dados do arquivo \texttt{SLEEP75} para este exercício:
+\[
+sleep = \beta_0 + \beta_1 totwrk + \beta_2 educ + \beta_3 age + \beta_4 age^2 + \beta_5 yngkid + u.
+\]
+\begin{enumerate}[label=(\roman*)]
+    \item Estime essa equação separadamente para homens e mulheres e registre os resultados na forma usual. Existem diferenças notáveis nas duas equações estimadas?
+    \item Calcule o teste de Chow para igualdade dos parâmetros na equação do sono para homens e mulheres. Use a forma do teste que adiciona \textit{male} e os termos de interação \textit{male}$\cdot$\textit{totwrk}, \ldots, \textit{male}$\cdot$\textit{yngkid} e use o conjunto total de observações. Quais são os gl relevantes para o teste? Você deveria rejeitar a hipótese nula a um nível de 5\%?
+    \item Agora permita um intercepto diferente para homens e mulheres e determine se os termos da interação envolvendo \textit{male} são conjuntamente significativos.
+    \item Dados os resultados dos itens (ii) e (iii), qual seria seu modelo final?
+\end{enumerate}
+
+\end{questions}
+
+\bibliographystyle{apalike}
+\bibliography{refs}
+\end{document}
