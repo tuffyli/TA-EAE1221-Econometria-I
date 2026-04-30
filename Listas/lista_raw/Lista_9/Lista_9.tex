@@ -36,7 +36,7 @@
 
 \begin{questions}
 
-\question (10, \citep{wooldridge2016}) Para uma criança \(i\) que mora em determinada região de ensino, defina \textit{voucher} como uma variável \textit{dummy} igual a um se a criança foi selecionada para participar de um programa de bolsas de estudos em uma escola, e defina \textit{score} como a nota da criança em um exame padronizado subsequente. Suponha que a variável de participação, \textit{voucher}, seja completamente aleatorizada para que ela seja independente tanto dos fatores observados quanto dos não observados que possam afetar a nota do teste de avaliação.
+\question (7.10, \citep{wooldridge2016}) Para uma criança \(i\) que mora em determinada região de ensino, defina \textit{voucher} como uma variável \textit{dummy} igual a um se a criança foi selecionada para participar de um programa de bolsas de estudos em uma escola, e defina \textit{score} como a nota da criança em um exame padronizado subsequente. Suponha que a variável de participação, \textit{voucher}, seja completamente aleatorizada para que ela seja independente tanto dos fatores observados quanto dos não observados que possam afetar a nota do teste de avaliação.
 \begin{enumerate}[label=(\roman*)]
     \item Se você executar uma regressão simples de \textit{score} sobre \textit{voucher}, usando uma amostra aleatória de tamanho \(n\), o estimador de MQO produziria um estimador não viesado do efeito do programa de bolsas de estudos?
     \item Suponha que você possa coletar informações adicionais de perfis familiares tais como renda familiar, estrutura familiar (por exemplo, se a criança mora com os dois pais) e nível de escolaridade dos pais. Você precisaria controlar esses fatores para obter um estimador não viesado dos efeitos do programa de bolsas de estudos? Explique.
@@ -45,7 +45,7 @@
 
 \vspace{0.7cm}
 
-\question (9, \citep{wooldridge2016}) Que \(d\) seja uma variável \textit{dummy} (binária) e que \(z\) seja uma variável quantitativa. Considere o modelo
+\question (7.9, \citep{wooldridge2016}) Que \(d\) seja uma variável \textit{dummy} (binária) e que \(z\) seja uma variável quantitativa. Considere o modelo
 \[
 y = \beta_0 + \delta_0 d + \beta_1 z + \delta_1 d \cdot z + u;
 \]
@@ -69,7 +69,7 @@ essa é uma versão geral de um modelo com uma interação entre uma variável \
 
 \vspace{0.7cm}
 
-\question (11, \citep{wooldridge2016}) As equações a seguir foram estimadas usando os dados do arquivo \texttt{ECONMATH}, com erros padrão registrados abaixo dos coeficientes. A nota média da classe, medida como porcentagem, é de cerca de \(72{,}2\); exatamente \(50\%\) dos estudantes são do sexo masculino; e a média de \textit{colgpa} (nota média no início do semestre) é de cerca de \(2{,}81\).
+\question (7.11, \citep{wooldridge2016}) As equações a seguir foram estimadas usando os dados do arquivo \texttt{ECONMATH}, com erros padrão registrados abaixo dos coeficientes. A nota média da classe, medida como porcentagem, é de cerca de \(72{,}2\); exatamente \(50\%\) dos estudantes são do sexo masculino; e a média de \textit{colgpa} (nota média no início do semestre) é de cerca de \(2{,}81\).
 
 \[
 \widehat{score} = 32{,}31 + 14{,}32\,colgpa
@@ -118,7 +118,7 @@ n = 856,\; R^2 = 0{,}349,\; \bar{R}^2 = 0{,}347
 
 \vspace{0.7cm}
 
-\question (12, \citep{wooldridge2016}) Consideremos o Exemplo 7.11, em que, antes de calcular a interação entre a raça/etnicidade de um jogador e a composição racial da cidade, centramos as variáveis de composição da cidade sobre as médias das amostras, \textit{percblck} e \textit{perchisp} (que são, aproximadamente, \(16{,}55\) e \(10{,}82\), respectivamente). A equação estimada resultante é
+\question (7.12, \citep{wooldridge2016}) Consideremos o Exemplo 7.11, em que, antes de calcular a interação entre a raça/etnicidade de um jogador e a composição racial da cidade, centramos as variáveis de composição da cidade sobre as médias das amostras, \textit{percblck} e \textit{perchisp} (que são, aproximadamente, \(16{,}55\) e \(10{,}82\), respectivamente). A equação estimada resultante é
 
 \[
 \widehat{\log(salary)} = 10{,}23 + 0{,}0673\,years + 0{,}0089\,gamesyr + 0{,}00095\,bavg + 0{,}146\,hrunsyr
@@ -156,7 +156,7 @@ n = 330,\; R^2 = 0{,}638
 
 \vspace{0.7cm}
 
-\question\qstar (C14, \citep{wooldridge2016}) Use os dados do arquivo \texttt{CHARITY} para responder a essa questão. A variável \textit{respond} é uma variável \textit{dummy} igual a um se a pessoa respondeu com uma contribuição à mais recente enviada por uma organização de caridade. A variável \textit{resplast} é uma variável \textit{dummy} igual a um se a pessoa respondeu ao envio anterior, \textit{avggift} é a média de doações passadas (em florins holandeses), e \textit{propresp} é a proporção de vezes que a pessoa respondeu às correspondências anteriores.
+\question\qstar (7.C14, \citep{wooldridge2016}) Use os dados do arquivo \texttt{CHARITY} para responder a essa questão. A variável \textit{respond} é uma variável \textit{dummy} igual a um se a pessoa respondeu com uma contribuição à mais recente enviada por uma organização de caridade. A variável \textit{resplast} é uma variável \textit{dummy} igual a um se a pessoa respondeu ao envio anterior, \textit{avggift} é a média de doações passadas (em florins holandeses), e \textit{propresp} é a proporção de vezes que a pessoa respondeu às correspondências anteriores.
 \begin{enumerate}[label=(\roman*)]
     \item Estime um modelo de probabilidade linear relacionando \textit{respond} a \textit{resplast} e \textit{avggift}. Registre os resultados na forma usual e interprete o coeficiente sobre \textit{resplast}.
     \item O valor médio de doações passadas parece afetar a probabilidade de resposta?
