@@ -605,3 +605,7 @@ anova(mod7_vi_restrito, mod7_v)
 O p-valor do teste F conjunto e aproximadamente `r signif(anova(mod7_vi_restrito, mod7_v)$"Pr(>F)"[2], 4)`. Portanto, nao rejeitamos a hipotese nula de que `age` e `coll` sejam conjuntamente iguais a zero.
 
 Isso sugere que, uma vez controlados produtividade (`points`) e tempo de servico (`exper` e `exper^2`), idade e educacao nao parecem ter efeitos separados estatisticamente detectaveis sobre salario nessa amostra.
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
