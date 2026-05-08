@@ -2,7 +2,10 @@
 title: "Gabarito Questoes Computacionais"
 author: "Tuffy"
 date: "2026-04-20"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 ---
 
 # Lista 3 a 11 - Econometria I - 2026
@@ -247,7 +250,6 @@ Vamos estimar por MQO o modelo pedido:
 
 ```{r lista5-a-modelo}
 mod5_a <- lm(lpsoda ~ prpblck + lincome + prppov, data = discrim)
-summary(mod5_a)
 stargazer(mod5_a, type = "text", digits = 4)
 coef(mod5_a)
 ```
@@ -321,7 +323,6 @@ Agora adicionamos `log(hseval)` ao modelo:
 
 ```{r lista5-e-modelo}
 mod5_e <- lm(lpsoda ~ prpblck + lincome + prppov + lhseval, data = discrim)
-summary(mod5_e)
 stargazer(mod5_e, type = "text", digits = 4)
 coef(mod5_e)
 ```
@@ -395,7 +396,6 @@ Estimamos a regressao em nivel e salvamos os residuos.
 
 ```{r lista6-a-modelo}
 mod6_a <- lm(wage ~ educ + exper + tenure, data = wage1)
-summary(mod6_a)
 stargazer(mod6_a, type = "text", digits = 4)
 coef(mod6_a)
 ```
@@ -444,7 +444,6 @@ Agora repetimos o procedimento com `log(wage)` como variavel dependente.
 
 ```{r lista6-b-modelo}
 mod6_b <- lm(lwage ~ educ + exper + tenure, data = wage1)
-summary(mod6_b)
 stargazer(mod6_b, type = "text", digits = 4)
 coef(mod6_b)
 ```
@@ -517,7 +516,6 @@ Estimamos primeiro a regressao de `points` sobre `exper`, `exper^2`, `age` e `co
 
 ```{r lista7-i-modelo}
 mod7_i <- lm(points ~ exper + I(exper^2) + age + coll, data = nbasal)
-summary(mod7_i)
 stargazer(mod7_i, type = "text", digits = 4)
 coef(mod7_i)
 ```
@@ -557,7 +555,6 @@ Agora adicionamos `age^2` ao modelo.
 
 ```{r lista7-iv-modelo}
 mod7_iv <- lm(points ~ exper + I(exper^2) + age + I(age^2) + coll, data = nbasal)
-summary(mod7_iv)
 stargazer(mod7_iv, type = "text", digits = 4)
 coef(mod7_iv)
 ```
@@ -576,7 +573,6 @@ Agora estimamos a regressao de `log(wage)` sobre `points`, `exper`, `exper^2`, `
 
 ```{r lista7-v-modelo}
 mod7_v <- lm(lwage ~ points + exper + I(exper^2) + age + coll, data = nbasal)
-summary(mod7_v)
 stargazer(mod7_v, type = "text", digits = 4)
 coef(mod7_v)
 ```
