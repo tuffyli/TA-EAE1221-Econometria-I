@@ -515,10 +515,16 @@ head(nbasal)
 Estimamos primeiro a regressao de `points` sobre `exper`, `exper^2`, `age` e `coll`.
 
 ```{r lista7-i-modelo}
+
+nbasal$exper2 <- nbasal$exper^2 #criando ao invés de usar o I() dentro do modelo
+
 mod7_i <- lm(points ~ exper + I(exper^2) + age + coll, data = nbasal)
 stargazer(mod7_i, type = "text", digits = 4)
 coef(mod7_i)
 ```
+
+
+
 
 Podemos escrever a equacao estimada como:
 
