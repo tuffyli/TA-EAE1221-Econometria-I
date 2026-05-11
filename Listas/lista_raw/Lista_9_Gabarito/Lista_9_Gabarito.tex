@@ -1,0 +1,194 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
+\usepackage{xcolor}
+\usepackage[brazil]{babel}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+
+\renewenvironment{solution}
+{\par\noindent\textbf{R:}\enspace\color{blue}}
+{\par\color{black}}
+
+\thispagestyle{empty}
+
+\begin{document}
+
+\begingroup
+\centering
+\LARGE Lista 9 Gabarito - Econometria I - 2026\\[0.5em]
+\large Prof: Andre Luiz Pereira Mancha \par
+\large Monitor: Tuffy Licciardi Issa \par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}
+\newcommand{\qstar}{\hspace{-0.6em}\textsuperscript{*}\hspace{0.2em}}
+
+\begin{questions}
+
+\question (9.1, \citep{wooldridge2016}) No Exercicio 4.11, o \(R\)-quadrado da estimativa do modelo
+\[
+\log(wage)=\beta_0+\beta_1\log(sales)+\beta_2\log(mktval)+\beta_3 profmarg+\beta_4 ceoten+\beta_5 comten+u,
+\]
+usando os dados contidos no arquivo \texttt{CEOSAL2}, era \(R^2=0{,}353\) \((n=177)\). Quando \(ceoten^2\) e \(comten^2\) sao adicionados, \(R^2=0{,}375\). Existe evidencia de ma-especificacao de forma funcional neste modelo?
+
+\begin{solution}
+Para testar a inclusao conjunta de \(ceoten^2\) e \(comten^2\), usamos
+\[
+F
+=
+\frac{(R^2_{ur}-R^2_r)/q}{(1-R^2_{ur})/(n-k_{ur}-1)},
+\]
+com \(R^2_r=0{,}353\), \(R^2_{ur}=0{,}375\), \(q=2\), \(n=177\) e \(k_{ur}=7\). Assim,
+\[
+F
+=
+\frac{(0{,}375-0{,}353)/2}{(1-0{,}375)/(177-7-1)}
+\approx
+2{,}98.
+\]
+Esse valor e pequeno para uma rejeicao confortavel a 5\%. Portanto, ha no maximo evidencia fraca de ma-especificacao funcional; eu nao diria que existe evidencia forte de que os termos quadraticos devam ser incluidos.
+\end{solution}
+
+\vspace{0.7cm}
+
+\question (9.2, \citep{wooldridge2016}) Modifiquemos o Exercicio em Computador C4, do Capitulo 8, utilizando os resultados das eleicoes de 1990 dos candidatos que foram eleitos em 1988. O Candidato A foi eleito em 1988 e buscava a reeleicao em 1990; \textit{voteA90} e a porcentagem de votos do Candidato A na eleicao de 1990. A porcentagem de votos do Candidato A na eleicao de 1988 e usada como uma variavel \textit{proxy} da qualidade do candidato. Todas as demais variaveis sao das eleicoes de 1990. As seguintes equacoes foram estimadas, utilizando os dados contidos no arquivo \texttt{VOTE2}:
+
+\[
+\widehat{voteA90}=75{,}71+0{,}312\,prtystrA+4{,}93\,democA-0{,}929\,\log(expendA)-1{,}950\,\log(expendB)
+\]
+\[
+\hspace{2.0cm}(9{,}25)\hspace{0.8cm}(0{,}046)\hspace{0.8cm}(1{,}01)\hspace{0.8cm}(0{,}684)\hspace{0.8cm}(0{,}281)
+\]
+\[
+n=186,\; R^2=0{,}465
+\]
+
+e
+
+\[
+\widehat{voteA90}=70{,}81+0{,}282\,prtystrA+4{,}52\,democA-0{,}839\,\log(expendA)-1{,}846\,\log(expendB)+0{,}067\,voteA88
+\]
+\[
+\hspace{1.8cm}(10{,}01)\hspace{0.8cm}(0{,}052)\hspace{0.8cm}(1{,}06)\hspace{0.8cm}(0{,}687)\hspace{0.8cm}(0{,}292)\hspace{0.8cm}(0{,}053)
+\]
+\[
+n=186,\; R^2=0{,}499,\; \bar{R}^2=0{,}485
+\]
+
+\begin{enumerate}[label=(\roman*)]
+    \item Interprete o coeficiente de \textit{voteA88} e comente sobre sua significancia estatistica.
+    \item A adicao de \textit{voteA88} tem muito efeito sobre os outros coeficientes?
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}[label=(\roman*)]
+    \item O coeficiente de \textit{voteA88} e \(0,067\). Portanto, um ponto percentual a mais na votacao de 1988 aumenta a votacao prevista de 1990 em apenas \(0,067\) ponto percentual, ceteris paribus. A estatistica \(t\) e
+    \[
+    \frac{0,067}{0,053}\approx 1,26,
+    \]
+    logo o efeito nao e estatisticamente significante aos niveis usuais.
+
+    \item Nao muito. Os coeficientes de \textit{prtystrA}, \textit{democA}, \(\log(expendA)\) e \(\log(expendB)\) mudam pouco em magnitude. Assim, a inclusao de \textit{voteA88} melhora o ajuste, mas nao altera substancialmente as conclusoes principais sobre as demais variaveis.
+\end{enumerate}
+\end{solution}
+
+\vspace{0.7cm}
+
+\question (9.3, \citep{wooldridge2016}) Seja \textit{math10} a porcentagem de aprovacao em um teste padrao de matematica de estudantes de uma escola secundaria de Michigan (veja tambem o Exemplo 4.2). Estamos interessados em estimar o efeito do gasto por estudante no desempenho em matematica. Um modelo simples e
+\[
+math10=\beta_0+\beta_1\log(expend)+\beta_2\log(enroll)+\beta_3 poverty+u,
+\]
+em que \textit{poverty} e a porcentagem de estudantes vivendo em condicoes de pobreza.
+\begin{enumerate}[label=(\roman*)]
+    \item A variavel \textit{lnchprg} e a porcentagem de estudantes qualificados para o programa de merenda escolar financiado pelo governo federal. Por que ela e uma variavel \textit{proxy} razoavel de \textit{poverty}?
+    \item A tabela seguinte contem estimativas MQO, com e sem \textit{lnchprg} como uma variavel explicativa:
+\end{enumerate}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Variaveis independentes & (1) & (2) \\
+\midrule
+\(\log(expend)\) & 11,13 & 7,75 \\
+& (3,30) & (3,04) \\
+\(\log(enroll)\) & 0,022 & -1,26 \\
+& (0,615) & (0,58) \\
+\textit{lnchprg} & -- & -0,324 \\
+& & (0,036) \\
+intercepto & -69,24 & -23,14 \\
+& (26,72) & (24,99) \\
+Observacoes & 428 & 428 \\
+\(R^2\) & 0,0297 & 0,1893 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{enumerate}[label=(\roman*),resume]
+    \item Explique por que o efeito dos gastos (\textit{expend}) sobre \textit{math10} e menor na coluna (2) do que na coluna (1). O efeito na coluna (2) ainda e estatisticamente maior que zero?
+    \item Parece que as taxas de aprovacao sao menores em escolas maiores, com os outros fatores sendo iguais? Explique.
+    \item Interprete o coeficiente de \textit{lnchprg} na coluna (2).
+    \item O que voce deduz do substancial aumento de \(R^2\) da coluna (1) para a coluna (2)?
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}[label=(\roman*)]
+    \item \textit{lnchprg} e uma boa \textit{proxy} porque a elegibilidade ao programa de merenda depende fortemente de baixa renda familiar. Portanto, distritos com maior \textit{lnchprg} tendem a ter maior pobreza.
+
+    \item O efeito de \textit{expend} cai de \(11,13\) para \(7,75\) porque, sem \textit{lnchprg}, a coluna (1) provavelmente sofre vies por variavel omitida: distritos menos pobres tendem a gastar mais e tambem a ter melhor desempenho. Na coluna (2), a estatistica \(t\) de \(\log(expend)\) e
+    \[
+    \frac{7,75}{3,04}\approx 2,55,
+    \]
+    de modo que o efeito ainda e positivo e estatisticamente significante.
+
+    \item Sim. Na coluna (2), o coeficiente de \(\log(enroll)\) e \(-1,26\), com estatistica \(t\) de aproximadamente
+    \[
+    \frac{-1,26}{0,58}\approx -2,17.
+    \]
+    Ha evidencia de que escolas maiores tenham piores taxas de aprovacao, ceteris paribus.
+
+    \item O coeficiente \(-0,324\) implica que um aumento de um ponto percentual em \textit{lnchprg} reduz a taxa de aprovacao prevista em cerca de \(0,324\) ponto percentual. Um aumento de 10 pontos percentuais reduziria \textit{math10} em cerca de \(3,24\) pontos.
+
+    \item O grande aumento de \(R^2\) mostra que \textit{lnchprg} explica parte importante da variacao em \textit{math10}. Em outras palavras, a condicao socioeconomica dos alunos parece ser muito relevante para o desempenho medio.
+\end{enumerate}
+\end{solution}
+
+\vspace{0.7cm}
+
+\question (9.5, \citep{wooldridge2016}) No Exemplo 4.4, estimamos um modelo relacionando numero de crimes no \textit{campus} as matriculas de estudantes em um grupo de faculdades. A amostra que usamos nao era uma amostra aleatoria de faculdades nos Estados Unidos, pois muitas escolas em 1992 nao registraram crimes no \textit{campus}. Voce acha que a falha das faculdades em informar os crimes pode ser vista como uma selecao amostral exogena? Explique.
+
+\begin{solution}
+Provavelmente nao. A decisao ou capacidade de reportar crimes pode estar relacionada ao proprio nivel de criminalidade, a qualidade administrativa, ao tipo de instituicao, ao tamanho da universidade ou ao grau de fiscalizacao. Se a probabilidade de aparecer na amostra estiver correlacionada com fatores observados ou nao observados que afetam o numero de crimes, a selecao amostral nao e exogena. Portanto, ha motivo para preocupacao com vies de selecao.
+\end{solution}
+
+\vspace{0.7cm}
+
+\question\qstar (9.C14, \citep{wooldridge2016}) Use os dados do arquivo \texttt{ECONMATH} para responder a esta questao. O modelo populacional e
+\[
+score=\beta_0+\beta_1 act+u.
+\]
+\begin{enumerate}[label=(\roman*)]
+    \item A nota do ACT esta ausente para quantos estudantes? Qual e a fracao da amostra? Defina uma nova variavel, \textit{actmiss}, que e igual a um quando \textit{act} estiver ausente e zero quando nao.
+    \item Crie uma nova variavel, digamos \textit{act0}, que e a nota do \textit{act} quando ela e relatada e zero quando \textit{act} estiver ausente. Encontre a media de \textit{act0} e compare-a com a media de \textit{act}.
+    \item Faca a regressao simples de \textit{score} sobre \textit{act} usando somente os casos completos. O que voce obtem para o coeficiente de inclinacao e seu erro padrao robusto em relacao a heteroscedasticidade?
+    \item Faca a regressao simples de \textit{score} sobre \textit{act0} usando todos os casos. Compare o coeficiente de inclinacao com o obtido no item (iii) e comente.
+    \item Agora use todos os casos e faca a regressao
+    \[
+    score_i \text{ sobre } act0_i,\; actmiss_i.
+    \]
+    Qual e a estimativa de inclinacao sobre \textit{act0}? De que forma isso se compara com suas respostas dos itens (iii) e (iv)?
+    \item Comparando as regressões nos itens (iii) e (v), o uso de todos os casos e a adicao de um estimador de dados ausentes melhora a estimacao de \(\beta_1\)?
+    \item Se voce adicionar a variavel \textit{colgpa} as regressões dos itens (iii) e (v), sua resposta ao item (vi) mudara?
+\end{enumerate}
+
+\end{questions}
+\newpage
+\bibliographystyle{apalike}
+\bibliography{refs}
+\end{document}

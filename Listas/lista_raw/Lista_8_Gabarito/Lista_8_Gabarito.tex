@@ -1,0 +1,265 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
+\usepackage{xcolor}
+\usepackage[brazil]{babel}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+
+\renewenvironment{solution}
+{\par\noindent\textbf{R:}\enspace\color{blue}}
+{\par\color{black}}
+
+\thispagestyle{empty}
+
+\begin{document}
+
+\begingroup
+\centering
+\LARGE Lista 8 Gabarito - Econometria I - 2026\\[0.5em]
+\large Prof: Andre Luiz Pereira Mancha \par
+\large Monitor: Tuffy Licciardi Issa \par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}
+\newcommand{\qstar}{\hspace{-0.6em}\textsuperscript{*}\hspace{0.2em}}
+
+\begin{questions}
+
+\question (7.5, \citep{wooldridge2016}) No Exemplo (7.2)
+\[
+colGPA = \beta_0 + \gamma_0PC + \beta_1hsGPA + \beta_2ACT + u
+\]
+defina \textit{noPC} como uma variavel \textit{dummy} igual a um se o aluno nao possuir um PC, e zero caso contrario.
+\begin{enumerate}[label=(\roman*)]
+    \item Se \textit{noPC} for usada no lugar de \textit{PC} na equacao (7.6)
+    \[
+    \widehat{colGPA} = 1,26 + 0,157PC + 0,447hsGPA + 0,0087ACT
+    \]
+    \[
+    \quad \quad \quad (0,33) \quad (0,57) \quad \quad \quad(0,094)  \quad  \quad \quad \quad (0,0105)
+    \]
+    \[
+    n = 105, R^2 =0,219
+    \]
+    , o que acontece com o intercepto na equacao estimada? Qual sera o coeficiente de \textit{noPC}? [Dica: Escreva \(PC = 1 - noPC\) e agregue isso na equacao \(colGPA = \hat\beta_0 + \hat\delta_0 PC + \hat\beta_1 hsGPA + \hat\beta_2 ACT\).]
+    \item O que acontecera com o \(R\)-quadrado se \textit{noPC} for usado em lugar de \textit{PC}?
+    \item As variaveis \textit{PC} e \textit{noPC} deveriam ser incluidas como variaveis independentes no modelo? Explique.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}[label=(\roman*)]
+    \item Como \(PC = 1 - noPC\), obtemos
+    \[
+    \widehat{colGPA}
+    =
+    (1,26 + 0,157) - 0,157\,noPC + 0,447\,hsGPA + 0,0087\,ACT.
+    \]
+    Logo, o novo intercepto e \(1,417\) e o coeficiente de \textit{noPC} e \(-0,157\).
+
+    \item O \(R^2\) nao se altera. Apenas reparametrizamos a mesma informacao contida em \(PC\).
+
+    \item Nao. Como \(PC + noPC = 1\), incluir as duas junto com o intercepto gera colinearidade perfeita.
+\end{enumerate}
+\end{solution}
+
+\vspace{0.7cm}
+
+\question (7.2, \citep{wooldridge2016}) As seguintes equacoes foram estimadas utilizando os dados contidos no arquivo \texttt{BWGHT}:
+
+\[
+\widehat{\log(bwght)} = 4{,}66 - 0{,}0044\,cigs + 0{,}0093\,\log(faminc) + 0{,}016\,parity
+\]
+\[
+\hspace{1.7cm} (0{,}22)\;(0{,}0009)\hspace{0.5cm}(0{,}0059)\hspace{1.1cm}(0{,}006)
+\]
+\[
+\hspace{2.1cm} +\; 0{,}027\,male + 0{,}055\,white
+\]
+\[
+\hspace{2.7cm} (0{,}010)\hspace{1.2cm}(0{,}013)
+\]
+\[
+n = 1{.}388,\; R^2 = 0{,}0472
+\]
+
+e
+
+\[
+\widehat{\log(bwght)} = 4{,}65 - 0{,}0052\,cigs + 0{,}0110\,\log(faminc) + 0{,}017\,parity
+\]
+\[
+\hspace{1.7cm} (0{,}38)\;(0{,}0010)\hspace{0.5cm}(0{,}0085)\hspace{1.1cm}(0{,}006)
+\]
+\[
+\hspace{1.4cm} +\; 0{,}034\,male + 0{,}045\,white - 0{,}0030\,motheduc + 0{,}0032\,fatheduc
+\]
+\[
+\hspace{2.2cm} (0{,}011)\hspace{1.0cm}(0{,}015)\hspace{0.9cm}(0{,}0030)\hspace{0.9cm}(0{,}0026)
+\]
+\[
+n = 1{.}191,\; R^2 = 0{,}0493
+\]
+
+As variaveis sao definidas como no Exemplo 4.9, mas adicionamos uma variavel \textit{dummy} para o caso de a crianca ser do sexo masculino e uma variavel \textit{dummy} que indica se a crianca e classificada como branca.
+\begin{enumerate}[label=(\roman*)]
+    \item Na primeira equacao, interprete o coeficiente da variavel \textit{cigs}. Particularmente, qual e o efeito no peso dos recem-nascidos se a mae fumar dez ou mais cigarros por dia?
+    \item Quanto se espera que um recem-nascido branco pese a mais que uma crianca nao branca, mantendo fixos todos os outros fatores na primeira equacao? A diferenca e estatisticamente significante?
+    \item Comente sobre o efeito estimado e a significancia estatistica de \textit{motheduc}.
+    \item Com a informacao dada, por que voce nao tera condicoes de calcular a estatistica \(F\) da significancia conjunta de \textit{motheduc} e \textit{fatheduc}? O que voce teria de fazer para calcular a estatistica \(F\)?
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}[label=(\roman*)]
+    \item O modelo e log-nivel. Portanto, um cigarro adicional por dia reduz o peso ao nascer em cerca de \(0,44\%\). Se a mae fumar dez cigarros por dia, o efeito aproximado e
+    \[
+    10(-0,0044) = -0,044,
+    \]
+    isto e, uma reducao de cerca de \(4,4\%\) no peso esperado.
+
+    \item O coeficiente de \textit{white} e \(0,055\). Logo, bebes brancos pesam cerca de \(5,5\%\) a mais, ceteris paribus. A estatistica \(t\) e aproximadamente
+    \[
+    \frac{0,055}{0,013}\approx 4,23,
+    \]
+    de modo que a diferenca e claramente estatisticamente significante.
+
+    \item O coeficiente estimado de \textit{motheduc} e \(-0,0030\), sugerindo um efeito muito pequeno e negativo. Como o erro padrao tambem e \(0,0030\), a estatistica \(t\) e aproximadamente \(-1\). Portanto, nao ha evidencia forte de significancia estatistica.
+
+    \item Nao podemos calcular a estatistica \(F\) apenas com o que foi fornecido porque a regressao com \textit{motheduc} e \textit{fatheduc} usa uma amostra menor (\(1.191\) observacoes), e nao temos a regressao restrita correspondente estimada nessa mesma subamostra. Para calcular o teste \(F\), seria necessario reestimar o modelo sem \textit{motheduc} e \textit{fatheduc} usando exatamente as mesmas \(1.191\) observacoes e, entao, comparar as duas especificacoes.
+\end{enumerate}
+\end{solution}
+
+\vspace{0.7cm}
+
+\question (7.3, \citep{wooldridge2016}) Utilizando os dados contidos no arquivo \texttt{GPA2}, a seguinte equacao foi estimada:
+
+\[
+\widehat{sat} = 1{.}028{,}10 + 19{,}30\,hsize - 2{,}19\,hsize^2 - 45{,}09\,female
+\]
+\[
+\hspace{1.7cm} (6{,}29)\hspace{1.0cm}(3{,}83)\hspace{1.0cm}(0{,}53)\hspace{1.0cm}(4{,}29)
+\]
+\[
+\hspace{2.2cm} -\; 169{,}81\,black + 62{,}31\,female \cdot black
+\]
+\[
+\hspace{2.8cm} (12{,}71)\hspace{1.1cm}(18{,}15)
+\]
+\[
+n = 4{.}137,\; R^2 = 0{,}0858
+\]
+
+A variavel \textit{sat} e a pontuacao combinada de matematica e habilidade verbal do estudante para ingresso em curso superior (SAT); \textit{hsize} e o tamanho da classe do aluno no Ensino Medio, em centenas; \textit{female} e uma variavel \textit{dummy} para genero; \textit{black} e uma variavel \textit{dummy} da raca igual a um para negros, e zero, caso contrario.
+\begin{enumerate}[label=(\roman*)]
+    \item Existe forte evidencia de que \(hsize^2\) deva ser incluida no modelo? Dessa equacao, qual e o tamanho otimo da classe no Ensino Medio?
+    \item Mantendo fixo \textit{hsize}, qual e a diferenca estimada na nota SAT entre mulheres nao negras e homens nao negros? Quao e estatisticamente significante essa diferenca estimada?
+    \item Qual e a diferenca estimada na \textit{sat} entre homens nao negros e homens negros? Teste a hipotese nula de que nao ha diferenca entre suas notas, contra a hipotese alternativa de que existe uma diferenca.
+    \item Qual e a diferenca estimada na nota \textit{sat} entre mulheres negras e mulheres nao negras? O que voce necessitaria fazer para verificar se a diferenca e estatisticamente significante?
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}[label=(\roman*)]
+    \item Sim. A estatistica \(t\) do termo quadratico e
+    \[
+    \frac{-2,19}{0,53}\approx -4,13,
+    \]
+    o que indica forte evidencia de curvatura. O tamanho otimo da classe resolve
+    \[
+    19,30 - 2(2,19)hsize = 0,
+    \]
+    de onde
+    \[
+    hsize^\ast = \frac{19,30}{4,38}\approx 4,41.
+    \]
+    Como \textit{hsize} esta em centenas, isso corresponde a cerca de \(441\) alunos.
+
+    \item A diferenca estimada e \(-45,09\) pontos. Sua significancia e muito alta, pois
+    \[
+    \frac{-45,09}{4,29}\approx -10,51.
+    \]
+
+    \item Para homens, \(female=0\). Logo, a diferenca entre homens negros e nao negros e dada por \(-169,81\). A estatistica \(t\) para testar \(H_0:\beta_{black}=0\) e
+    \[
+    \frac{-169,81}{12,71}\approx -13,36.
+    \]
+    Portanto, rejeitamos fortemente a hipotese nula.
+
+    \item Para mulheres, o efeito de ser negra e
+    \[
+    -169,81 + 62,31 = -107,50.
+    \]
+    Para verificar significancia estatistica, seria preciso obter o erro padrao da combinacao linear \(\beta_{black}+\beta_{female\cdot black}\), o que exige a covariancia entre os dois estimadores ou um teste linear apropriado na regressao original.
+\end{enumerate}
+\end{solution}
+
+\vspace{0.7cm}
+
+\question (7.8, \citep{wooldridge2016}) Suponha que voce colete dados de uma pesquisa sobre salarios, educacao, experiencia e genero. Alem disso, solicita informacoes sobre o uso de maconha. A pergunta original e: ``Em quantas ocasioes distintas, no mes passado, voce fumou maconha?''.
+\begin{enumerate}[label=(\roman*)]
+    \item Escreva uma equacao que permita a voce estimar os efeitos do uso de maconha sobre os salarios com todos os outros fatores controlados. Voce deve ter condicoes de fazer declaracoes do tipo: ``Estima-se que fumar maconha cinco vezes ou mais por mes altera os salarios em \(x\%\)''.
+    \item Escreva um modelo que permita verificar se o uso de drogas tem efeitos diferentes sobre os salarios dos homens e das mulheres. Como voce verificaria que nao existem diferencas nos efeitos do uso de drogas nos homens e nas mulheres?
+    \item Suponha que voce considere ser melhor avaliar o uso de maconha colocando as pessoas em uma de quatro categorias: nao usuario, usuario leve (uma a cinco vezes por mes), usuario moderado (seis a dez vezes por mes), e usuario inveterado (mais de dez vezes por mes). Agora escreva um modelo que permita estimar os efeitos da maconha sobre os salarios.
+    \item Usando o modelo do item (iii), explique em detalhe como testar a hipotese nula de que o uso de maconha nao tem efeito sobre o salario. Seja bastante especifico e inclua uma relacao cuidadosa de graus de liberdade.
+    \item Quais sao alguns dos problemas potenciais de procurar inferencia causal utilizando os dados da pesquisa que voce coletou?
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}[label=(\roman*)]
+    \item Uma forma simples e definir
+    \[
+    pot5 = 1\{\text{uso de maconha cinco vezes ou mais no mes}\}
+    \]
+    e estimar
+    \[
+    \log(wage)=\beta_0+\beta_1 educ+\beta_2 exper+\beta_3 exper^2+\beta_4 male+\delta\,pot5+u.
+    \]
+    Nesse modelo, \(100\delta\) e aproximadamente a variacao percentual no salario associada a fumar maconha cinco vezes ou mais por mes.
+
+    \item Basta adicionar uma interacao:
+    \[
+    \log(wage)=\beta_0+\beta_1 educ+\beta_2 exper+\beta_3 exper^2+\beta_4 male+\delta_0 pot5+\delta_1(male\cdot pot5)+u.
+    \]
+    A hipotese de ausencia de diferencas por genero e \(H_0:\delta_1=0\).
+
+    \item Com quatro grupos, podemos usar tres \textit{dummies} com o grupo ``nao usuario'' como base:
+    \[
+    \log(wage)=\beta_0+\beta_1 educ+\beta_2 exper+\beta_3 exper^2+\beta_4 male+\delta_1 D_{leve}+\delta_2 D_{mod}+\delta_3 D_{inv}+u.
+    \]
+
+    \item A hipotese nula e
+    \[
+    H_0:\delta_1=\delta_2=\delta_3=0.
+    \]
+    O teste apropriado e um teste \(F\) conjunto com \(q=3\) restricoes. Se o modelo irrestrito tem \(p\) regressoras alem do intercepto, os graus de liberdade do teste sao
+    \[
+    (3,\; n-p-1).
+    \]
+    Rejeitamos \(H_0\) quando a estatistica \(F\) observada excede o valor critico ou quando o \(p\)-valor e suficientemente pequeno.
+
+    \item Ha varios problemas potenciais: variaveis omitidas (habilidade, motivacao, saude, preferencias), erro de medida e subdeclaracao no uso de drogas, causalidade reversa, selecao amostral e dificuldade de separar correlacao de causalidade em dados observacionais.
+\end{enumerate}
+\end{solution}
+
+\vspace{0.7cm}
+
+\question\qstar (7.C6, \citep{wooldridge2016}) Use os dados do arquivo \texttt{SLEEP75} para este exercicio:
+\[
+sleep = \beta_0 + \beta_1 totwrk + \beta_2 educ + \beta_3 age + \beta_4 age^2 + \beta_5 yngkid + u.
+\]
+\begin{enumerate}[label=(\roman*)]
+    \item Estime essa equacao separadamente para homens e mulheres e registre os resultados na forma usual. Existem diferencas notaveis nas duas equacoes estimadas?
+    \item Calcule o teste de Chow para igualdade dos parametros na equacao do sono para homens e mulheres. Use a forma do teste que adiciona \textit{male} e os termos de interacao \textit{male}$\cdot$\textit{totwrk}, \ldots, \textit{male}$\cdot$\textit{yngkid} e use o conjunto total de observacoes. Quais sao os gl relevantes para o teste? Voce deveria rejeitar a hipotese nula a um nivel de 5\%?
+    \item Agora permita um intercepto diferente para homens e mulheres e determine se os termos da interacao envolvendo \textit{male} sao conjuntamente significativos.
+    \item Dados os resultados dos itens (ii) e (iii), qual seria seu modelo final?
+\end{enumerate}
+
+\end{questions}
+\bibliographystyle{apalike}
+\bibliography{refs}
+\end{document}
