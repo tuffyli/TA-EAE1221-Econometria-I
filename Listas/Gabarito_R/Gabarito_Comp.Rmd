@@ -110,360 +110,6 @@ Se o residuo for negativo, o modelo superestimou o preco da casa. Se for positiv
 rm(list = ls())
 ```
 
-# Lista 8
-
-## Questao 5)
-
-Agora resolvemos a questao computacional da Lista 8 usando a base `SLEEP75`.
-
-```{r lista8-setup, warning=FALSE, message=FALSE}
-library(wooldridge)
-library(stargazer)
-library(lmtest)
-library(sandwich)
-
-data("sleep75")
-head(sleep75)
-```
-
-- **(i)**
-
-Vamos estimar a equacao separadamente para homens e mulheres.
-
-```{r lista8-i-modelos}
-mod8_h <- lm(sleep ~ totwrk + educ + age + I(age^2) + yngkid,
-             data = sleep75, subset = male == 1)
-mod8_m <- lm(sleep ~ totwrk + educ + age + I(age^2) + yngkid,
-             data = sleep75, subset = male == 0)
-
-summary(mod8_h)
-summary(mod8_m)
-
-stargazer(mod8_h, mod8_m, type = "text", digits = 4,
-          column.labels = c("Homens", "Mulheres"))
-```
-
-Em ambos os grupos, esperamos que `totwrk` tenha efeito negativo sobre `sleep`: mais minutos de trabalho por semana devem reduzir o tempo de sono. A comparacao das duas equacoes permite ver se esse efeito, bem como os efeitos de `educ`, `age` e `yngkid`, mudam muito por genero.
-
-- **(ii)**
-
-Agora fazemos o teste de Chow na forma sugerida pelo enunciado: um modelo restrito com os mesmos coeficientes para homens e mulheres, contra um modelo irrestrito com intercepto diferente e todas as interacoes com `male`.
-
-```{r lista8-ii-chow}
-mod8_r <- lm(sleep ~ totwrk + educ + age + I(age^2) + yngkid, data = sleep75)
-
-mod8_u <- lm(
-  sleep ~ male + totwrk + educ + age + I(age^2) + yngkid +
-    male:totwrk + male:educ + male:age + male:I(age^2) + male:yngkid,
-  data = sleep75
-)
-
-anova(mod8_r, mod8_u)
-```
-
-Aqui o numero de restricoes e `6`: uma para o intercepto e cinco para as inclinacoes. Assim, os graus de liberdade relevantes sao:
-
-- no numerador: `6`;
-- no denominador: `r df.residual(mod8_u)`.
-
-O p-valor do teste e `r signif(anova(mod8_r, mod8_u)$"Pr(>F)"[2], 4)`. Portanto, a decisao a 5\% vem diretamente desse valor.
-
-- **(iii)**
-
-Agora permitimos apenas interceptos diferentes e testamos se os termos de interacao sao conjuntamente significativos.
-
-```{r lista8-iii-interacoes}
-mod8_int <- lm(sleep ~ male + totwrk + educ + age + I(age^2) + yngkid,
-               data = sleep75)
-
-anova(mod8_int, mod8_u)
-```
-
-Neste caso, o numero de restricoes e `5`, correspondendo as cinco inclinacoes adicionais. O p-valor do teste e `r signif(anova(mod8_int, mod8_u)$"Pr(>F)"[2], 4)`.
-
-- **(iv)**
-
-O modelo final depende da combinacao dos dois testes acima:
-
-- se rejeitarmos no item (ii), mas nao no item (iii), faz sentido manter apenas um intercepto diferente por genero;
-- se tambem rejeitarmos no item (iii), ha evidencia para permitir inclinacoes diferentes;
-- se nao rejeitarmos nem no item (ii), o modelo comum para homens e mulheres e suficiente.
-
-Com os resultados obtidos acima, a escolha final deve seguir exatamente essa regra usando os p-valores calculados.
-
-```{r, echo=FALSE}
-rm(list = ls())
-```
-
-# Lista 9
-
-## Questao 5)
-
-Agora resolvemos a questao computacional da Lista 9 com a base `ECONMATH`.
-
-```{r lista9-setup, warning=FALSE, message=FALSE}
-library(wooldridge)
-library(stargazer)
-library(lmtest)
-library(sandwich)
-
-data("econmath")
-head(econmath)
-```
-
-- **(i)**
-
-Primeiro, identificamos quantos estudantes nao possuem nota de `act`.
-
-```{r lista9-i-missing}
-econmath$actmiss <- as.integer(is.na(econmath$act))
-
-n_missing_act <- sum(econmath$actmiss)
-frac_missing_act <- mean(econmath$actmiss)
-
-n_missing_act
-frac_missing_act
-```
-
-Logo, ha `r n_missing_act` estudantes com `act` ausente, o que corresponde a aproximadamente `r round(100 * frac_missing_act, 2)`\% da amostra.
-
-- **(ii)**
-
-Agora criamos `act0`, que coincide com `act` quando ela e observada e vale zero quando `act` esta ausente.
-
-```{r lista9-ii-act0}
-econmath$act0 <- ifelse(is.na(econmath$act), 0, econmath$act)
-
-mean_act0 <- mean(econmath$act0)
-mean_act <- mean(econmath$act, na.rm = TRUE)
-
-mean_act0
-mean_act
-```
-
-Como `act0` coloca zero nos casos ausentes, sua media tende a ser menor do que a media de `act` calculada apenas entre observacoes validas.
-
-- **(iii)**
-
-Agora estimamos a regressao simples de `score` sobre `act` usando apenas casos completos e calculamos o erro padrao robusto.
-
-```{r lista9-iii-modelo}
-mod9_iii <- lm(score ~ act, data = econmath, subset = !is.na(act))
-summary(mod9_iii)
-stargazer(mod9_iii, type = "text", digits = 4)
-coeftest(mod9_iii, vcov. = vcovHC(mod9_iii, type = "HC1"))
-```
-
-O coeficiente de `act` nesta regressao mede quanto a nota final do curso aumenta, em media, para um ponto adicional no ACT, usando somente os alunos para os quais essa nota foi observada.
-
-- **(iv)**
-
-Agora usamos todos os casos, substituindo `act` por `act0`.
-
-```{r lista9-iv-modelo}
-mod9_iv <- lm(score ~ act0, data = econmath)
-summary(mod9_iv)
-stargazer(mod9_iv, type = "text", digits = 4)
-coeftest(mod9_iv, vcov. = vcovHC(mod9_iv, type = "HC1"))
-```
-
-Comparando o coeficiente de `act0` com o do item (iii), podemos ver o que acontece quando tratamos as ausencias como zeros. Em geral, isso tende a distorcer a inclinacao, porque zero nao e uma nota plausivel de ACT para esses estudantes.
-
-- **(v)**
-
-Agora incluimos tambem a dummy `actmiss`.
-
-```{r lista9-v-modelo}
-mod9_v <- lm(score ~ act0 + actmiss, data = econmath)
-summary(mod9_v)
-stargazer(mod9_v, type = "text", digits = 4)
-coeftest(mod9_v, vcov. = vcovHC(mod9_v, type = "HC1"))
-```
-
-Aqui, `actmiss` permite um deslocamento de intercepto para o grupo com ACT ausente. O coeficiente de `act0` deve ser comparado com os itens (iii) e (iv) para ver se essa correcao aproxima a inclinacao do caso com observacoes completas.
-
-- **(vi)**
-
-O ganho potencial do item (v) e aproveitar a amostra completa sem forcar os casos ausentes a se comportarem exatamente como se tivessem `ACT = 0`. Se o coeficiente de `act0` em (v) ficar mais proximo do obtido em (iii), isso sugere que incluir `actmiss` melhora bastante o uso das observacoes faltantes.
-
-- **(vii)**
-
-Por fim, adicionamos `colgpa` as especificacoes dos itens (iii) e (v).
-
-```{r lista9-vii-modelos}
-mod9_vii_cc <- lm(score ~ act + colgpa, data = econmath, subset = !is.na(act))
-mod9_vii_full <- lm(score ~ act0 + actmiss + colgpa, data = econmath)
-
-stargazer(mod9_vii_cc, mod9_vii_full, type = "text", digits = 4,
-          column.labels = c("Casos completos", "Todos os casos"))
-
-coeftest(mod9_vii_cc, vcov. = vcovHC(mod9_vii_cc, type = "HC1"))
-coeftest(mod9_vii_full, vcov. = vcovHC(mod9_vii_full, type = "HC1"))
-```
-
-Como `colgpa` e uma variavel muito informativa sobre desempenho, ela pode reduzir a diferenca entre as especificacoes. A resposta final ao item (vi) deve ser refeita com base nessa comparacao.
-
-```{r, echo=FALSE}
-rm(list = ls())
-```
-
-# Lista 10
-
-## Questao 5)
-
-Agora resolvemos a questao computacional da Lista 10 com a base `FERTIL2`.
-
-```{r lista10-setup, warning=FALSE, message=FALSE}
-library(wooldridge)
-library(stargazer)
-library(lmtest)
-library(sandwich)
-
-data("fertil2")
-head(fertil2)
-```
-
-- **(i)**
-
-Primeiro estimamos o modelo pedido e registramos erros padrao usuais e robustos.
-
-```{r lista10-i-modelo}
-mod10_i <- lm(children ~ age + I(age^2) + educ + electric + urban, data = fertil2)
-summary(mod10_i)
-stargazer(mod10_i, type = "text", digits = 4)
-coeftest(mod10_i, vcov. = vcovHC(mod10_i, type = "HC1"))
-```
-
-O ponto principal aqui e comparar os erros padrao usuais com os robustos. Em geral, eles nao precisam ser sempre maiores: a heteroscedasticidade pode aumentar alguns e reduzir outros.
-
-- **(ii)**
-
-Agora adicionamos tres dummies de religiao.
-
-```{r lista10-ii-modelo}
-mod10_ii <- lm(children ~ age + I(age^2) + educ + electric + urban +
-                 spirit + protest + catholic,
-               data = fertil2)
-
-summary(mod10_ii)
-stargazer(mod10_ii, type = "text", digits = 4)
-
-anova(mod10_i, mod10_ii)
-waldtest(mod10_i, mod10_ii, vcov = vcovHC(mod10_ii, type = "HC1"), test = "F")
-```
-
-Com isso, obtemos:
-
-- o teste \(F\) usual da significancia conjunta das tres dummies;
-- e o teste robusto a heteroscedasticidade para as mesmas restricoes.
-
-Os p-valores desses dois testes devem ser registrados na resposta final.
-
-- **(iii)**
-
-Agora avaliamos a heteroscedasticidade a partir da regressao auxiliar sobre os residuos ao quadrado.
-
-```{r lista10-iii-auxiliar}
-uhat10 <- resid(mod10_ii)
-yhat10 <- fitted(mod10_ii)
-
-mod10_aux <- lm(I(uhat10^2) ~ yhat10 + I(yhat10^2))
-summary(mod10_aux)
-
-anova(lm(I(uhat10^2) ~ 1), mod10_aux)
-```
-
-Se `yhat10` e `yhat10^2` forem conjuntamente significativos, isso indica evidencia de heteroscedasticidade. O teste acima fornece exatamente esse diagnostico.
-
-- **(iv)**
-
-Na pratica, a importancia da heteroscedasticidade depende de quanto as conclusoes mudam quando passamos dos erros padrao usuais para os robustos. Se os sinais, magnitudes e juizos de significancia mudarem pouco, entao a heteroscedasticidade pode existir, mas nao ser muito importante para a interpretacao economica.
-
-```{r, echo=FALSE}
-rm(list = ls())
-```
-
-# Lista 11
-
-## Questao 5)
-
-Agora resolvemos a questao computacional da Lista 11 com a base `CHARITY`.
-
-```{r lista11-setup, warning=FALSE, message=FALSE}
-library(wooldridge)
-library(stargazer)
-
-data("charity")
-head(charity)
-```
-
-- **(i)**
-
-Vamos comecar estimando o modelo de probabilidade linear com `respond`, `resplast` e `avggift`.
-
-```{r lista11-i-modelo}
-mod11_i <- lm(respond ~ resplast + avggift, data = charity)
-summary(mod11_i)
-stargazer(mod11_i, type = "text", digits = 4)
-coef(mod11_i)
-```
-
-O coeficiente de `resplast` mede a diferenca na probabilidade de responder a nova correspondencia entre quem respondeu e quem nao respondeu a correspondencia anterior, mantendo `avggift` fixa.
-
-- **(ii)**
-
-Para avaliar se `avggift` afeta a probabilidade de resposta, basta olhar seu coeficiente e p-valor na regressao acima.
-
-```{r lista11-ii-avggift}
-coef(summary(mod11_i))["avggift", ]
-```
-
-Se o p-valor for pequeno, concluimos que o valor medio de doacoes passadas ajuda a prever a resposta atual.
-
-- **(iii)**
-
-Agora adicionamos `propresp`.
-
-```{r lista11-iii-modelo}
-mod11_iii <- lm(respond ~ resplast + avggift + propresp, data = charity)
-summary(mod11_iii)
-stargazer(mod11_iii, type = "text", digits = 4)
-coef(mod11_iii)
-```
-
-Como `propresp` e uma proporcao entre 0 e 1, um aumento de uma unidade representa a maior variacao possivel: passar de nunca responder para sempre responder. Por isso, o coeficiente deve ser interpretado com cuidado.
-
-- **(iv)**
-
-Agora comparamos o coeficiente de `resplast` antes e depois da inclusao de `propresp`.
-
-```{r lista11-iv-comparacao}
-c(
-  sem_propresp = coef(mod11_i)["resplast"],
-  com_propresp = coef(mod11_iii)["resplast"]
-)
-```
-
-Se o coeficiente de `resplast` cair bastante, isso faz sentido: `propresp` capta o historico geral de resposta do doador e tende a absorver parte do efeito que antes era atribuido apenas a ultima resposta observada.
-
-- **(v)**
-
-Por fim, adicionamos `mailsyear`.
-
-```{r lista11-v-modelo}
-mod11_v <- lm(respond ~ resplast + avggift + propresp + mailsyear, data = charity)
-summary(mod11_v)
-stargazer(mod11_v, type = "text", digits = 4)
-coef(mod11_v)
-```
-
-O coeficiente de `mailsyear` mede quanto a probabilidade de resposta varia quando a organizacao envia uma correspondencia adicional por ano, mantidas as demais variaveis fixas.
-
-No entanto, esse coeficiente nao deve ser lido automaticamente como causal. Organizacoes podem enviar mais correspondencias justamente para pessoas mais propensas a doar, ou menos correspondencias para doadores ja fidelizados. Assim, `mailsyear` pode estar correlacionada com caracteristicas nao observadas do doador.
-
-```{r, echo=FALSE}
-rm(list = ls())
-```
 
 # Lista 4
 
@@ -962,6 +608,361 @@ anova(mod7_vi_restrito, mod7_v)
 O p-valor do teste F conjunto e aproximadamente `r signif(anova(mod7_vi_restrito, mod7_v)$"Pr(>F)"[2], 4)`. Portanto, nao rejeitamos a hipotese nula de que `age` e `coll` sejam conjuntamente iguais a zero.
 
 Isso sugere que, uma vez controlados produtividade (`points`) e tempo de servico (`exper` e `exper^2`), idade e educacao nao parecem ter efeitos separados estatisticamente detectaveis sobre salario nessa amostra.
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+# Lista 8
+
+## Questao 5)
+
+Agora resolvemos a questao computacional da Lista 8 usando a base `SLEEP75`.
+
+```{r lista8-setup, warning=FALSE, message=FALSE}
+library(wooldridge)
+library(stargazer)
+library(lmtest)
+library(sandwich)
+
+data("sleep75")
+head(sleep75)
+```
+
+- **(i)**
+
+Vamos estimar a equacao separadamente para homens e mulheres.
+
+```{r lista8-i-modelos}
+mod8_h <- lm(sleep ~ totwrk + educ + age + I(age^2) + yngkid,
+             data = sleep75, subset = male == 1)
+mod8_m <- lm(sleep ~ totwrk + educ + age + I(age^2) + yngkid,
+             data = sleep75, subset = male == 0)
+
+summary(mod8_h)
+summary(mod8_m)
+
+stargazer(mod8_h, mod8_m, type = "text", digits = 4,
+          column.labels = c("Homens", "Mulheres"))
+```
+
+Em ambos os grupos, esperamos que `totwrk` tenha efeito negativo sobre `sleep`: mais minutos de trabalho por semana devem reduzir o tempo de sono. A comparacao das duas equacoes permite ver se esse efeito, bem como os efeitos de `educ`, `age` e `yngkid`, mudam muito por genero.
+
+- **(ii)**
+
+Agora fazemos o teste de Chow na forma sugerida pelo enunciado: um modelo restrito com os mesmos coeficientes para homens e mulheres, contra um modelo irrestrito com intercepto diferente e todas as interacoes com `male`.
+
+```{r lista8-ii-chow}
+mod8_r <- lm(sleep ~ totwrk + educ + age + I(age^2) + yngkid, data = sleep75)
+
+mod8_u <- lm(
+  sleep ~ male + totwrk + educ + age + I(age^2) + yngkid +
+    male:totwrk + male:educ + male:age + male:I(age^2) + male:yngkid,
+  data = sleep75
+)
+
+anova(mod8_r, mod8_u)
+```
+
+Aqui o numero de restricoes e `6`: uma para o intercepto e cinco para as inclinacoes. Assim, os graus de liberdade relevantes sao:
+
+- no numerador: `6`;
+- no denominador: `r df.residual(mod8_u)`.
+
+O p-valor do teste e `r signif(anova(mod8_r, mod8_u)$"Pr(>F)"[2], 4)`. Portanto, a decisao a 5\% vem diretamente desse valor.
+
+- **(iii)**
+
+Agora permitimos apenas interceptos diferentes e testamos se os termos de interacao sao conjuntamente significativos.
+
+```{r lista8-iii-interacoes}
+mod8_int <- lm(sleep ~ male + totwrk + educ + age + I(age^2) + yngkid,
+               data = sleep75)
+
+anova(mod8_int, mod8_u)
+```
+
+Neste caso, o numero de restricoes e `5`, correspondendo as cinco inclinacoes adicionais. O p-valor do teste e `r signif(anova(mod8_int, mod8_u)$"Pr(>F)"[2], 4)`.
+
+- **(iv)**
+
+O modelo final depende da combinacao dos dois testes acima:
+
+- se rejeitarmos no item (ii), mas nao no item (iii), faz sentido manter apenas um intercepto diferente por genero;
+- se tambem rejeitarmos no item (iii), ha evidencia para permitir inclinacoes diferentes;
+- se nao rejeitarmos nem no item (ii), o modelo comum para homens e mulheres e suficiente.
+
+Com os resultados obtidos acima, a escolha final deve seguir exatamente essa regra usando os p-valores calculados.
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+# Lista 9
+
+## Questao 5)
+
+Agora resolvemos a questao computacional da Lista 9 com a base `ECONMATH`.
+
+```{r lista9-setup, warning=FALSE, message=FALSE}
+library(wooldridge)
+library(stargazer)
+library(lmtest)
+library(sandwich)
+
+data("econmath")
+head(econmath)
+```
+
+- **(i)**
+
+Primeiro, identificamos quantos estudantes nao possuem nota de `act`.
+
+```{r lista9-i-missing}
+econmath$actmiss <- as.integer(is.na(econmath$act))
+
+n_missing_act <- sum(econmath$actmiss)
+frac_missing_act <- mean(econmath$actmiss)
+
+n_missing_act
+frac_missing_act
+```
+
+Logo, ha `r n_missing_act` estudantes com `act` ausente, o que corresponde a aproximadamente `r round(100 * frac_missing_act, 2)`\% da amostra.
+
+- **(ii)**
+
+Agora criamos `act0`, que coincide com `act` quando ela e observada e vale zero quando `act` esta ausente.
+
+```{r lista9-ii-act0}
+econmath$act0 <- ifelse(is.na(econmath$act), 0, econmath$act)
+
+mean_act0 <- mean(econmath$act0)
+mean_act <- mean(econmath$act, na.rm = TRUE)
+
+mean_act0
+mean_act
+```
+
+Como `act0` coloca zero nos casos ausentes, sua media tende a ser menor do que a media de `act` calculada apenas entre observacoes validas.
+
+- **(iii)**
+
+Agora estimamos a regressao simples de `score` sobre `act` usando apenas casos completos e calculamos o erro padrao robusto.
+
+```{r lista9-iii-modelo}
+mod9_iii <- lm(score ~ act, data = econmath, subset = !is.na(act))
+summary(mod9_iii)
+stargazer(mod9_iii, type = "text", digits = 4)
+coeftest(mod9_iii, vcov. = vcovHC(mod9_iii, type = "HC1"))
+```
+
+O coeficiente de `act` nesta regressao mede quanto a nota final do curso aumenta, em media, para um ponto adicional no ACT, usando somente os alunos para os quais essa nota foi observada.
+
+- **(iv)**
+
+Agora usamos todos os casos, substituindo `act` por `act0`.
+
+```{r lista9-iv-modelo}
+mod9_iv <- lm(score ~ act0, data = econmath)
+summary(mod9_iv)
+stargazer(mod9_iv, type = "text", digits = 4)
+coeftest(mod9_iv, vcov. = vcovHC(mod9_iv, type = "HC1"))
+```
+
+Comparando o coeficiente de `act0` com o do item (iii), podemos ver o que acontece quando tratamos as ausencias como zeros. Em geral, isso tende a distorcer a inclinacao, porque zero nao e uma nota plausivel de ACT para esses estudantes.
+
+- **(v)**
+
+Agora incluimos tambem a dummy `actmiss`.
+
+```{r lista9-v-modelo}
+mod9_v <- lm(score ~ act0 + actmiss, data = econmath)
+summary(mod9_v)
+stargazer(mod9_v, type = "text", digits = 4)
+coeftest(mod9_v, vcov. = vcovHC(mod9_v, type = "HC1"))
+```
+
+Aqui, `actmiss` permite um deslocamento de intercepto para o grupo com ACT ausente. O coeficiente de `act0` deve ser comparado com os itens (iii) e (iv) para ver se essa correcao aproxima a inclinacao do caso com observacoes completas.
+
+- **(vi)**
+
+O ganho potencial do item (v) e aproveitar a amostra completa sem forcar os casos ausentes a se comportarem exatamente como se tivessem `ACT = 0`. Se o coeficiente de `act0` em (v) ficar mais proximo do obtido em (iii), isso sugere que incluir `actmiss` melhora bastante o uso das observacoes faltantes.
+
+- **(vii)**
+
+Por fim, adicionamos `colgpa` as especificacoes dos itens (iii) e (v).
+
+```{r lista9-vii-modelos}
+mod9_vii_cc <- lm(score ~ act + colgpa, data = econmath, subset = !is.na(act))
+mod9_vii_full <- lm(score ~ act0 + actmiss + colgpa, data = econmath)
+
+stargazer(mod9_vii_cc, mod9_vii_full, type = "text", digits = 4,
+          column.labels = c("Casos completos", "Todos os casos"))
+
+coeftest(mod9_vii_cc, vcov. = vcovHC(mod9_vii_cc, type = "HC1"))
+coeftest(mod9_vii_full, vcov. = vcovHC(mod9_vii_full, type = "HC1"))
+```
+
+Como `colgpa` e uma variavel muito informativa sobre desempenho, ela pode reduzir a diferenca entre as especificacoes. A resposta final ao item (vi) deve ser refeita com base nessa comparacao.
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+# Lista 10
+
+## Questao 5)
+
+Agora resolvemos a questao computacional da Lista 10 com a base `FERTIL2`.
+
+```{r lista10-setup, warning=FALSE, message=FALSE}
+library(wooldridge)
+library(stargazer)
+library(lmtest)
+library(sandwich)
+
+data("fertil2")
+head(fertil2)
+```
+
+- **(i)**
+
+Primeiro estimamos o modelo pedido e registramos erros padrao usuais e robustos.
+
+```{r lista10-i-modelo}
+mod10_i <- lm(children ~ age + I(age^2) + educ + electric + urban, data = fertil2)
+summary(mod10_i)
+stargazer(mod10_i, type = "text", digits = 4)
+coeftest(mod10_i, vcov. = vcovHC(mod10_i, type = "HC1"))
+```
+
+O ponto principal aqui e comparar os erros padrao usuais com os robustos. Em geral, eles nao precisam ser sempre maiores: a heteroscedasticidade pode aumentar alguns e reduzir outros.
+
+- **(ii)**
+
+Agora adicionamos tres dummies de religiao.
+
+```{r lista10-ii-modelo}
+mod10_ii <- lm(children ~ age + I(age^2) + educ + electric + urban +
+                 spirit + protest + catholic,
+               data = fertil2)
+
+summary(mod10_ii)
+stargazer(mod10_ii, type = "text", digits = 4)
+
+anova(mod10_i, mod10_ii)
+waldtest(mod10_i, mod10_ii, vcov = vcovHC(mod10_ii, type = "HC1"), test = "F")
+```
+
+Com isso, obtemos:
+
+- o teste \(F\) usual da significancia conjunta das tres dummies;
+- e o teste robusto a heteroscedasticidade para as mesmas restricoes.
+
+Os p-valores desses dois testes devem ser registrados na resposta final.
+
+- **(iii)**
+
+Agora avaliamos a heteroscedasticidade a partir da regressao auxiliar sobre os residuos ao quadrado.
+
+```{r lista10-iii-auxiliar}
+uhat10 <- resid(mod10_ii)
+yhat10 <- fitted(mod10_ii)
+
+mod10_aux <- lm(I(uhat10^2) ~ yhat10 + I(yhat10^2))
+summary(mod10_aux)
+
+anova(lm(I(uhat10^2) ~ 1), mod10_aux)
+```
+
+Se `yhat10` e `yhat10^2` forem conjuntamente significativos, isso indica evidencia de heteroscedasticidade. O teste acima fornece exatamente esse diagnostico.
+
+- **(iv)**
+
+Na pratica, a importancia da heteroscedasticidade depende de quanto as conclusoes mudam quando passamos dos erros padrao usuais para os robustos. Se os sinais, magnitudes e juizos de significancia mudarem pouco, entao a heteroscedasticidade pode existir, mas nao ser muito importante para a interpretacao economica.
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+# Lista 11
+
+## Questao 5)
+
+Agora resolvemos a questao computacional da Lista 11 com a base `CHARITY`.
+
+```{r lista11-setup, warning=FALSE, message=FALSE}
+library(wooldridge)
+library(stargazer)
+
+data("charity")
+head(charity)
+```
+
+- **(i)**
+
+Vamos comecar estimando o modelo de probabilidade linear com `respond`, `resplast` e `avggift`.
+
+```{r lista11-i-modelo}
+mod11_i <- lm(respond ~ resplast + avggift, data = charity)
+summary(mod11_i)
+stargazer(mod11_i, type = "text", digits = 4)
+coef(mod11_i)
+```
+
+O coeficiente de `resplast` mede a diferenca na probabilidade de responder a nova correspondencia entre quem respondeu e quem nao respondeu a correspondencia anterior, mantendo `avggift` fixa.
+
+- **(ii)**
+
+Para avaliar se `avggift` afeta a probabilidade de resposta, basta olhar seu coeficiente e p-valor na regressao acima.
+
+```{r lista11-ii-avggift}
+coef(summary(mod11_i))["avggift", ]
+```
+
+Se o p-valor for pequeno, concluimos que o valor medio de doacoes passadas ajuda a prever a resposta atual.
+
+- **(iii)**
+
+Agora adicionamos `propresp`.
+
+```{r lista11-iii-modelo}
+mod11_iii <- lm(respond ~ resplast + avggift + propresp, data = charity)
+summary(mod11_iii)
+stargazer(mod11_iii, type = "text", digits = 4)
+coef(mod11_iii)
+```
+
+Como `propresp` e uma proporcao entre 0 e 1, um aumento de uma unidade representa a maior variacao possivel: passar de nunca responder para sempre responder. Por isso, o coeficiente deve ser interpretado com cuidado.
+
+- **(iv)**
+
+Agora comparamos o coeficiente de `resplast` antes e depois da inclusao de `propresp`.
+
+```{r lista11-iv-comparacao}
+c(
+  sem_propresp = coef(mod11_i)["resplast"],
+  com_propresp = coef(mod11_iii)["resplast"]
+)
+```
+
+Se o coeficiente de `resplast` cair bastante, isso faz sentido: `propresp` capta o historico geral de resposta do doador e tende a absorver parte do efeito que antes era atribuido apenas a ultima resposta observada.
+
+- **(v)**
+
+Por fim, adicionamos `mailsyear`.
+
+```{r lista11-v-modelo}
+mod11_v <- lm(respond ~ resplast + avggift + propresp + mailsyear, data = charity)
+summary(mod11_v)
+stargazer(mod11_v, type = "text", digits = 4)
+coef(mod11_v)
+```
+
+O coeficiente de `mailsyear` mede quanto a probabilidade de resposta varia quando a organizacao envia uma correspondencia adicional por ano, mantidas as demais variaveis fixas.
+
+No entanto, esse coeficiente nao deve ser lido automaticamente como causal. Organizacoes podem enviar mais correspondencias justamente para pessoas mais propensas a doar, ou menos correspondencias para doadores ja fidelizados. Assim, `mailsyear` pode estar correlacionada com caracteristicas nao observadas do doador.
 
 ```{r, echo=FALSE}
 rm(list = ls())
