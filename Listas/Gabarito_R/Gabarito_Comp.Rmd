@@ -639,9 +639,6 @@ mod8_h <- lm(sleep ~ totwrk + educ + age + I(age^2) + yngkid,
 mod8_m <- lm(sleep ~ totwrk + educ + age + I(age^2) + yngkid,
              data = sleep75, subset = male == 0)
 
-summary(mod8_h)
-summary(mod8_m)
-
 stargazer(mod8_h, mod8_m, type = "text", digits = 4,
           column.labels = c("Homens", "Mulheres"))
 ```
@@ -697,6 +694,7 @@ Com os resultados obtidos acima, a escolha final deve seguir exatamente essa reg
 ```{r, echo=FALSE}
 rm(list = ls())
 ```
+
 
 # Lista 9
 
