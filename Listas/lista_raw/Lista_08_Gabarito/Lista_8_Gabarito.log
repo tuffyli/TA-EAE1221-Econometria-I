@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.10)  11 MAY 2026 20:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.10)  15 MAY 2026 17:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -559,6 +559,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/Users/tuffy/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
+Overfull \hbox (0.63832pt too wide) in paragraph at lines 160--161
+[]\OT1/cmr/m/n/12 Existe forte evid^encia de que $\OML/cmm/m/it/12 hsize[]$ \OT
+1/cmr/m/n/12 deva ser in-clu^^S^^Pda no mo-delo? Dessa equa^^Xc~ao,
+ []
+
 [3] [4]
 Overfull \hbox (6.18037pt too wide) detected at line 227
 []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 wage\OT1/cmr/m/n/12 ) = \OML/cmm/m/it/12 ^^
@@ -579,13 +584,7 @@ cmr/m/n/12 + \OML/cmm/m/it/12 ^^N[]D[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^N[]
 D[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 u:
  []
 
-[5]
-Overfull \hbox (5.78568pt too wide) in paragraph at lines 245--246
-[]\OT1/cmr/m/n/12 Ha va-rios pro-ble-mas po-ten-ci-ais: va-ri-a-veis omi-ti-das
- (ha-bi-li-dade, mo-ti-va-cao, saude,
- []
-
-(Lista_8_Gabarito.bbl) [6]
+[5] (Lista_8_Gabarito.bbl) [6]
 This exam contains 5 questions with 0 parts, 0 subparts, and 0 subsubparts.
 (Lista_8_Gabarito.aux)
  ***********
@@ -596,13 +595,13 @@ Package rerunfilecheck Info: File `Lista_8_Gabarito.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13278 strings out of 467871
- 204612 string characters out of 5418376
+ 13284 strings out of 467871
+ 204668 string characters out of 5418376
  662513 words of memory out of 5000000
- 41969 multiletter control sequences out of 15000+600000
+ 41975 multiletter control sequences out of 15000+600000
  634392 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,542b,750s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,555b,760s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx12.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmex10.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -617,7 +616,7 @@ tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C
 12.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
 s/cm/cmtt12.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/publi
 c/amsfonts/symbols/msbm10.pfb>
-Output written on Lista_8_Gabarito.pdf (6 pages, 158099 bytes).
+Output written on Lista_8_Gabarito.pdf (6 pages, 159013 bytes).
 PDF statistics:
  155 PDF objects out of 1000 (max. 8388607)
  50 named destinations out of 1000 (max. 500000)
