@@ -52,13 +52,13 @@
 n = 807,\quad R^2 = 0{,}062.
 \]
 
-A variável \textit{white} é igual a um se a pessoa for branca, e zero caso contrário; as outras variáveis independentes foram definidas no Exemplo 8.7. Tanto os erros padrão usuais como os robustos em relação à heteroscedasticidade estão informados.
+A variável \textit{white} é igual a um se a pessoa for branca, e zero caso contrário; as outras variáveis independentes foram definidas no Exemplo 8.7. Tanto os erros padrão usuais quanto os robustos em relação à heteroscedasticidade estão informados.
 
 \begin{enumerate}[label=(\roman*)]
     \item Existe alguma diferença importante entre os dois conjuntos de erros padrão?
-    \item Mantendo os outros fatores fixos, se a educação aumentar em quatro anos, o que acontece com a probabilidade de fumar estimada?
+    \item Mantendo os outros fatores fixos, se a educação aumentar em quatro anos, o que acontece com a probabilidade estimada de fumar?
     \item Em que ponto mais um ano de idade reduz a probabilidade de fumar?
-    \item Interprete o coeficiente da variável binária \textit{restaurn} (uma variável \textit{dummy} igual a um se a pessoa viver em um Estado em que há restrições de fumar em restaurantes).
+    \item Interprete o coeficiente da variável binária \textit{restaurn} (uma variável \textit{dummy} igual a um se a pessoa viver em um Estado em que há restrições ao fumo em restaurantes).
     \item A pessoa número 206 no conjunto de dados tem as seguintes características: \(cigpric = 67{,}44\), \(income = 6.500\), \(educ = 16\), \(age = 77\), \(restaurn = 0\), \(white = 0\) e \(smokes = 0\). Calcule a probabilidade de fumar dessa pessoa e comente o resultado.
 \end{enumerate}
 
@@ -68,9 +68,9 @@ A variável \textit{white} é igual a um se a pessoa for branca, e zero caso con
 \[
 y_{i,e} = \beta_0 + \beta_1 x_{i,e,1} + \beta_2 x_{i,e,2} + \cdots + \beta_k x_{i,e,k} + f_i + v_{i,e},
 \]
-em que a variável não observada \(f_i\) é um ``efeito da empresa'' em cada empregado em determinada empresa \(i\). O termo de erro \(v_{i,e}\) é específico do empregado e da empresa. O erro de combinação é \(u_{i,e} = f_i + v_{i,e}\), como na equação (8.28).
+em que a variável não observada \(f_i\) é um ``efeito da empresa'' para cada empregado da empresa \(i\). O termo de erro \(v_{i,e}\) é específico do empregado e da empresa. O erro de combinação é \(u_{i,e} = f_i + v_{i,e}\), como na equação (8.28).
 \begin{enumerate}[label=(\roman*)]
-    \item Suponha que \(\operatorname{Var}(f_i)=\sigma_f^2\), \(\operatorname{Var}(v_{i,e})=\sigma_v^2\), e \(f_i\) e \(v_{i,e}\) sejam não correlacionadas. Demonstre que \(\operatorname{Var}(u_{i,e})=\sigma_f^2+\sigma_v^2\). Chame-a \(\sigma^2\).
+    \item Suponha que \(\operatorname{Var}(f_i)=\sigma_f^2\), \(\operatorname{Var}(v_{i,e})=\sigma_v^2\), e que \(f_i\) e \(v_{i,e}\) sejam não correlacionadas. Demonstre que \(\operatorname{Var}(u_{i,e})=\sigma_f^2+\sigma_v^2\). Chame esse valor de \(\sigma^2\).
     \item Agora suponha que, para \(e \neq g\), \(v_{i,e}\) e \(v_{i,g}\) sejam não correlacionadas. Demonstre que \(\operatorname{Cov}(u_{i,e},u_{i,g})=\sigma_f^2\).
     \item Seja
     \[
@@ -80,7 +80,7 @@ em que a variável não observada \(f_i\) é um ``efeito da empresa'' em cada em
     \[
     \operatorname{Var}(\bar{u}_i)=\sigma_f^2+\frac{\sigma_v^2}{m_i}.
     \]
-    \item Detalhe a relevância do item (iii) para a estimação MQP usando dados nivelados pela média da empresa, em que o peso usado para a observação \(i\) é o tamanho usual da empresa.
+    \item Detalhe a relevância do item (iii) para a estimação por MQP usando dados nivelados pela média da empresa, em que o peso usado para a observação \(i\) é o tamanho da empresa.
 \end{enumerate}
 
 \vspace{0.7cm}
@@ -104,8 +104,8 @@ em que a variável não observada \(f_i\) é um ``efeito da empresa'' em cada em
     \[
     children = \beta_0 + \beta_1 age + \beta_2 age^2 + \beta_3 educ + \beta_4 electric + \beta_5 urban + u
     \]
-    e registre os erros padrão usual e robusto em relação à heteroscedasticidade. Os erros padrão robustos são sempre maiores do que os não robustos?
-    \item Adicione três variáveis \textit{dummy} de religião e teste se são conjuntamente significativas. Quais são os \(p\)-valores dos testes não robustos e robustos?
+    e registre os erros padrão usuais e robustos em relação à heteroscedasticidade. Os erros padrão robustos são sempre maiores do que os não robustos?
+    \item Adicione três variáveis \textit{dummy} de religião e teste se elas são conjuntamente significativas. Quais são os \(p\)-valores dos testes não robustos e robustos?
     \item A partir da regressão do item (ii), obtenha os valores ajustados \(\hat{y}_i\) e os resíduos \(\hat{u}_i\). Regrida \(\hat{u}_i^2\) sobre \(\hat{y}_i\) e \(\hat{y}_i^2\), e teste a significância conjunta dos dois regressores. Conclua que a heteroscedasticidade está presente na equação para \textit{children}.
     \item Você diria que a heteroscedasticidade encontrada no item (iii) é importante na prática?
 \end{enumerate}

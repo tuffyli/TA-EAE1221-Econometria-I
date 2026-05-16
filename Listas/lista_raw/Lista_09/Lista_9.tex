@@ -36,23 +36,23 @@
 
 \begin{questions}
 
-\question (7.10, \citep{wooldridge2016}) Para uma criança \(i\) que mora em determinada região de ensino, defina \textit{voucher} como uma variável \textit{dummy} igual a um se a criança foi selecionada para participar de um programa de bolsas de estudos em uma escola, e defina \textit{score} como a nota da criança em um exame padronizado subsequente. Suponha que a variável de participação, \textit{voucher}, seja completamente aleatorizada para que ela seja independente tanto dos fatores observados quanto dos não observados que possam afetar a nota do teste de avaliação.
+\question\qstar (7.10, \citep{wooldridge2016}) Para uma criança \(i\) que mora em determinada região de ensino, defina \textit{voucher} como uma variável \textit{dummy} igual a um se a criança foi selecionada para participar de um programa de bolsas de estudos em uma escola, e defina \textit{score} como a nota da criança em um exame padronizado subsequente. Suponha que a variável de participação, \textit{voucher}, seja completamente aleatorizada para que ela seja independente tanto dos fatores observados quanto dos não observados que possam afetar a nota do teste de avaliação.
 \begin{enumerate}[label=(\roman*)]
     \item Se você executar uma regressão simples de \textit{score} sobre \textit{voucher}, usando uma amostra aleatória de tamanho \(n\), o estimador de MQO produziria um estimador não viesado do efeito do programa de bolsas de estudos?
-    \item Suponha que você possa coletar informações adicionais de perfis familiares tais como renda familiar, estrutura familiar (por exemplo, se a criança mora com os dois pais) e nível de escolaridade dos pais. Você precisaria controlar esses fatores para obter um estimador não viesado dos efeitos do programa de bolsas de estudos? Explique.
-    \item Por que você precisaria incluir as variáveis de perfis familiares na regressão? Existe uma situação em que você não incluiria as variáveis de perfis familiares?
+    \item Suponha que você possa coletar informações adicionais sobre perfis familiares, tais como renda familiar, estrutura familiar (por exemplo, se a criança mora com os dois pais) e nível de escolaridade dos pais. Você precisaria controlar esses fatores para obter um estimador não viesado dos efeitos do programa de bolsas de estudos? Explique.
+    \item Por que você precisaria incluir as variáveis de perfis familiares na regressão? Existe alguma situação em que você não incluiria essas variáveis?
 \end{enumerate}
 
 \vspace{0.7cm}
 
-\question (7.9, \citep{wooldridge2016}) Que \(d\) seja uma variável \textit{dummy} (binária) e que \(z\) seja uma variável quantitativa. Considere o modelo
+\question (7.9, \citep{wooldridge2016}) Seja \(d\) uma variável \textit{dummy} (binária) e \(z\) uma variável quantitativa. Considere o modelo
 \[
 y = \beta_0 + \delta_0 d + \beta_1 z + \delta_1 d \cdot z + u;
 \]
-essa é uma versão geral de um modelo com uma interação entre uma variável \textit{dummy} e uma quantitativa. [Um exemplo está na equação (7.17).]
+essa é uma versão geral de um modelo com uma interação entre uma variável \textit{dummy} e uma variável quantitativa. [Um exemplo está na equação (7.17).]
 \begin{enumerate}[label=(\roman*)]
-    \item Como isso não alterará nada importante, defina o erro com valor zero, \(u=0\). Então, quando \(d=0\) podemos escrever o relacionamento entre \(y\) e \(z\) como a função \(f_0(z)=\beta_0+\beta_1 z\). Escreva essa mesma relação quando \(d=1\), em que você deve usar \(f_1(z)\) no lado esquerdo para denotar a função linear de \(z\).
-    \item Considerando \(\delta_1 \neq 0\) (o que significa que as duas não são paralelas), demonstre que o valor de \(z^\ast\) é tal forma que \(f_0(z^\ast)=f_1(z^\ast)\) e \(z^\ast = -\delta_0/\delta_1\). Esse é o ponto no qual as duas linhas se cruzam [como na Figura 7.2(b)]. Demonstre que \(z^\ast\) será positivo se, e somente se, \(\delta_0\) e \(\delta_1\) tiverem sinais opostos.
+    \item Como isso não alterará nada importante, defina o erro com valor zero, \(u=0\). Então, quando \(d=0\), podemos escrever o relacionamento entre \(y\) e \(z\) como a função \(f_0(z)=\beta_0+\beta_1 z\). Escreva essa mesma relação quando \(d=1\), em que você deve usar \(f_1(z)\) no lado esquerdo para denotar a função linear de \(z\).
+    \item Considerando \(\delta_1 \neq 0\) (o que significa que as duas não são paralelas), demonstre que o valor de \(z^\ast\) é tal que \(f_0(z^\ast)=f_1(z^\ast)\) e \(z^\ast = -\delta_0/\delta_1\). Esse é o ponto no qual as duas linhas se cruzam [como na Figura 7.2(b)]. Demonstre que \(z^\ast\) será positivo se, e somente se, \(\delta_0\) e \(\delta_1\) tiverem sinais opostos.
     \item Usando os dados contidos no arquivo \texttt{TWOYEAR}, a seguinte equação poderá ser estimada:
     \[
     \widehat{\log(wage)} = 2{,}289 - 0{,}357\,female + 0{,}050\,totcoll + 0{,}030\,female \cdot totcoll
@@ -63,7 +63,7 @@ essa é uma versão geral de um modelo com uma interação entre uma variável \
     \[
     n = 6{,}763,\; R^2 = 0{,}202
     \]
-    em que todos os coeficientes e erros padrão foram arredondados com três casas decimais. Usando essa equação, encontre o valor de \textit{totcoll} tal forma que os valores previstos de \(\log(wage)\) sejam os mesmos tanto para homens como para mulheres.
+    em que todos os coeficientes e erros padrão foram arredondados com três casas decimais. Usando essa equação, encontre o valor de \textit{totcoll} de tal forma que os valores previstos de \(\log(wage)\) sejam os mesmos tanto para homens quanto para mulheres.
     \item Com base na equação do item (iii), as mulheres podem, de forma realística, obter educação superior de modo que seus ganhos alcancem os dos homens? Explique.
 \end{enumerate}
 
@@ -118,7 +118,7 @@ n = 856,\; R^2 = 0{,}349,\; \bar{R}^2 = 0{,}347
 
 \vspace{0.7cm}
 
-\question (7.12, \citep{wooldridge2016}) Consideremos o Exemplo 7.11, em que, antes de calcular a interação entre a raça/etnicidade de um jogador e a composição racial da cidade, centramos as variáveis de composição da cidade sobre as médias das amostras, \textit{percblck} e \textit{perchisp} (que são, aproximadamente, \(16{,}55\) e \(10{,}82\), respectivamente). A equação estimada resultante é
+\question\qstar (7.12, \citep{wooldridge2016}) Consideremos o Exemplo 7.11, em que, antes de calcular a interação entre a raça/etnicidade de um jogador e a composição racial da cidade, centramos as variáveis de composição da cidade sobre as médias amostrais, \textit{percblck} e \textit{perchisp} (que são, aproximadamente, \(16{,}55\) e \(10{,}82\), respectivamente). A equação estimada resultante é
 
 \[
 \widehat{\log(salary)} = 10{,}23 + 0{,}0673\,years + 0{,}0089\,gamesyr + 0{,}00095\,bavg + 0{,}146\,hrunsyr
@@ -150,17 +150,17 @@ n = 330,\; R^2 = 0{,}638
 
 \begin{enumerate}[label=(\roman*)]
     \item Por que os coeficientes de \textit{black} e \textit{hispan} são agora tão diferentes daqueles que foram reportados na equação (7.19)? Especificamente, como se pode interpretar esses coeficientes?
-    \item O que pensa do fato de nem o \textit{black} nem o \textit{hispan} serem estatisticamente significantes na equação acima?
-    \item Ao comparar a equação acima com (7.19), mais alguma coisa mudou? Por que sim ou por que não?
+    \item O que você pensa do fato de nem \textit{black} nem \textit{hispan} serem estatisticamente significantes na equação acima?
+    \item Ao comparar a equação acima com a equação (7.19), mais alguma coisa mudou? Por que sim ou por que não?
 \end{enumerate}
 
 \vspace{0.7cm}
 
-\question\qstar (7.C14, \citep{wooldridge2016}) Use os dados do arquivo \texttt{CHARITY} para responder a essa questão. A variável \textit{respond} é uma variável \textit{dummy} igual a um se a pessoa respondeu com uma contribuição à mais recente enviada por uma organização de caridade. A variável \textit{resplast} é uma variável \textit{dummy} igual a um se a pessoa respondeu ao envio anterior, \textit{avggift} é a média de doações passadas (em florins holandeses), e \textit{propresp} é a proporção de vezes que a pessoa respondeu às correspondências anteriores.
+\question\qstar (7.C14, \citep{wooldridge2016}) Use os dados do arquivo \texttt{CHARITY} para responder a essa questão. A variável \textit{respond} é uma variável \textit{dummy} igual a um se a pessoa respondeu com uma contribuição à mais recente correspondência enviada por uma organização de caridade. A variável \textit{resplast} é uma variável \textit{dummy} igual a um se a pessoa respondeu ao envio anterior, \textit{avggift} é a média de doações passadas (em florins holandeses), e \textit{propresp} é a proporção de vezes que a pessoa respondeu às correspondências anteriores.
 \begin{enumerate}[label=(\roman*)]
     \item Estime um modelo de probabilidade linear relacionando \textit{respond} a \textit{resplast} e \textit{avggift}. Registre os resultados na forma usual e interprete o coeficiente sobre \textit{resplast}.
-    \item O valor médio de doações passadas parece afetar a probabilidade de resposta?
-    \item Adicione a variável \textit{propresp} ao modelo e interprete seu coeficiente. [Tenha cuidado aqui: o aumento de um em \textit{propresp} é a maior mudança possível.]
+    \item O valor médio das doações passadas parece afetar a probabilidade de resposta?
+    \item Adicione a variável \textit{propresp} ao modelo e interprete seu coeficiente. [Tenha cuidado aqui: o aumento de uma unidade em \textit{propresp} é a maior mudança possível.]
     \item O que aconteceu com o coeficiente de \textit{resplast} quando \textit{propresp} foi adicionada à regressão? Isso faz sentido?
     \item Adicione \textit{mailsyear}, o número de correspondências enviadas por ano, ao modelo. Quão grande é seu efeito estimado? Por que essa pode não ser uma boa estimativa do efeito causal dos envios sobre as respostas?
 \end{enumerate}
