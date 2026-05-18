@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.10)  11 MAY 2026 20:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.10)  18 MAY 2026 18:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -105,6 +105,14 @@ File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \exam@FrameRule=\dimen150
 \exam@FrameSep=\dimen151
 )
+(C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks22
+\inpenc@posthook=\toks23
+)
+(C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip76
@@ -115,7 +123,7 @@ Package: amstext 2024/11/17 v2.01 AMS text
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks22
+\@emptytoks=\toks24
 \ex@=\dimen152
 ))
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
@@ -155,21 +163,21 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \dotsspace@=\muskip17
 \c@parentequation=\count332
 \dspbrk@lvl=\count333
-\tag@help=\toks23
+\tag@help=\toks25
 \row@=\count334
 \column@=\count335
 \maxfields@=\count336
-\andhelp@=\toks24
+\andhelp@=\toks26
 \eqnshift@=\dimen155
 \alignsep@=\dimen156
 \tagshift@=\dimen157
 \tagwidth@=\dimen158
 \totwidth@=\dimen159
 \lineht@=\dimen160
-\@envbody=\toks25
+\@envbody=\toks27
 \multlinegap=\skip77
 \multlinetaggap=\skip78
-\mathdisplay@stack=\toks26
+\mathdisplay@stack=\toks28
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
 )
@@ -189,7 +197,7 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks27
+\KV@toks@=\toks29
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
@@ -208,7 +216,7 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
 \Gm@layoutheight=\dimen166
 \Gm@layouthoffset=\dimen167
 \Gm@layoutvoffset=\dimen168
-\Gm@dimlist=\toks28
+\Gm@dimlist=\toks30
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
@@ -267,20 +275,15 @@ Package babel Info: Configuration files are deprecated, as
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-(C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/invalid\
-babel-brazil.tex)
-
-Package babel Warning: Name 'brazil' is deprecated.
-(babel)                Use 'brazilian' instead.
-(babel)                Reported on input line 4320.
-
-Package babel Info: Importing font and identification data for brazil
+(C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/pt\babel
+-brazilian.tex)
+Package babel Info: Importing font and identification data for brazilian
 (babel)             from babel-pt-BR.ini. Reported on input line 4320.
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/babel-portuges\brazilia
 n.ldf
 Language: portuges 2026/01/24 v1.2u Portuguese support from the babel system
-Package babel Info: Hyphen rules for 'brazil' set to \l@portuguese
+Package babel Info: Hyphen rules for 'brazilian' set to \l@portuguese
 (babel)             (\language56). Reported on input line 100.
 Package babel Info: Making " an active character on input line 132.
 ))
@@ -295,7 +298,7 @@ LaTeX Info: Redefining \cite on input line 694.
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip81
 \enit@outerparindent=\dimen170
-\enit@toks=\toks29
+\enit@toks=\toks31
 \enit@inbox=\box56
 \enit@count@id=\count343
 \enitdp@description=\count344
@@ -456,29 +459,29 @@ tex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count361
 ) (Lista_9_Gabarito.aux
-Package babel Info: 'brazil' activates 'portuges' shorthands.
+Package babel Info: 'brazilian' activates 'portuges' shorthands.
 (babel)             Reported on input line 12.
 )
 \openout1 = `Lista_9_Gabarito.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -523,69 +526,43 @@ ii
 \scratchbox=\box57
 \nofMPsegments=\count363
 \nofMParguments=\count364
-\everyMPshowfont=\toks30
+\everyMPshowfont=\toks32
 \MPscratchCnt=\count365
 \MPscratchDim=\dimen189
 \MPnumerator=\count366
 \makeMPintoPDFobject=\count367
-\everyMPtoPDFconversion=\toks31
+\everyMPtoPDFconversion=\toks33
 )
-Package hyperref Info: Link coloring OFF on input line 19.
+Package hyperref Info: Link coloring OFF on input line 21.
  (Lista_9_Gabarito.out) (Lista_9_Gabarito.out)
 \@outlinefile=\write3
 \openout3 = `Lista_9_Gabarito.out'.
 
 
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 27--32
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 29--34
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 27--32
+Underfull \hbox (badness 10000) in paragraph at lines 29--34
 
  []
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 35.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
 
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (8.39604pt too wide) detected at line 38
-[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 wage\OT1/cmr/m/n/12 ) = \OML/cmm/m/it/12 ^^
-L[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^L[] []\OT1/cmr/m/n/12 (\OML/cmm/m/it/1
-2 sales\OT1/cmr/m/n/12 ) + \OML/cmm/m/it/12 ^^L[] []\OT1/cmr/m/n/12 (\OML/cmm/m
-/it/12 mktval\OT1/cmr/m/n/12 ) + \OML/cmm/m/it/12 ^^L[]profmarg \OT1/cmr/m/n/12
- + \OML/cmm/m/it/12 ^^L[]ceoten \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^L[]comten 
-\OT1/cmr/m/n/12 + \OML/cmm/m/it/12 u;
- []
-
-
-Overfull \hbox (32.05096pt too wide) detected at line 65
-[] \OT1/cmr/m/n/12 = 75[]71 + 0[]312 \OML/cmm/m/it/12 prtystrA \OT1/cmr/m/n/12 
-+ 4[]93 \OML/cmm/m/it/12 democA \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12 0[]929  []
-(\OML/cmm/m/it/12 expendA\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12
- 1[]950  [](\OML/cmm/m/it/12 expendB\OT1/cmr/m/n/12 )
- []
-
-
-Overfull \hbox (111.95982pt too wide) detected at line 77
-[] \OT1/cmr/m/n/12 = 70[]81 + 0[]282 \OML/cmm/m/it/12 prtystrA \OT1/cmr/m/n/12 
-+ 4[]52 \OML/cmm/m/it/12 democA \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12 0[]839  []
-(\OML/cmm/m/it/12 expendA\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12
- 1[]846  [](\OML/cmm/m/it/12 expendB\OT1/cmr/m/n/12 ) + 0[]067 \OML/cmm/m/it/12
- voteA\OT1/cmr/m/n/12 88
- []
-
 [1
 
 {C:/Users/tuffy/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-[3] [4] [5] (Lista_9_Gabarito.bbl) [6]
+[3] [4] [5] [6] (Lista_9_Gabarito.bbl) [7]
 This exam contains 5 questions with 0 parts, 0 subparts, and 0 subsubparts.
 (Lista_9_Gabarito.aux)
  ***********
@@ -596,28 +573,33 @@ Package rerunfilecheck Info: File `Lista_9_Gabarito.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13266 strings out of 467871
- 204625 string characters out of 5418376
- 662512 words of memory out of 5000000
- 41971 multiletter control sequences out of 15000+600000
- 634392 words of font info for 65 fonts, out of 8000000 for 9000
+ 13509 strings out of 467871
+ 207236 string characters out of 5418376
+ 663126 words of memory out of 5000000
+ 42192 multiletter control sequences out of 15000+600000
+ 640891 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,79p,670b,752s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmbx12.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmmi12.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmmi8.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/tuffy/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/tuffy/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/tuffy/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/
-tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><
-C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbol
-s/msbm10.pfb>
-Output written on Lista_9_Gabarito.pdf (6 pages, 131343 bytes).
+ 75i,11n,79p,684b,752s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\tuffy\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx
+1728.pk> <C:\Users\tuffy\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\ecrm0800.pk> <C:\Users\tuffy\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ectt1200.pk> <C:\Users\tuffy\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\ecbx1200.pk> <C:\Users\tuffy\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\tuffy\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\tuffy\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\tuffy\AppData\Local\MiKT
+eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2074.pk><C:/Users/tuffy/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/tuffy/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/tu
+ffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
+Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.p
+fb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmsy8.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/symbols/msbm10.pfb>
+Output written on Lista_9_Gabarito.pdf (7 pages, 159595 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 36 named destinations out of 1000 (max. 500000)
+ 334 PDF objects out of 1000 (max. 8388607)
+ 44 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

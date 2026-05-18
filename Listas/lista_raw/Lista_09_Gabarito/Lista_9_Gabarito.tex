@@ -1,9 +1,11 @@
 \documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
 \usepackage{xcolor}
-\usepackage[brazil]{babel}
+\usepackage[brazilian]{babel}
 \usepackage{natbib}
 \usepackage{enumitem}
 \usepackage{booktabs}
@@ -21,7 +23,7 @@
 \begingroup
 \centering
 \LARGE Lista 9 Gabarito - Econometria I - 2026\\[0.5em]
-\large Prof: Andre Luiz Pereira Mancha \par
+\large Prof: André Luiz Pereira Mancha \par
 \large Monitor: Tuffy Licciardi Issa \par
 \endgroup
 \rule{\textwidth}{0.4pt}
@@ -32,159 +34,226 @@
 
 \begin{questions}
 
-\question (9.1, \citep{wooldridge2016}) No Exercicio 4.11, o \(R\)-quadrado da estimativa do modelo
-\[
-\log(wage)=\beta_0+\beta_1\log(sales)+\beta_2\log(mktval)+\beta_3 profmarg+\beta_4 ceoten+\beta_5 comten+u,
-\]
-usando os dados contidos no arquivo \texttt{CEOSAL2}, era \(R^2=0{,}353\) \((n=177)\). Quando \(ceoten^2\) e \(comten^2\) sao adicionados, \(R^2=0{,}375\). Existe evidencia de ma-especificacao de forma funcional neste modelo?
-
-\begin{solution}
-Para testar a inclusao conjunta de \(ceoten^2\) e \(comten^2\), usamos
-\[
-F
-=
-\frac{(R^2_{ur}-R^2_r)/q}{(1-R^2_{ur})/(n-k_{ur}-1)},
-\]
-com \(R^2_r=0{,}353\), \(R^2_{ur}=0{,}375\), \(q=2\), \(n=177\) e \(k_{ur}=7\). Assim,
-\[
-F
-=
-\frac{(0{,}375-0{,}353)/2}{(1-0{,}375)/(177-7-1)}
-\approx
-2{,}98.
-\]
-Esse valor e pequeno para uma rejeicao confortavel a 5\%. Portanto, ha no maximo evidencia fraca de ma-especificacao funcional; eu nao diria que existe evidencia forte de que os termos quadraticos devam ser incluidos.
-\end{solution}
-
-\vspace{0.7cm}
-
-\question (9.2, \citep{wooldridge2016}) Modifiquemos o Exercicio em Computador C4, do Capitulo 8, utilizando os resultados das eleicoes de 1990 dos candidatos que foram eleitos em 1988. O Candidato A foi eleito em 1988 e buscava a reeleicao em 1990; \textit{voteA90} e a porcentagem de votos do Candidato A na eleicao de 1990. A porcentagem de votos do Candidato A na eleicao de 1988 e usada como uma variavel \textit{proxy} da qualidade do candidato. Todas as demais variaveis sao das eleicoes de 1990. As seguintes equacoes foram estimadas, utilizando os dados contidos no arquivo \texttt{VOTE2}:
-
-\[
-\widehat{voteA90}=75{,}71+0{,}312\,prtystrA+4{,}93\,democA-0{,}929\,\log(expendA)-1{,}950\,\log(expendB)
-\]
-\[
-\hspace{2.0cm}(9{,}25)\hspace{0.8cm}(0{,}046)\hspace{0.8cm}(1{,}01)\hspace{0.8cm}(0{,}684)\hspace{0.8cm}(0{,}281)
-\]
-\[
-n=186,\; R^2=0{,}465
-\]
-
-e
-
-\[
-\widehat{voteA90}=70{,}81+0{,}282\,prtystrA+4{,}52\,democA-0{,}839\,\log(expendA)-1{,}846\,\log(expendB)+0{,}067\,voteA88
-\]
-\[
-\hspace{1.8cm}(10{,}01)\hspace{0.8cm}(0{,}052)\hspace{0.8cm}(1{,}06)\hspace{0.8cm}(0{,}687)\hspace{0.8cm}(0{,}292)\hspace{0.8cm}(0{,}053)
-\]
-\[
-n=186,\; R^2=0{,}499,\; \bar{R}^2=0{,}485
-\]
-
+\question (7.10, \citep{wooldridge2016}) Para uma criança \(i\) que mora em determinada região de ensino, defina \textit{voucher} como uma variável \textit{dummy} igual a um se a criança foi selecionada para participar de um programa de bolsas de estudos em uma escola, e defina \textit{score} como a nota da criança em um exame padronizado subsequente. Suponha que a variável de participação, \textit{voucher}, seja completamente aleatorizada para que ela seja independente tanto dos fatores observados quanto dos não observados que possam afetar a nota do teste de avaliação.
 \begin{enumerate}[label=(\roman*)]
-    \item Interprete o coeficiente de \textit{voteA88} e comente sobre sua significancia estatistica.
-    \item A adicao de \textit{voteA88} tem muito efeito sobre os outros coeficientes?
+    \item Se você executar uma regressão simples de \textit{score} sobre \textit{voucher}, usando uma amostra aleatória de tamanho \(n\), o estimador de MQO produziria um estimador não viesado do efeito do programa de bolsas de estudos?
+    \item Suponha que você possa coletar informações adicionais sobre perfis familiares, tais como renda familiar, estrutura familiar (por exemplo, se a criança mora com os dois pais) e nível de escolaridade dos pais. Você precisaria controlar esses fatores para obter um estimador não viesado dos efeitos do programa de bolsas de estudos? Explique.
+    \item Por que você precisaria incluir as variáveis de perfis familiares na regressão? Existe alguma situação em que você não incluiria essas variáveis?
 \end{enumerate}
 
 \begin{solution}
 \begin{enumerate}[label=(\roman*)]
-    \item O coeficiente de \textit{voteA88} e \(0,067\). Portanto, um ponto percentual a mais na votacao de 1988 aumenta a votacao prevista de 1990 em apenas \(0,067\) ponto percentual, ceteris paribus. A estatistica \(t\) e
-    \[
-    \frac{0,067}{0,053}\approx 1,26,
-    \]
-    logo o efeito nao e estatisticamente significante aos niveis usuais.
+    \item Sim. Como \textit{voucher} foi completamente aleatorizada, ela é independente dos fatores observados e não observados que afetam \textit{score}. Assim, na regressão simples, a condição de exogeneidade é satisfeita e o estimador de MQO é não viesado para o efeito causal médio do programa.
 
-    \item Nao muito. Os coeficientes de \textit{prtystrA}, \textit{democA}, \(\log(expendA)\) e \(\log(expendB)\) mudam pouco em magnitude. Assim, a inclusao de \textit{voteA88} melhora o ajuste, mas nao altera substancialmente as conclusoes principais sobre as demais variaveis.
+    \item Não para obter não viesamento. A aleatorização já garante identificação causal sem esses controles. Ainda assim, incluir variáveis familiares pode reduzir a variância do erro e melhorar a precisão das estimativas.
+
+    \item O principal motivo para incluí-las é ganho de precisão. Se renda, estrutura familiar e escolaridade dos pais explicam parte importante de \textit{score}, então controlá-las reduz a variância residual. Uma situação em que eu poderia não incluí-las é quando a aleatorização é confiável e essas covariáveis pouco acrescentam em termos de precisão, ou quando coletá-las é custoso e pouco informativo.
 \end{enumerate}
 \end{solution}
 
 \vspace{0.7cm}
 
-\question (9.3, \citep{wooldridge2016}) Seja \textit{math10} a porcentagem de aprovacao em um teste padrao de matematica de estudantes de uma escola secundaria de Michigan (veja tambem o Exemplo 4.2). Estamos interessados em estimar o efeito do gasto por estudante no desempenho em matematica. Um modelo simples e
+\question (7.9, \citep{wooldridge2016}) Seja \(d\) uma variável \textit{dummy} (binária) e \(z\) uma variável quantitativa. Considere o modelo
 \[
-math10=\beta_0+\beta_1\log(expend)+\beta_2\log(enroll)+\beta_3 poverty+u,
+y = \beta_0 + \delta_0 d + \beta_1 z + \delta_1 d \cdot z + u;
 \]
-em que \textit{poverty} e a porcentagem de estudantes vivendo em condicoes de pobreza.
+essa é uma versão geral de um modelo com uma interação entre uma variável \textit{dummy} e uma variável quantitativa. [Um exemplo está na equação (7.17).]
 \begin{enumerate}[label=(\roman*)]
-    \item A variavel \textit{lnchprg} e a porcentagem de estudantes qualificados para o programa de merenda escolar financiado pelo governo federal. Por que ela e uma variavel \textit{proxy} razoavel de \textit{poverty}?
-    \item A tabela seguinte contem estimativas MQO, com e sem \textit{lnchprg} como uma variavel explicativa:
-\end{enumerate}
-
-\begin{center}
-\begin{tabular}{lcc}
-\toprule
-Variaveis independentes & (1) & (2) \\
-\midrule
-\(\log(expend)\) & 11,13 & 7,75 \\
-& (3,30) & (3,04) \\
-\(\log(enroll)\) & 0,022 & -1,26 \\
-& (0,615) & (0,58) \\
-\textit{lnchprg} & -- & -0,324 \\
-& & (0,036) \\
-intercepto & -69,24 & -23,14 \\
-& (26,72) & (24,99) \\
-Observacoes & 428 & 428 \\
-\(R^2\) & 0,0297 & 0,1893 \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\begin{enumerate}[label=(\roman*),resume]
-    \item Explique por que o efeito dos gastos (\textit{expend}) sobre \textit{math10} e menor na coluna (2) do que na coluna (1). O efeito na coluna (2) ainda e estatisticamente maior que zero?
-    \item Parece que as taxas de aprovacao sao menores em escolas maiores, com os outros fatores sendo iguais? Explique.
-    \item Interprete o coeficiente de \textit{lnchprg} na coluna (2).
-    \item O que voce deduz do substancial aumento de \(R^2\) da coluna (1) para a coluna (2)?
+    \item Como isso não alterará nada importante, defina o erro com valor zero, \(u=0\). Então, quando \(d=0\), podemos escrever o relacionamento entre \(y\) e \(z\) como a função \(f_0(z)=\beta_0+\beta_1 z\). Escreva essa mesma relação quando \(d=1\), em que você deve usar \(f_1(z)\) no lado esquerdo para denotar a função linear de \(z\).
+    \item Considerando \(\delta_1 \neq 0\) (o que significa que as duas não são paralelas), demonstre que o valor de \(z^\ast\) é tal que \(f_0(z^\ast)=f_1(z^\ast)\) e \(z^\ast = -\delta_0/\delta_1\). Esse é o ponto no qual as duas linhas se cruzam [como na Figura 7.2(b)]. Demonstre que \(z^\ast\) será positivo se, e somente se, \(\delta_0\) e \(\delta_1\) tiverem sinais opostos.
+    \item Usando os dados contidos no arquivo \texttt{TWOYEAR}, a seguinte equação poderá ser estimada:
+    \[
+    \widehat{\log(wage)} = 2{,}289 - 0{,}357\,female + 0{,}050\,totcoll + 0{,}030\,female \cdot totcoll
+    \]
+    \[
+    \hspace{2.0cm} (0{,}011)\hspace{1.2cm}(0{,}015)\hspace{1.1cm}(0{,}003)\hspace{1.0cm}(0{,}005)
+    \]
+    \[
+    n = 6{,}763,\; R^2 = 0{,}202
+    \]
+    em que todos os coeficientes e erros padrão foram arredondados com três casas decimais. Usando essa equação, encontre o valor de \textit{totcoll} de tal forma que os valores previstos de \(\log(wage)\) sejam os mesmos tanto para homens quanto para mulheres.
+    \item Com base na equação do item (iii), as mulheres podem, de forma realística, obter educação superior de modo que seus ganhos alcancem os dos homens? Explique.
 \end{enumerate}
 
 \begin{solution}
 \begin{enumerate}[label=(\roman*)]
-    \item \textit{lnchprg} e uma boa \textit{proxy} porque a elegibilidade ao programa de merenda depende fortemente de baixa renda familiar. Portanto, distritos com maior \textit{lnchprg} tendem a ter maior pobreza.
-
-    \item O efeito de \textit{expend} cai de \(11,13\) para \(7,75\) porque, sem \textit{lnchprg}, a coluna (1) provavelmente sofre vies por variavel omitida: distritos menos pobres tendem a gastar mais e tambem a ter melhor desempenho. Na coluna (2), a estatistica \(t\) de \(\log(expend)\) e
+    \item Quando \(d=1\),
     \[
-    \frac{7,75}{3,04}\approx 2,55,
+    y = \beta_0 + \delta_0 + (\beta_1+\delta_1)z,
     \]
-    de modo que o efeito ainda e positivo e estatisticamente significante.
-
-    \item Sim. Na coluna (2), o coeficiente de \(\log(enroll)\) e \(-1,26\), com estatistica \(t\) de aproximadamente
+    de modo que
     \[
-    \frac{-1,26}{0,58}\approx -2,17.
+    f_1(z)= (\beta_0+\delta_0)+(\beta_1+\delta_1)z.
     \]
-    Ha evidencia de que escolas maiores tenham piores taxas de aprovacao, ceteris paribus.
 
-    \item O coeficiente \(-0,324\) implica que um aumento de um ponto percentual em \textit{lnchprg} reduz a taxa de aprovacao prevista em cerca de \(0,324\) ponto percentual. Um aumento de 10 pontos percentuais reduziria \textit{math10} em cerca de \(3,24\) pontos.
+    \item O ponto de cruzamento satisfaz
+    \[
+    f_0(z^\ast)=f_1(z^\ast).
+    \]
+    Logo,
+    \[
+    \beta_0+\beta_1 z^\ast = \beta_0+\delta_0+(\beta_1+\delta_1)z^\ast.
+    \]
+    Cancelando os termos comuns,
+    \[
+    0=\delta_0+\delta_1 z^\ast,
+    \]
+    e portanto
+    \[
+    z^\ast = -\frac{\delta_0}{\delta_1}.
+    \]
+    Além disso, \(z^\ast>0\) se, e somente se, \(\delta_0\) e \(\delta_1\) tiverem sinais opostos.
 
-    \item O grande aumento de \(R^2\) mostra que \textit{lnchprg} explica parte importante da variacao em \textit{math10}. Em outras palavras, a condicao socioeconomica dos alunos parece ser muito relevante para o desempenho medio.
+    \item Para homens (\(female=0\)),
+    \[
+    \widehat{\log(wage)} = 2{,}289 + 0{,}050\,totcoll.
+    \]
+    Para mulheres (\(female=1\)),
+    \[
+    \widehat{\log(wage)} = 2{,}289 - 0{,}357 + (0{,}050+0{,}030)\,totcoll
+    = 1{,}932 + 0{,}080\,totcoll.
+    \]
+    Igualando as duas expressões:
+    \[
+    2{,}289 + 0{,}050\,totcoll = 1{,}932 + 0{,}080\,totcoll.
+    \]
+    Assim,
+    \[
+    0{,}357 = 0{,}030\,totcoll
+    \quad \Rightarrow \quad
+    totcoll = 11{,}9.
+    \]
+
+    \item Em termos práticos, não parece muito realístico. O valor de \(11{,}9\) anos de ensino superior é muito alto: corresponde a uma trajetória muito longa após o ensino médio. Portanto, embora o modelo permita esse cruzamento, ele parece ocorrer em uma faixa pouco plausível da amostra.
 \end{enumerate}
 \end{solution}
 
 \vspace{0.7cm}
 
-\question (9.5, \citep{wooldridge2016}) No Exemplo 4.4, estimamos um modelo relacionando numero de crimes no \textit{campus} as matriculas de estudantes em um grupo de faculdades. A amostra que usamos nao era uma amostra aleatoria de faculdades nos Estados Unidos, pois muitas escolas em 1992 nao registraram crimes no \textit{campus}. Voce acha que a falha das faculdades em informar os crimes pode ser vista como uma selecao amostral exogena? Explique.
+\question (7.11, \citep{wooldridge2016}) As equações a seguir foram estimadas usando os dados do arquivo \texttt{ECONMATH}, com erros padrão registrados abaixo dos coeficientes. A nota média da classe, medida como porcentagem, é de cerca de \(72{,}2\); exatamente \(50\%\) dos estudantes são do sexo masculino; e a média de \textit{colgpa} (nota média no início do semestre) é de cerca de \(2{,}81\).
+
+\[
+\widehat{score} = 32{,}31 + 14{,}32\,colgpa
+\]
+\[
+\hspace{2.2cm} (2{,}00)\hspace{1.4cm}(0{,}70)
+\]
+\[
+n = 856,\; R^2 = 0{,}329,\; \bar{R}^2 = 0{,}328
+\]
+
+\[
+\widehat{score} = 29{,}661 + 3{,}83\,male + 14{,}57\,colgpa
+\]
+\[
+\hspace{2.2cm} (2{,}04)\hspace{1.4cm}(0{,}74)\hspace{1.4cm}(0{,}69)
+\]
+\[
+n = 856,\; R^2 = 0{,}349,\; \bar{R}^2 = 0{,}348
+\]
+
+\[
+\widehat{score} = 30{,}36 + 2{,}47\,male + 14{,}33\,colgpa + 0{,}479\,male \cdot colgpa
+\]
+\[
+\hspace{2.2cm} (2{,}86)\hspace{1.2cm}(3{,}96)\hspace{1.2cm}(0{,}98)\hspace{1.2cm}(1{,}383)
+\]
+\[
+n = 856,\; R^2 = 0{,}349,\; \bar{R}^2 = 0{,}347
+\]
+
+\[
+\widehat{score} = 30{,}36 + 3{,}82\,male + 14{,}33\,colgpa + 0{,}479\,male \cdot (colgpa - 2{,}81)
+\]
+\[
+\hspace{2.2cm} (2{,}86)\hspace{1.2cm}(0{,}74)\hspace{1.2cm}(0{,}98)\hspace{1.2cm}(1{,}383)
+\]
+\[
+n = 856,\; R^2 = 0{,}349,\; \bar{R}^2 = 0{,}347
+\]
+
+\begin{enumerate}[label=(\roman*)]
+    \item Interprete o coeficiente sobre \textit{male} na segunda equação e construa um intervalo de confiança de \(95\%\) para \(\beta_{male}\). Esse intervalo de confiança exclui zero?
+    \item Na segunda equação, por que a estimativa de \textit{male} é tão imprecisa? Devemos agora concluir que não existem diferenças de gênero em notas depois de controlar \textit{colgpa}? [Dica: Você pode querer calcular a estatística \(F\) da hipótese nula de que não há diferença de gênero no modelo com interação.]
+\end{enumerate}
 
 \begin{solution}
-Provavelmente nao. A decisao ou capacidade de reportar crimes pode estar relacionada ao proprio nivel de criminalidade, a qualidade administrativa, ao tipo de instituicao, ao tamanho da universidade ou ao grau de fiscalizacao. Se a probabilidade de aparecer na amostra estiver correlacionada com fatores observados ou nao observados que afetam o numero de crimes, a selecao amostral nao e exogena. Portanto, ha motivo para preocupacao com vies de selecao.
+\begin{enumerate}[label=(\roman*)]
+    \item Na segunda equação, o coeficiente de \textit{male} é \(3{,}83\). Portanto, mantendo \textit{colgpa} fixa, homens obtêm em média \(3{,}83\) pontos a mais do que mulheres. O intervalo de confiança de \(95\%\) é
+    \[
+    3{,}83 \pm 1{,}96(0{,}74),
+    \]
+    isto é,
+    \[
+    [2{,}38,\; 5{,}28].
+    \]
+    Como zero não pertence a esse intervalo, ele exclui zero.
+
+    \item A dica do enunciado sugere que a preocupação real está no modelo com interação. Nele, o coeficiente de \textit{male} sem centragem mede a diferença de gênero quando \textit{colgpa}\(=0\), um valor muito distante da média observada (\(2{,}81\)). Por isso o erro padrão fica grande nessa parametrização. Não devemos concluir automaticamente que não há diferenças de gênero apenas porque um coeficiente isolado parece impreciso. O teste correto, no modelo com interação, é a hipótese conjunta
+    \[
+    H_0:\beta_{male}=0 \quad \text{e} \quad \beta_{male\cdot colgpa}=0.
+    \]
+    Portanto, a conclusão deve se basear em um teste \(F\) conjunto, e não apenas no \(t\) de um coeficiente.
+\end{enumerate}
 \end{solution}
 
 \vspace{0.7cm}
 
-\question\qstar (9.C14, \citep{wooldridge2016}) Use os dados do arquivo \texttt{ECONMATH} para responder a esta questao. O modelo populacional e
+\question (7.12, \citep{wooldridge2016}) Consideremos o Exemplo 7.11, em que, antes de calcular a interação entre a raça/etnicidade de um jogador e a composição racial da cidade, centramos as variáveis de composição da cidade sobre as médias amostrais, \textit{percblck} e \textit{perchisp} (que são, aproximadamente, \(16{,}55\) e \(10{,}82\), respectivamente). A equação estimada resultante é
+
 \[
-score=\beta_0+\beta_1 act+u.
+\widehat{\log(salary)} = 10{,}23 + 0{,}0673\,years + 0{,}0089\,gamesyr + 0{,}00095\,bavg + 0{,}146\,hrunsyr
 \]
+\[
+\hspace{1.8cm} (2{,}18)\hspace{1.0cm}(0{,}0129)\hspace{0.9cm}(0{,}0034)\hspace{0.9cm}(0{,}00151)\hspace{0.9cm}(0{,}164)
+\]
+\[
+\hspace{0.3cm} +\; 0{,}0045\,rbisyr + 0{,}0072\,runsyr + 0{,}0011\,fldperc + 0{,}0075\,allstar
+\]
+\[
+\hspace{1.8cm} (0{,}0076)\hspace{0.9cm}(0{,}0046)\hspace{0.9cm}(0{,}0021)\hspace{0.9cm}(0{,}0029)
+\]
+\[
+\hspace{0.7cm} +\; 0{,}0080\,black + 0{,}0273\,hispan + 0{,}0125\,black \cdot (\textit{percblck} - \overline{\textit{percblck}})
+\]
+\[
+\hspace{1.8cm} (0{,}0840)\hspace{1.0cm}(0{,}1084)\hspace{1.0cm}(0{,}0050)
+\]
+\[
+\hspace{0.7cm} +\; 0{,}0201\,hispan \cdot (\textit{perchisp} - \overline{\textit{perchisp}})
+\]
+\[
+\hspace{1.8cm} (0{,}0098)
+\]
+\[
+n = 330,\; R^2 = 0{,}638
+\]
+
 \begin{enumerate}[label=(\roman*)]
-    \item A nota do ACT esta ausente para quantos estudantes? Qual e a fracao da amostra? Defina uma nova variavel, \textit{actmiss}, que e igual a um quando \textit{act} estiver ausente e zero quando nao.
-    \item Crie uma nova variavel, digamos \textit{act0}, que e a nota do \textit{act} quando ela e relatada e zero quando \textit{act} estiver ausente. Encontre a media de \textit{act0} e compare-a com a media de \textit{act}.
-    \item Faca a regressao simples de \textit{score} sobre \textit{act} usando somente os casos completos. O que voce obtem para o coeficiente de inclinacao e seu erro padrao robusto em relacao a heteroscedasticidade?
-    \item Faca a regressao simples de \textit{score} sobre \textit{act0} usando todos os casos. Compare o coeficiente de inclinacao com o obtido no item (iii) e comente.
-    \item Agora use todos os casos e faca a regressao
-    \[
-    score_i \text{ sobre } act0_i,\; actmiss_i.
-    \]
-    Qual e a estimativa de inclinacao sobre \textit{act0}? De que forma isso se compara com suas respostas dos itens (iii) e (iv)?
-    \item Comparando as regressões nos itens (iii) e (v), o uso de todos os casos e a adicao de um estimador de dados ausentes melhora a estimacao de \(\beta_1\)?
-    \item Se voce adicionar a variavel \textit{colgpa} as regressões dos itens (iii) e (v), sua resposta ao item (vi) mudara?
+    \item Por que os coeficientes de \textit{black} e \textit{hispan} são agora tão diferentes daqueles que foram reportados na equação (7.19)? Especificamente, como se pode interpretar esses coeficientes?
+    \item O que você pensa do fato de nem \textit{black} nem \textit{hispan} serem estatisticamente significantes na equação acima?
+    \item Ao comparar a equação acima com a equação (7.19), mais alguma coisa mudou? Por que sim ou por que não?
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}[label=(\roman*)]
+    \item Eles mudam porque, ao centrar \textit{percblck} e \textit{perchisp}, os coeficientes de \textit{black} e \textit{hispan} passam a medir o efeito de raça/etnia quando a composição racial da cidade está em seu valor médio amostral. Portanto, \(0{,}0080\) é o diferencial salarial estimado para jogadores negros em uma cidade com \textit{percblck} média, e \(0{,}0273\) é o diferencial para jogadores hispânicos em uma cidade com \textit{perchisp} média.
+
+    \item Isso não é especialmente preocupante. Como os efeitos de raça/etnia dependem da composição racial da cidade, o efeito avaliado exatamente na média pode ser pequeno e impreciso, mesmo quando os termos de interação são relevantes. O ponto central é que o diferencial não é constante: ele varia com o contexto da cidade.
+
+    \item Sim e não. Os coeficientes de \textit{black} e \textit{hispan} mudam de interpretação, e o intercepto também muda. Mas os valores ajustados, os resíduos, o \(R^2\), o ajuste geral e os coeficientes das interações permanecem essencialmente os mesmos. Em outras palavras, houve uma reparametrização, não uma mudança substantiva do modelo.
+\end{enumerate}
+\end{solution}
+
+\vspace{0.7cm}
+
+\question\qstar (7.C14, \citep{wooldridge2016}) Use os dados do arquivo \texttt{CHARITY} para responder a essa questão. A variável \textit{respond} é uma variável \textit{dummy} igual a um se a pessoa respondeu com uma contribuição à mais recente correspondência enviada por uma organização de caridade. A variável \textit{resplast} é uma variável \textit{dummy} igual a um se a pessoa respondeu ao envio anterior, \textit{avggift} é a média de doações passadas (em florins holandeses), e \textit{propresp} é a proporção de vezes que a pessoa respondeu às correspondências anteriores.
+\begin{enumerate}[label=(\roman*)]
+    \item Estime um modelo de probabilidade linear relacionando \textit{respond} a \textit{resplast} e \textit{avggift}. Registre os resultados na forma usual e interprete o coeficiente sobre \textit{resplast}.
+    \item O valor médio das doações passadas parece afetar a probabilidade de resposta?
+    \item Adicione a variável \textit{propresp} ao modelo e interprete seu coeficiente. [Tenha cuidado aqui: o aumento de uma unidade em \textit{propresp} é a maior mudança possível.]
+    \item O que aconteceu com o coeficiente de \textit{resplast} quando \textit{propresp} foi adicionada à regressão? Isso faz sentido?
+    \item Adicione \textit{mailsyear}, o número de correspondências enviadas por ano, ao modelo. Quão grande é seu efeito estimado? Por que essa pode não ser uma boa estimativa do efeito causal dos envios sobre as respostas?
 \end{enumerate}
 
 \end{questions}

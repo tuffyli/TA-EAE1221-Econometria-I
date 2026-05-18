@@ -1,9 +1,11 @@
 \documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
 \usepackage{xcolor}
-\usepackage[brazil]{babel}
+\usepackage[brazilian]{babel}
 \usepackage{natbib}
 \usepackage{enumitem}
 \usepackage{booktabs}
@@ -21,7 +23,7 @@
 \begingroup
 \centering
 \LARGE Lista 10 Gabarito - Econometria I - 2026\\[0.5em]
-\large Prof: Andre Luiz Pereira Mancha \par
+\large Prof: André Luiz Pereira Mancha \par
 \large Monitor: Tuffy Licciardi Issa \par
 \endgroup
 \rule{\textwidth}{0.4pt}
@@ -32,7 +34,7 @@
 
 \begin{questions}
 
-\question (8.5, \citep{wooldridge2016}) A variavel \textit{smokes} e uma variavel binaria igual a um se a pessoa fuma, e zero caso contrario. Utilizando os dados contidos no arquivo \texttt{SMOKE}, estimamos um modelo de probabilidade linear de \textit{smokes}:
+\question (8.5, \citep{wooldridge2016}) A variável \textit{smokes} é uma variável binária igual a um se a pessoa fuma, e zero caso contrário. Utilizando os dados contidos no arquivo \texttt{SMOKE}, estimamos um modelo de probabilidade linear de \textit{smokes}:
 
 \[
 \widehat{smokes} = 0{,}656 - 0{,}069\,\log(cigpric) + 0{,}012\,\log(income) - 0{,}029\,educ
@@ -56,27 +58,27 @@
 n = 807,\quad R^2 = 0{,}062.
 \]
 
-A variavel \textit{white} e igual a um se a pessoa for branca, e zero caso contrario; as outras variaveis independentes foram definidas no Exemplo 8.7. Tanto os erros padrao usuais como os robustos em relacao a heteroscedasticidade estao informados.
+A variável \textit{white} é igual a um se a pessoa for branca, e zero caso contrário; as outras variáveis independentes foram definidas no Exemplo 8.7. Tanto os erros padrão usuais quanto os robustos em relação à heteroscedasticidade estão informados.
 
 \begin{enumerate}[label=(\roman*)]
-    \item Existe alguma diferenca importante entre os dois conjuntos de erros padrao?
-    \item Mantendo os outros fatores fixos, se a educacao aumentar em quatro anos, o que acontece com a probabilidade de fumar estimada?
+    \item Existe alguma diferença importante entre os dois conjuntos de erros padrão?
+    \item Mantendo os outros fatores fixos, se a educação aumentar em quatro anos, o que acontece com a probabilidade estimada de fumar?
     \item Em que ponto mais um ano de idade reduz a probabilidade de fumar?
-    \item Interprete o coeficiente da variavel binaria \textit{restaurn} (uma variavel \textit{dummy} igual a um se a pessoa viver em um Estado em que ha restricoes de fumar em restaurantes).
-    \item A pessoa numero 206 no conjunto de dados tem as seguintes caracteristicas: \(cigpric = 67{,}44\), \(income = 6.500\), \(educ = 16\), \(age = 77\), \(restaurn = 0\), \(white = 0\) e \(smokes = 0\). Calcule a probabilidade de fumar dessa pessoa e comente o resultado.
+    \item Interprete o coeficiente da variável binária \textit{restaurn} (uma variável \textit{dummy} igual a um se a pessoa viver em um Estado em que há restrições ao fumo em restaurantes).
+    \item A pessoa número 206 no conjunto de dados tem as seguintes características: \(cigpric = 67{,}44\), \(income = 6.500\), \(educ = 16\), \(age = 77\), \(restaurn = 0\), \(white = 0\) e \(smokes = 0\). Calcule a probabilidade de fumar dessa pessoa e comente o resultado.
 \end{enumerate}
 
 \begin{solution}
 \begin{enumerate}[label=(\roman*)]
-    \item Nao. Os erros padrao usuais e robustos sao muito parecidos em praticamente todos os coeficientes. Portanto, a heteroscedasticidade nao parece alterar muito a inferencia nessa aplicacao.
+    \item Não. Os erros padrão usuais e robustos são muito parecidos em praticamente todos os coeficientes. Portanto, a heteroscedasticidade não parece alterar muito a inferência nessa aplicação.
 
     \item Quatro anos adicionais de estudo alteram a probabilidade prevista em
     \[
     4(-0,029) = -0,116.
     \]
-    Logo, a probabilidade estimada de fumar cai em \(0,116\), isto e, \(11,6\) pontos percentuais.
+    Logo, a probabilidade estimada de fumar cai em \(0,116\), isto é, \(11,6\) pontos percentuais.
 
-    \item O efeito marginal de \textit{age} e
+    \item O efeito marginal de \textit{age} é
     \[
     \frac{\partial \widehat{smokes}}{\partial age}=0,020-2(0,00026)age.
     \]
@@ -86,7 +88,7 @@ A variavel \textit{white} e igual a um se a pessoa for branca, e zero caso contr
     \]
     Assim, acima de cerca de 38,5 anos, um ano adicional de idade reduz a probabilidade prevista de fumar.
 
-    \item O coeficiente \(-0,101\) significa que viver em um Estado com restricoes de fumar em restaurantes esta associado a uma probabilidade de fumar cerca de \(10,1\) pontos percentuais menor, mantidos os demais fatores constantes.
+    \item O coeficiente \(-0,101\) significa que viver em um Estado com restrições ao fumo em restaurantes está associado a uma probabilidade de fumar cerca de \(10,1\) pontos percentuais menor, mantidos os demais fatores constantes.
 
     \item Substituindo os valores:
     \[
@@ -98,29 +100,29 @@ A variavel \textit{white} e igual a um se a pessoa for branca, e zero caso contr
     \[
     \widehat{smokes}\approx 0,005.
     \]
-    A probabilidade prevista e muito baixa e esta bastante proxima do valor observado \(smokes=0\). Alem disso, o valor previsto esta dentro do intervalo \([0,1]\), o que evita um dos problemas possiveis do modelo de probabilidade linear.
+    A probabilidade prevista é muito baixa e está bastante próxima do valor observado \(smokes=0\). Além disso, o valor previsto está dentro do intervalo \([0,1]\), o que evita um dos problemas possíveis do modelo de probabilidade linear.
 \end{enumerate}
 \end{solution}
 
 \vspace{0.7cm}
 
-\question (8.7, \citep{wooldridge2016}) Considere um modelo em nivel de empregado,
+\question (8.7, \citep{wooldridge2016}) Considere um modelo em nível de empregado,
 \[
 y_{i,e} = \beta_0 + \beta_1 x_{i,e,1} + \beta_2 x_{i,e,2} + \cdots + \beta_k x_{i,e,k} + f_i + v_{i,e},
 \]
-em que a variavel nao observada \(f_i\) e um ``efeito da empresa'' em cada empregado em determinada empresa \(i\). O termo de erro \(v_{i,e}\) e especifico do empregado e da empresa. O erro de combinacao e \(u_{i,e} = f_i + v_{i,e}\), como na equacao (8.28).
+em que a variável não observada \(f_i\) é um ``efeito da empresa'' para cada empregado da empresa \(i\). O termo de erro \(v_{i,e}\) é específico do empregado e da empresa. O erro de combinação é \(u_{i,e} = f_i + v_{i,e}\), como na equação (8.28).
 \begin{enumerate}[label=(\roman*)]
-    \item Suponha que \(\operatorname{Var}(f_i)=\sigma_f^2\), \(\operatorname{Var}(v_{i,e})=\sigma_v^2\), e \(f_i\) e \(v_{i,e}\) sejam nao correlacionadas. Demonstre que \(\operatorname{Var}(u_{i,e})=\sigma_f^2+\sigma_v^2\). Chame-a \(\sigma^2\).
-    \item Agora suponha que, para \(e \neq g\), \(v_{i,e}\) e \(v_{i,g}\) sejam nao correlacionadas. Demonstre que \(\operatorname{Cov}(u_{i,e},u_{i,g})=\sigma_f^2\).
+    \item Suponha que \(\operatorname{Var}(f_i)=\sigma_f^2\), \(\operatorname{Var}(v_{i,e})=\sigma_v^2\), e que \(f_i\) e \(v_{i,e}\) sejam não correlacionados. Demonstre que \(\operatorname{Var}(u_{i,e})=\sigma_f^2+\sigma_v^2\). Chame esse valor de \(\sigma^2\).
+    \item Agora suponha que, para \(e \neq g\), \(v_{i,e}\) e \(v_{i,g}\) sejam não correlacionados. Demonstre que \(\operatorname{Cov}(u_{i,e},u_{i,g})=\sigma_f^2\).
     \item Seja
     \[
     \bar{u}_i = m_i^{-1}\sum_{e=1}^{m_i} u_{i,e}
     \]
-    a media dos erros de combinacao em determinada empresa. Demonstre que
+    a média dos erros de combinação em determinada empresa. Demonstre que
     \[
     \operatorname{Var}(\bar{u}_i)=\sigma_f^2+\frac{\sigma_v^2}{m_i}.
     \]
-    \item Detalhe a relevancia do item (iii) para a estimacao MQP usando dados nivelados pela media da empresa, em que o peso usado para a observacao \(i\) e o tamanho usual da empresa.
+    \item Detalhe a relevância do item (iii) para a estimação por MQP usando dados nivelados pela média da empresa, em que o peso usado para a observação \(i\) é o tamanho da empresa.
 \end{enumerate}
 
 \begin{solution}
@@ -131,7 +133,7 @@ em que a variavel nao observada \(f_i\) e um ``efeito da empresa'' em cada empre
     =
     \operatorname{Var}(f_i)+\operatorname{Var}(v_{i,e})+2\operatorname{Cov}(f_i,v_{i,e}).
     \]
-    Pela nao correlacao, \(\operatorname{Cov}(f_i,v_{i,e})=0\). Portanto,
+    Pela não correlação, \(\operatorname{Cov}(f_i,v_{i,e})=0\). Portanto,
     \[
     \operatorname{Var}(u_{i,e})=\sigma_f^2+\sigma_v^2.
     \]
@@ -148,7 +150,7 @@ em que a variavel nao observada \(f_i\) e um ``efeito da empresa'' em cada empre
     =
     \operatorname{Var}(f_i)+\operatorname{Cov}(f_i,v_{i,g})+\operatorname{Cov}(v_{i,e},f_i)+\operatorname{Cov}(v_{i,e},v_{i,g}).
     \]
-    Todos os termos de covariancia cruzada sao nulos, restando
+    Todos os termos de covariância cruzada são nulos, restando
     \[
     \operatorname{Cov}(u_{i,e},u_{i,g})=\sigma_f^2.
     \]
@@ -165,7 +167,7 @@ em que a variavel nao observada \(f_i\) e um ``efeito da empresa'' em cada empre
     +
     \operatorname{Var}\left(\frac{1}{m_i}\sum_{e=1}^{m_i} v_{i,e}\right),
     \]
-    pois \(f_i\) e os \(v_{i,e}\) sao nao correlacionados. Como os \(v_{i,e}\) sao nao correlacionados entre si,
+    pois \(f_i\) e os \(v_{i,e}\) são não correlacionados. Como os \(v_{i,e}\) são não correlacionados entre si,
     \[
     \operatorname{Var}\left(\frac{1}{m_i}\sum_{e=1}^{m_i} v_{i,e}\right)
     =
@@ -180,49 +182,49 @@ em que a variavel nao observada \(f_i\) e um ``efeito da empresa'' em cada empre
     \operatorname{Var}(\bar{u}_i)=\sigma_f^2+\frac{\sigma_v^2}{m_i}.
     \]
 
-    \item O item (iii) mostra que a variancia do erro medio depende do tamanho da empresa. Empresas maiores geram medias mais precisas porque \(\sigma_v^2/m_i\) cai com \(m_i\). Portanto, ao nivelar os dados pela media da empresa, observacoes com maior \(m_i\) devem receber maior peso em MQP, pois possuem menor variancia do erro.
+    \item O item (iii) mostra que a variância do erro médio depende do tamanho da empresa. Empresas maiores geram médias mais precisas porque \(\sigma_v^2/m_i\) cai com \(m_i\). Portanto, ao nivelar os dados pela média da empresa, observações com maior \(m_i\) devem receber maior peso em MQP, pois possuem menor variância do erro.
 \end{enumerate}
 \end{solution}
 
 \vspace{0.7cm}
 
-\question (8.1, \citep{wooldridge2016}) Quais das seguintes alternativas sao consequencias da heteroscedasticidade?
+\question (8.1, \citep{wooldridge2016}) Quais das seguintes alternativas são consequências da heteroscedasticidade?
 \begin{enumerate}[label=(\roman*)]
-    \item Os estimadores MQO, \(\hat{\beta}_j\), sao inconsistentes.
-    \item A estatistica \(F\) usual nao mais tem uma distribuicao \(F\).
-    \item Os estimadores MQO nao sao mais BLUE.
+    \item Os estimadores MQO, \(\hat{\beta}_j\), são inconsistentes.
+    \item A estatística \(F\) usual não mais tem uma distribuição \(F\).
+    \item Os estimadores MQO não são mais BLUE.
 \end{enumerate}
 
 \begin{solution}
-As consequencias corretas sao \textbf{(ii)} e \textbf{(iii)}.
+As consequências corretas são \textbf{(ii)} e \textbf{(iii)}.
 
 \begin{enumerate}[label=(\roman*)]
     \item \textbf{Falsa}. Com exogeneidade mantida, os estimadores MQO continuam consistentes.
-    \item \textbf{Verdadeira}. Sob heteroscedasticidade, a estatistica \(F\) usual deixa de ter a distribuicao \(F\) exata.
-    \item \textbf{Verdadeira}. MQO deixa de ser BLUE porque perde eficiencia frente a estimadores lineares nao viesados que exploram a estrutura da variancia.
+    \item \textbf{Verdadeira}. Sob heteroscedasticidade, a estatística \(F\) usual deixa de ter a distribuição \(F\) exata.
+    \item \textbf{Verdadeira}. MQO deixa de ser BLUE porque perde eficiência frente a estimadores lineares não viesados que exploram a estrutura da variância.
 \end{enumerate}
 \end{solution}
 
 \vspace{0.7cm}
 
-\question (8.3, \citep{wooldridge2016}) Verdadeiro ou falso? O metodo MQP e preferido ao MQO quando uma variavel importante for omitida.
+\question (8.3, \citep{wooldridge2016}) Verdadeiro ou falso? O método MQP é preferido ao MQO quando uma variável importante for omitida.
 
 \begin{solution}
-\textbf{Falso}. MQP e util para lidar com heteroscedasticidade conhecida ou modelada, mas nao corrige vies por variavel omitida. Se a variavel omitida estiver correlacionada com alguma regressora incluida, tanto MQO como MQP serao inconsistentes.
+\textbf{Falso}. MQP é útil para lidar com heteroscedasticidade conhecida ou modelada, mas não corrige viés por variável omitida. Se a variável omitida estiver correlacionada com alguma regressora incluída, tanto MQO quanto MQP serão inconsistentes.
 \end{solution}
 
 \vspace{0.7cm}
 
-\question\qstar (8.C13, \citep{wooldridge2016}) Use os dados do arquivo \texttt{FERTIL2} para esta questao.
+\question\qstar (8.C13, \citep{wooldridge2016}) Use os dados do arquivo \texttt{FERTIL2} para esta questão.
 \begin{enumerate}[label=(\roman*)]
     \item Estime o modelo
     \[
     children = \beta_0 + \beta_1 age + \beta_2 age^2 + \beta_3 educ + \beta_4 electric + \beta_5 urban + u
     \]
-    e registre os erros padrao usual e robusto em relacao a heteroscedasticidade. Os erros padrao robustos sao sempre maiores do que os nao robustos?
-    \item Adicione tres variaveis \textit{dummy} de religiao e teste se sao conjuntamente significativas. Quais sao os \(p\)-valores dos testes nao robustos e robustos?
-    \item A partir da regressao do item (ii), obtenha os valores ajustados \(\hat{y}_i\) e os residuos \(\hat{u}_i\). Regrida \(\hat{u}_i^2\) sobre \(\hat{y}_i\) e \(\hat{y}_i^2\), e teste a significancia conjunta dos dois regressores. Conclua que a heteroscedasticidade esta presente na equacao para \textit{children}.
-    \item Voce diria que a heteroscedasticidade encontrada no item (iii) e importante na pratica?
+    e registre os erros padrão usuais e robustos em relação à heteroscedasticidade. Os erros padrão robustos são sempre maiores do que os não robustos?
+    \item Adicione três variáveis \textit{dummy} de religião e teste se elas são conjuntamente significativas. Quais são os \(p\)-valores dos testes não robustos e robustos?
+    \item A partir da regressão do item (ii), obtenha os valores ajustados \(\hat{y}_i\) e os resíduos \(\hat{u}_i\). Regrida \(\hat{u}_i^2\) sobre \(\hat{y}_i\) e \(\hat{y}_i^2\), e teste a significância conjunta dos dois regressores. Conclua que a heteroscedasticidade está presente na equação para \textit{children}.
+    \item Você diria que a heteroscedasticidade encontrada no item (iii) é importante na prática?
 \end{enumerate}
 
 \end{questions}
