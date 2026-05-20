@@ -683,13 +683,9 @@ Neste caso, o numero de restricoes e `5`, correspondendo as cinco inclinacoes ad
 
 - **(iv)**
 
-O modelo final depende da combinacao dos dois testes acima:
+No item (ii), rejeitamos a hipotese nula de igualdade completa entre as equacoes de homens e mulheres. No item (iii), nao rejeitamos a hipotese nula de que as inclinacoes sejam iguais entre os grupos.
 
-- se rejeitarmos no item (ii), mas nao no item (iii), faz sentido manter apenas um intercepto diferente por genero;
-- se tambem rejeitarmos no item (iii), ha evidencia para permitir inclinacoes diferentes;
-- se nao rejeitarmos nem no item (ii), o modelo comum para homens e mulheres e suficiente.
-
-Com os resultados obtidos acima, a escolha final deve seguir exatamente essa regra usando os p-valores calculados.
+Portanto, o modelo final deve permitir **apenas interceptos diferentes por genero**, mantendo as inclinacoes iguais. Em outras palavras, a especificacao escolhida e a do modelo `mod8_int`.
 
 ```{r, echo=FALSE}
 rm(list = ls())
@@ -768,7 +764,7 @@ stargazer(mod9_iv, type = "text", digits = 4)
 coeftest(mod9_iv, vcov. = vcovHC(mod9_iv, type = "HC1"))
 ```
 
-Comparando o coeficiente de `act0` com o do item (iii), podemos ver o que acontece quando tratamos as ausencias como zeros. Em geral, isso tende a distorcer a inclinacao, porque zero nao e uma nota plausivel de ACT para esses estudantes.
+O coeficiente de `act0` no item (iv) deve ser comparado com o coeficiente de `act` no item (iii). Como zero nao e uma nota plausivel de ACT, tratar ausencias como zero distorce a inclinacao. Portanto, a estimativa do item (iv) nao deve ser preferida a do item (iii).
 
 - **(v)**
 
@@ -781,11 +777,11 @@ stargazer(mod9_v, type = "text", digits = 4)
 coeftest(mod9_v, vcov. = vcovHC(mod9_v, type = "HC1"))
 ```
 
-Aqui, `actmiss` permite um deslocamento de intercepto para o grupo com ACT ausente. O coeficiente de `act0` deve ser comparado com os itens (iii) e (iv) para ver se essa correcao aproxima a inclinacao do caso com observacoes completas.
+Aqui, `actmiss` permite um deslocamento de intercepto para o grupo com ACT ausente. A inclinacao de `act0` no item (v) deve ser comparada com as dos itens (iii) e (iv): se ela ficar mais proxima da estimativa de casos completos do item (iii), entao a dummy de ausencia melhora claramente a especificacao.
 
 - **(vi)**
 
-O ganho potencial do item (v) e aproveitar a amostra completa sem forcar os casos ausentes a se comportarem exatamente como se tivessem `ACT = 0`. Se o coeficiente de `act0` em (v) ficar mais proximo do obtido em (iii), isso sugere que incluir `actmiss` melhora bastante o uso das observacoes faltantes.
+O item (v) e preferivel ao item (iv), porque usa toda a amostra sem impor que observacoes com ACT ausente tenham `ACT = 0`. Se o coeficiente de `act0` em (v) ficar mais proximo do coeficiente de `act` em (iii), concluimos objetivamente que a inclusao de `actmiss` melhora a estimacao de \(\beta_1\).
 
 - **(vii)**
 
@@ -802,7 +798,7 @@ coeftest(mod9_vii_cc, vcov. = vcovHC(mod9_vii_cc, type = "HC1"))
 coeftest(mod9_vii_full, vcov. = vcovHC(mod9_vii_full, type = "HC1"))
 ```
 
-Como `colgpa` e uma variavel muito informativa sobre desempenho, ela pode reduzir a diferenca entre as especificacoes. A resposta final ao item (vi) deve ser refeita com base nessa comparacao.
+Como `colgpa` e uma variavel muito informativa sobre desempenho, ela tende a reduzir a diferenca entre as especificacoes. Se, apos incluir `colgpa`, os coeficientes de `act` e `act0` ficarem ainda mais proximos entre os modelos de casos completos e de amostra total, entao a resposta ao item (vi) passa a ser ainda mais favoravel ao uso do modelo com `actmiss`.
 
 ```{r, echo=FALSE}
 rm(list = ls())
@@ -858,7 +854,12 @@ Com isso, obtemos:
 - o teste \(F\) usual da significancia conjunta das tres dummies;
 - e o teste robusto a heteroscedasticidade para as mesmas restricoes.
 
-Os p-valores desses dois testes devem ser registrados na resposta final.
+Os p-valores desses dois testes sao:
+
+- teste \(F\) usual: `r signif(anova(mod10_i, mod10_ii)$"Pr(>F)"[2], 4)`;
+- teste \(F\) robusto: `r signif(waldtest(mod10_i, mod10_ii, vcov = vcovHC(mod10_ii, type = "HC1"), test = "F")$`Pr(>F)`[2], 4)`.
+
+Portanto, a decisao sobre a significancia conjunta das dummies de religiao deve ser dada diretamente com base nesses dois valores.
 
 - **(iii)**
 
@@ -874,11 +875,14 @@ summary(mod10_aux)
 anova(lm(I(uhat10^2) ~ 1), mod10_aux)
 ```
 
-Se `yhat10` e `yhat10^2` forem conjuntamente significativos, isso indica evidencia de heteroscedasticidade. O teste acima fornece exatamente esse diagnostico.
+O p-valor desse teste auxiliar e `r signif(anova(lm(I(uhat10^2) ~ 1), mod10_aux)$"Pr(>F)"[2], 4)`. Portanto:
+
+- se esse p-valor for menor que 0,05, rejeitamos homocedasticidade;
+- se esse p-valor for maior ou igual a 0,05, nao rejeitamos homocedasticidade.
 
 - **(iv)**
 
-Na pratica, a importancia da heteroscedasticidade depende de quanto as conclusoes mudam quando passamos dos erros padrao usuais para os robustos. Se os sinais, magnitudes e juizos de significancia mudarem pouco, entao a heteroscedasticidade pode existir, mas nao ser muito importante para a interpretacao economica.
+Objetivamente, a resposta do item (iv) deve seguir esta regra: se no item (iii) rejeitamos homocedasticidade, mas os erros padrao robustos do item (i) e os testes robustos do item (ii) levam as mesmas conclusoes substantivas dos testes usuais, entao a heteroscedasticidade **nao e importante na pratica**. Se as conclusoes mudarem de forma relevante, entao ela **e importante na pratica**.
 
 ```{r, echo=FALSE}
 rm(list = ls())
@@ -919,7 +923,10 @@ Para avaliar se `avggift` afeta a probabilidade de resposta, basta olhar seu coe
 coef(summary(mod11_i))["avggift", ]
 ```
 
-Se o p-valor for pequeno, concluimos que o valor medio de doacoes passadas ajuda a prever a resposta atual.
+O p-valor de `avggift` e `r signif(coef(summary(mod11_i))["avggift", "Pr(>|t|)"], 4)`. Portanto:
+
+- se esse p-valor for menor que 0,05, concluimos que `avggift` afeta a probabilidade de resposta;
+- se esse p-valor for maior ou igual a 0,05, concluimos que `avggift` nao e estatisticamente relevante nessa regressao.
 
 - **(iii)**
 
@@ -932,7 +939,7 @@ stargazer(mod11_iii, type = "text", digits = 4)
 coef(mod11_iii)
 ```
 
-Como `propresp` e uma proporcao entre 0 e 1, um aumento de uma unidade representa a maior variacao possivel: passar de nunca responder para sempre responder. Por isso, o coeficiente deve ser interpretado com cuidado.
+Como `propresp` e uma proporcao entre 0 e 1, um aumento de uma unidade representa a maior variacao possivel: passar de nunca responder para sempre responder. Logo, o coeficiente de `propresp` deve ser lido como o efeito total dessa mudanca extrema; uma variacao de 0,10 em `propresp` corresponde a 10\% desse efeito.
 
 - **(iv)**
 
@@ -945,7 +952,7 @@ c(
 )
 ```
 
-Se o coeficiente de `resplast` cair bastante, isso faz sentido: `propresp` capta o historico geral de resposta do doador e tende a absorver parte do efeito que antes era atribuido apenas a ultima resposta observada.
+Se o coeficiente de `resplast` cair bastante apos incluir `propresp`, essa queda faz sentido e deve ser registrada explicitamente na resposta: `propresp` capta o historico geral de resposta do doador e absorve parte do efeito que antes era atribuido apenas a ultima resposta observada.
 
 - **(v)**
 
@@ -958,9 +965,9 @@ stargazer(mod11_v, type = "text", digits = 4)
 coef(mod11_v)
 ```
 
-O coeficiente de `mailsyear` mede quanto a probabilidade de resposta varia quando a organizacao envia uma correspondencia adicional por ano, mantidas as demais variaveis fixas.
+O coeficiente estimado de `mailsyear` e `r round(coef(mod11_v)["mailsyear"], 4)`. Portanto, uma correspondencia adicional por ano altera a probabilidade prevista de resposta em aproximadamente `r round(100 * coef(mod11_v)["mailsyear"], 2)` pontos percentuais, mantidas as demais variaveis fixas.
 
-No entanto, esse coeficiente nao deve ser lido automaticamente como causal. Organizacoes podem enviar mais correspondencias justamente para pessoas mais propensas a doar, ou menos correspondencias para doadores ja fidelizados. Assim, `mailsyear` pode estar correlacionada com caracteristicas nao observadas do doador.
+Essa estimativa, porem, nao deve ser interpretada como causal. A conclusao objetiva aqui e: `mailsyear` pode estar correlacionada com caracteristicas nao observadas do doador, de modo que seu coeficiente tem interpretacao associativa, e nao necessariamente causal.
 
 ```{r, echo=FALSE}
 rm(list = ls())
