@@ -696,109 +696,82 @@ rm(list = ls())
 
 ## Questao 5)
 
-Agora resolvemos a questao computacional da Lista 9 com a base `ECONMATH`.
+Agora resolvemos a questao computacional da Lista 9 com a base `CHARITY`.
 
 ```{r lista9-setup, warning=FALSE, message=FALSE}
 library(wooldridge)
 library(stargazer)
-library(lmtest)
-library(sandwich)
 
-data("econmath")
-head(econmath)
+data("charity")
+head(charity)
 ```
 
 - **(i)**
 
-Primeiro, identificamos quantos estudantes nao possuem nota de `act`.
+Vamos comecar estimando o modelo de probabilidade linear com `respond`, `resplast` e `avggift`.
 
-```{r lista9-i-missing}
-econmath$actmiss <- as.integer(is.na(econmath$act))
-
-n_missing_act <- sum(econmath$actmiss)
-frac_missing_act <- mean(econmath$actmiss)
-
-n_missing_act
-frac_missing_act
+```{r lista9-i-modelo}
+mod9_i <- lm(respond ~ resplast + avggift, data = charity)
+summary(mod9_i)
+stargazer(mod9_i, type = "text", digits = 4)
+coef(mod9_i)
 ```
 
-Logo, ha `r n_missing_act` estudantes com `act` ausente, o que corresponde a aproximadamente `r round(100 * frac_missing_act, 2)`\% da amostra.
+O coeficiente de `resplast` mede a diferenca na probabilidade de responder a nova correspondencia entre quem respondeu e quem nao respondeu a correspondencia anterior, mantendo `avggift` fixa.
 
 - **(ii)**
 
-Agora criamos `act0`, que coincide com `act` quando ela e observada e vale zero quando `act` esta ausente.
+Para avaliar se `avggift` afeta a probabilidade de resposta, basta olhar seu coeficiente e p-valor na regressao acima.
 
-```{r lista9-ii-act0}
-econmath$act0 <- ifelse(is.na(econmath$act), 0, econmath$act)
-
-mean_act0 <- mean(econmath$act0)
-mean_act <- mean(econmath$act, na.rm = TRUE)
-
-mean_act0
-mean_act
+```{r lista9-ii-avggift}
+coef(summary(mod9_i))["avggift", ]
 ```
 
-Como `act0` coloca zero nos casos ausentes, sua media tende a ser menor do que a media de `act` calculada apenas entre observacoes validas.
+O p-valor de `avggift` e `r signif(coef(summary(mod9_i))["avggift", "Pr(>|t|)"], 4)`. Portanto:
+
+- se esse p-valor for menor que 0,05, concluimos que `avggift` afeta a probabilidade de resposta;
+- se esse p-valor for maior ou igual a 0,05, concluimos que `avggift` nao e estatisticamente relevante nessa regressao.
 
 - **(iii)**
 
-Agora estimamos a regressao simples de `score` sobre `act` usando apenas casos completos e calculamos o erro padrao robusto.
+Agora adicionamos `propresp`.
 
 ```{r lista9-iii-modelo}
-mod9_iii <- lm(score ~ act, data = econmath, subset = !is.na(act))
+mod9_iii <- lm(respond ~ resplast + avggift + propresp, data = charity)
 summary(mod9_iii)
 stargazer(mod9_iii, type = "text", digits = 4)
-coeftest(mod9_iii, vcov. = vcovHC(mod9_iii, type = "HC1"))
+coef(mod9_iii)
 ```
 
-O coeficiente de `act` nesta regressao mede quanto a nota final do curso aumenta, em media, para um ponto adicional no ACT, usando somente os alunos para os quais essa nota foi observada.
+Como `propresp` e uma proporcao entre 0 e 1, um aumento de uma unidade representa a maior variacao possivel: passar de nunca responder para sempre responder. Logo, o coeficiente de `propresp` deve ser lido como o efeito total dessa mudanca extrema; uma variacao de 0,10 em `propresp` corresponde a 10\% desse efeito.
 
 - **(iv)**
 
-Agora usamos todos os casos, substituindo `act` por `act0`.
+Agora comparamos o coeficiente de `resplast` antes e depois da inclusao de `propresp`.
 
-```{r lista9-iv-modelo}
-mod9_iv <- lm(score ~ act0, data = econmath)
-summary(mod9_iv)
-stargazer(mod9_iv, type = "text", digits = 4)
-coeftest(mod9_iv, vcov. = vcovHC(mod9_iv, type = "HC1"))
+```{r lista9-iv-comparacao}
+c(
+  sem_propresp = coef(mod9_i)["resplast"],
+  com_propresp = coef(mod9_iii)["resplast"]
+)
 ```
 
-O coeficiente de `act0` no item (iv) deve ser comparado com o coeficiente de `act` no item (iii). Como zero nao e uma nota plausivel de ACT, tratar ausencias como zero distorce a inclinacao. Portanto, a estimativa do item (iv) nao deve ser preferida a do item (iii).
+Se o coeficiente de `resplast` cair bastante apos incluir `propresp`, essa queda faz sentido e deve ser registrada explicitamente na resposta: `propresp` capta o historico geral de resposta do doador e absorve parte do efeito que antes era atribuido apenas a ultima resposta observada.
 
 - **(v)**
 
-Agora incluimos tambem a dummy `actmiss`.
+Por fim, adicionamos `mailsyear`.
 
 ```{r lista9-v-modelo}
-mod9_v <- lm(score ~ act0 + actmiss, data = econmath)
+mod9_v <- lm(respond ~ resplast + avggift + propresp + mailsyear, data = charity)
 summary(mod9_v)
 stargazer(mod9_v, type = "text", digits = 4)
-coeftest(mod9_v, vcov. = vcovHC(mod9_v, type = "HC1"))
+coef(mod9_v)
 ```
 
-Aqui, `actmiss` permite um deslocamento de intercepto para o grupo com ACT ausente. A inclinacao de `act0` no item (v) deve ser comparada com as dos itens (iii) e (iv): se ela ficar mais proxima da estimativa de casos completos do item (iii), entao a dummy de ausencia melhora claramente a especificacao.
+O coeficiente estimado de `mailsyear` e `r round(coef(mod9_v)["mailsyear"], 4)`. Portanto, uma correspondencia adicional por ano altera a probabilidade prevista de resposta em aproximadamente `r round(100 * coef(mod9_v)["mailsyear"], 2)` pontos percentuais, mantidas as demais variaveis fixas.
 
-- **(vi)**
-
-O item (v) e preferivel ao item (iv), porque usa toda a amostra sem impor que observacoes com ACT ausente tenham `ACT = 0`. Se o coeficiente de `act0` em (v) ficar mais proximo do coeficiente de `act` em (iii), concluimos objetivamente que a inclusao de `actmiss` melhora a estimacao de \(\beta_1\).
-
-- **(vii)**
-
-Por fim, adicionamos `colgpa` as especificacoes dos itens (iii) e (v).
-
-```{r lista9-vii-modelos}
-mod9_vii_cc <- lm(score ~ act + colgpa, data = econmath, subset = !is.na(act))
-mod9_vii_full <- lm(score ~ act0 + actmiss + colgpa, data = econmath)
-
-stargazer(mod9_vii_cc, mod9_vii_full, type = "text", digits = 4,
-          column.labels = c("Casos completos", "Todos os casos"))
-
-coeftest(mod9_vii_cc, vcov. = vcovHC(mod9_vii_cc, type = "HC1"))
-coeftest(mod9_vii_full, vcov. = vcovHC(mod9_vii_full, type = "HC1"))
-```
-
-Como `colgpa` e uma variavel muito informativa sobre desempenho, ela tende a reduzir a diferenca entre as especificacoes. Se, apos incluir `colgpa`, os coeficientes de `act` e `act0` ficarem ainda mais proximos entre os modelos de casos completos e de amostra total, entao a resposta ao item (vi) passa a ser ainda mais favoravel ao uso do modelo com `actmiss`.
+Essa estimativa, porem, nao deve ser interpretada como causal. A conclusao objetiva aqui e: `mailsyear` pode estar correlacionada com caracteristicas nao observadas do doador, de modo que seu coeficiente tem interpretacao associativa, e nao necessariamente causal.
 
 ```{r, echo=FALSE}
 rm(list = ls())
@@ -892,82 +865,109 @@ rm(list = ls())
 
 ## Questao 5)
 
-Agora resolvemos a questao computacional da Lista 11 com a base `CHARITY`.
+Agora resolvemos a questao computacional da Lista 11 com a base `ECONMATH`.
 
 ```{r lista11-setup, warning=FALSE, message=FALSE}
 library(wooldridge)
 library(stargazer)
+library(lmtest)
+library(sandwich)
 
-data("charity")
-head(charity)
+data("econmath")
+head(econmath)
 ```
 
 - **(i)**
 
-Vamos comecar estimando o modelo de probabilidade linear com `respond`, `resplast` e `avggift`.
+Primeiro, identificamos quantos estudantes nao possuem nota de `act`.
 
-```{r lista11-i-modelo}
-mod11_i <- lm(respond ~ resplast + avggift, data = charity)
-summary(mod11_i)
-stargazer(mod11_i, type = "text", digits = 4)
-coef(mod11_i)
+```{r lista11-i-missing}
+econmath$actmiss <- as.integer(is.na(econmath$act))
+
+n_missing_act <- sum(econmath$actmiss)
+frac_missing_act <- mean(econmath$actmiss)
+
+n_missing_act
+frac_missing_act
 ```
 
-O coeficiente de `resplast` mede a diferenca na probabilidade de responder a nova correspondencia entre quem respondeu e quem nao respondeu a correspondencia anterior, mantendo `avggift` fixa.
+Logo, ha `r n_missing_act` estudantes com `act` ausente, o que corresponde a aproximadamente `r round(100 * frac_missing_act, 2)`\% da amostra.
 
 - **(ii)**
 
-Para avaliar se `avggift` afeta a probabilidade de resposta, basta olhar seu coeficiente e p-valor na regressao acima.
+Agora criamos `act0`, que coincide com `act` quando ela e observada e vale zero quando `act` esta ausente.
 
-```{r lista11-ii-avggift}
-coef(summary(mod11_i))["avggift", ]
+```{r lista11-ii-act0}
+econmath$act0 <- ifelse(is.na(econmath$act), 0, econmath$act)
+
+mean_act0 <- mean(econmath$act0)
+mean_act <- mean(econmath$act, na.rm = TRUE)
+
+mean_act0
+mean_act
 ```
 
-O p-valor de `avggift` e `r signif(coef(summary(mod11_i))["avggift", "Pr(>|t|)"], 4)`. Portanto:
-
-- se esse p-valor for menor que 0,05, concluimos que `avggift` afeta a probabilidade de resposta;
-- se esse p-valor for maior ou igual a 0,05, concluimos que `avggift` nao e estatisticamente relevante nessa regressao.
+Como `act0` coloca zero nos casos ausentes, sua media tende a ser menor do que a media de `act` calculada apenas entre observacoes validas.
 
 - **(iii)**
 
-Agora adicionamos `propresp`.
+Agora estimamos a regressao simples de `score` sobre `act` usando apenas casos completos e calculamos o erro padrao robusto.
 
 ```{r lista11-iii-modelo}
-mod11_iii <- lm(respond ~ resplast + avggift + propresp, data = charity)
+mod11_iii <- lm(score ~ act, data = econmath, subset = !is.na(act))
 summary(mod11_iii)
 stargazer(mod11_iii, type = "text", digits = 4)
-coef(mod11_iii)
+coeftest(mod11_iii, vcov. = vcovHC(mod11_iii, type = "HC1"))
 ```
 
-Como `propresp` e uma proporcao entre 0 e 1, um aumento de uma unidade representa a maior variacao possivel: passar de nunca responder para sempre responder. Logo, o coeficiente de `propresp` deve ser lido como o efeito total dessa mudanca extrema; uma variacao de 0,10 em `propresp` corresponde a 10\% desse efeito.
+O coeficiente de `act` nesta regressao mede quanto a nota final do curso aumenta, em media, para um ponto adicional no ACT, usando somente os alunos para os quais essa nota foi observada.
 
 - **(iv)**
 
-Agora comparamos o coeficiente de `resplast` antes e depois da inclusao de `propresp`.
+Agora usamos todos os casos, substituindo `act` por `act0`.
 
-```{r lista11-iv-comparacao}
-c(
-  sem_propresp = coef(mod11_i)["resplast"],
-  com_propresp = coef(mod11_iii)["resplast"]
-)
+```{r lista11-iv-modelo}
+mod11_iv <- lm(score ~ act0, data = econmath)
+summary(mod11_iv)
+stargazer(mod11_iv, type = "text", digits = 4)
+coeftest(mod11_iv, vcov. = vcovHC(mod11_iv, type = "HC1"))
 ```
 
-Se o coeficiente de `resplast` cair bastante apos incluir `propresp`, essa queda faz sentido e deve ser registrada explicitamente na resposta: `propresp` capta o historico geral de resposta do doador e absorve parte do efeito que antes era atribuido apenas a ultima resposta observada.
+O coeficiente de `act0` no item (iv) deve ser comparado com o coeficiente de `act` no item (iii). Como zero nao e uma nota plausivel de ACT, tratar ausencias como zero distorce a inclinacao. Portanto, a estimativa do item (iv) nao deve ser preferida a do item (iii).
 
 - **(v)**
 
-Por fim, adicionamos `mailsyear`.
+Agora incluimos tambem a dummy `actmiss`.
 
 ```{r lista11-v-modelo}
-mod11_v <- lm(respond ~ resplast + avggift + propresp + mailsyear, data = charity)
+mod11_v <- lm(score ~ act0 + actmiss, data = econmath)
 summary(mod11_v)
 stargazer(mod11_v, type = "text", digits = 4)
-coef(mod11_v)
+coeftest(mod11_v, vcov. = vcovHC(mod11_v, type = "HC1"))
 ```
 
-O coeficiente estimado de `mailsyear` e `r round(coef(mod11_v)["mailsyear"], 4)`. Portanto, uma correspondencia adicional por ano altera a probabilidade prevista de resposta em aproximadamente `r round(100 * coef(mod11_v)["mailsyear"], 2)` pontos percentuais, mantidas as demais variaveis fixas.
+Aqui, `actmiss` permite um deslocamento de intercepto para o grupo com ACT ausente. A inclinacao de `act0` no item (v) deve ser comparada com as dos itens (iii) e (iv): se ela ficar mais proxima da estimativa de casos completos do item (iii), entao a dummy de ausencia melhora claramente a especificacao.
 
-Essa estimativa, porem, nao deve ser interpretada como causal. A conclusao objetiva aqui e: `mailsyear` pode estar correlacionada com caracteristicas nao observadas do doador, de modo que seu coeficiente tem interpretacao associativa, e nao necessariamente causal.
+- **(vi)**
+
+O item (v) e preferivel ao item (iv), porque usa toda a amostra sem impor que observacoes com ACT ausente tenham `ACT = 0`. Se o coeficiente de `act0` em (v) ficar mais proximo do coeficiente de `act` em (iii), concluimos objetivamente que a inclusao de `actmiss` melhora a estimacao de \(\beta_1\).
+
+- **(vii)**
+
+Por fim, adicionamos `colgpa` as especificacoes dos itens (iii) e (v).
+
+```{r lista11-vii-modelos}
+mod11_vii_cc <- lm(score ~ act + colgpa, data = econmath, subset = !is.na(act))
+mod11_vii_full <- lm(score ~ act0 + actmiss + colgpa, data = econmath)
+
+stargazer(mod11_vii_cc, mod11_vii_full, type = "text", digits = 4,
+          column.labels = c("Casos completos", "Todos os casos"))
+
+coeftest(mod11_vii_cc, vcov. = vcovHC(mod11_vii_cc, type = "HC1"))
+coeftest(mod11_vii_full, vcov. = vcovHC(mod11_vii_full, type = "HC1"))
+```
+
+Como `colgpa` e uma variavel muito informativa sobre desempenho, ela tende a reduzir a diferenca entre as especificacoes. Se, apos incluir `colgpa`, os coeficientes de `act` e `act0` ficarem ainda mais proximos entre os modelos de casos completos e de amostra total, entao a resposta ao item (vi) passa a ser ainda mais favoravel ao uso do modelo com `actmiss`.
 
 ```{r, echo=FALSE}
 rm(list = ls())
