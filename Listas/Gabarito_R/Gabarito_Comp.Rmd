@@ -3,14 +3,15 @@ title: "Gabarito Questoes Computacionais"
 author: "Tuffy"
 date: "2026-04-20"
 output:
-  pdf_document: default
+  pdf_document:
+    fig_crop: false
   html_document:
     df_print: paged
 ---
 
 # Lista 3 a 11 - Econometria I - 2026
 
-**Prof.:** Andre Luiz Pereira Mancha  
+**Prof.:** Andr\'e Luiz Pereira Mancha  
 **Monitor:** Tuffy Licciardi Issa  
 Email: tuffy@usp.br  
 GitHub: https://github.com/Tuffyli
@@ -21,7 +22,7 @@ GitHub: https://github.com/Tuffyli
 
 ## Questao 5)
 
-Vamos comecar abrindo a base de dados solicitada pelo exercicio.
+Vamos come\c{c}ar abrindo a base de dados solicitada pelo exerc\'icio.
 
 ```{r lista3-setup, warning=FALSE, message=FALSE}
 library(wooldridge)
@@ -33,7 +34,7 @@ head(hprice1)
 
 - **(a)**
 
-Vamos estimar por MQO a regressao pedida:
+Vamos estimar por MQO a regress\~ao pedida:
 
 ```{r lista3-a}
 mod3 <- lm(price ~ sqrft + bdrms, data = hprice1)
@@ -42,48 +43,48 @@ stargazer(mod3, type = "text", digits = 4)
 coef(mod3)
 ```
 
-Assim, a equacao estimada fica:
+Assim, a equa\c{c}\~ao estimada fica:
 
 $$
 \widehat{price} = \hat\beta_0 + \hat\beta_1\,sqrft + \hat\beta_2\,bdrms
 $$
 
-com os coeficientes numericos dados na saida acima.
+com os coeficientes numericos dados na sa\'ida acima.
 
 - **(b)**
 
-O efeito de um quarto adicional, mantendo a area fixa, e dado pelo coeficiente de `bdrms`.
+O efeito de um quarto adicional, mantendo a \'area fixa, e dado pelo coeficiente de `bdrms`.
 
 ```{r lista3-b}
 coef(mod3)["bdrms"]
 ```
 
-Ou seja, um quarto a mais aumenta o preco previsto em `r round(coef(mod3)["bdrms"], 3)` mil dolares, ceteris paribus.
+Ou seja, um quarto a mais aumenta o pre\c{c}o previsto em `r round(coef(mod3)["bdrms"], 3)` mil d\'olares, ceteris paribus.
 
 - **(c)**
 
-Se o quarto adicional vier acompanhado de 140 pes quadrados extras, o aumento previsto no preco sera:
+Se o quarto adicional vier acompanh\'ado de 140 pes quadrados extras, o aumento previsto no pre\c{c}o ser\'a:
 
 ```{r lista3-c}
 delta_price <- 140 * coef(mod3)["sqrft"] + coef(mod3)["bdrms"]
 delta_price
 ```
 
-Portanto, o aumento estimado e de `r round(delta_price, 3)` mil dolares.
+Portanto, o aumento estimado e de `r round(delta_price, 3)` mil d\'olares.
 
 - **(d)**
 
-O percentual da variacao de `price` explicado por `sqrft` e `bdrms` e medido pelo \(R^2\).
+O percentual da varia\c{c}\~ao de `price` explicado por `sqrft` e `bdrms` e medido pelo \(R^2\).
 
 ```{r lista3-d}
 summary(mod3)$r.squared
 ```
 
-Assim, o modelo explica aproximadamente `r round(100 * summary(mod3)$r.squared, 2)`% da variacao do preco.
+Assim, o modelo explica aproximadamente `r round(100 * summary(mod3)$r.squared, 2)`% da varia\c{c}\~ao do pre\c{c}o.
 
 - **(e)**
 
-Para `sqrft = 2438` e `bdrms = 4`, a previsao e:
+Para `sqrft = 2438` e `bdrms = 4`, a previs\~ao e:
 
 ```{r lista3-e}
 nova_casa <- data.frame(sqrft = 2438, bdrms = 4)
@@ -92,7 +93,7 @@ predict(mod3, newdata = nova_casa)
 
 - **(f)**
 
-O residuo da primeira observacao e o preco observado menos o preco previsto.
+O res\'iduo da primeira observacao e o pre\c{c}o observado menos o pre\c{c}o previsto.
 
 ```{r lista3-f}
 preco_previsto_1 <- fitted(mod3)[1]
@@ -104,18 +105,17 @@ preco_observado_1
 residuo_1
 ```
 
-Se o residuo for negativo, o modelo superestimou o preco da casa. Se for positivo, o modelo subestimou.
+Se o res\'iduo for negativo, o modelo superestimou o pre\c{c}o da casa. Se for positivo, o modelo subestimou.
 
 ```{r, echo=FALSE}
 rm(list = ls())
 ```
 
-
 # Lista 4
 
 ## Questao 5)
 
-Vamos carregar novamente os pacotes e a base usada no exercicio.
+Vamos carregar novamente os pacotes e a base usada no exerc\'icio.
 
 ```{r lista4-setup, warning=FALSE, message=FALSE}
 library(wooldridge)
@@ -128,7 +128,7 @@ head(discrim)
 
 - **(a)**
 
-Primeiro, calculamos medias e desvios-padrao de `prpblck` e `income`.
+Primeiro, calculamos m\'edias e desvios-padr\~ao de `prpblck` e `income`.
 
 ```{r lista4-a}
 mean_prpblck <- mean(discrim$prpblck, na.rm = TRUE)
@@ -144,11 +144,11 @@ data.frame(
 )
 ```
 
-`prpblck` e uma proporcao, variando entre 0 e 1. `income` mede renda familiar mediana em dolares.
+`prpblck` e uma propor\c{c}\~ao, variando entre 0 e 1. `income` mede renda familiar m\'ediana em d\'olares.
 
 - **(b)**
 
-O enunciado pede a regressao com `psoda`.
+O enunciado pede a regress\~ao com `psoda`.
 
 ```{r lista4-b, warning=FALSE, message=FALSE}
 mod4_b <- lm(psoda ~ prpblck + income, data = discrim)
@@ -157,18 +157,18 @@ stargazer(mod4_b, type = "text", digits = 4)
 coef(mod4_b)
 ```
 
-Como o modelo esta em nivel-nivel, o coeficiente de `prpblck` mede a variacao em dolares no preco do refrigerante para um aumento de uma unidade em `prpblck`. Como uma unidade equivale a 100 pontos percentuais, um aumento de 0,10 em `prpblck` implica variacao prevista de:
+Como o modelo esta em nivel-nivel, o coeficiente de `prpblck` mede a varia\c{c}\~ao em d\'olares no pre\c{c}o do refrigerante para um aumento de uma unidade em `prpblck`. Como uma unidade equivale a 100 pontos percentuais, um aumento de 0,10 em `prpblck` implica varia\c{c}\~ao prevista de:
 
 ```{r lista4-b-efeito}
 efeito_10pp_psoda <- 0.10 * coef(mod4_b)["prpblck"]
 efeito_10pp_psoda
 ```
 
-Ou seja, `r round(efeito_10pp_psoda, 4)` dolar por refrigerante. Isso permite discutir se o efeito e economicamente grande ou pequeno.
+Ou seja, `r round(efeito_10pp_psoda, 4)` d\'olar por refrigerante. Isso permite discutir se o efeito e econ\^omicamente grande ou pequeno.
 
 - **(c)**
 
-Agora estimamos a regressao simples de `psoda` sobre `prpblck`.
+Agora estimamos a regress\~ao simples de `psoda` sobre `prpblck`.
 
 ```{r lista4-c, warning=FALSE, message=FALSE}
 mod4_c <- lm(psoda ~ prpblck, data = discrim)
@@ -190,14 +190,14 @@ stargazer(mod4_d, type = "text", digits = 4)
 coef(mod4_d)
 ```
 
-Em um modelo log-nivel, a variacao percentual aproximada em `psoda` para um aumento de 0,22 em `prpblck` e:
+Em um modelo log-nivel, a varia\c{c}\~ao percentual aproximada em `psoda` para um aumento de 0,22 em `prpblck` e:
 
 ```{r lista4-d-delta}
 delta_pct <- 100 * coef(mod4_d)["prpblck"] * 0.22
 delta_pct
 ```
 
-Logo, a variacao percentual estimada e de aproximadamente `r round(delta_pct, 2)`%.
+Logo, a varia\c{c}\~ao percentual estimada e de aproximadamente `r round(delta_pct, 2)`%.
 
 - **(e)**
 
@@ -210,7 +210,7 @@ stargazer(mod4_e, type = "text", digits = 4)
 coef(mod4_e)
 ```
 
-O ponto central e comparar os coeficientes de `prpblck` em `mod4_d` e `mod4_e`. Em geral, ao incluir `prppov`, a magnitude de `prpblck` cai, mostrando que parte do efeito anterior refletia diferencas de pobreza entre localidades.
+O ponto central e comparar os coeficientes de `prpblck` em `mod4_d` e `mod4_e`. Em geral, ao incluir `prppov`, a magnitude de `prpblck` cai, mostrando que parte do efeito anterior refletia diferen\c{c}as de pobreza entre localidades.
 
 - **(f)**
 
@@ -219,11 +219,11 @@ corr_lincome_prppov <- cor(discrim$lincome, discrim$prppov, use = "complete.obs"
 corr_lincome_prppov
 ```
 
-A correlacao e fortemente negativa, o que faz sentido: areas com maior renda tendem a ter menor proporcao de pessoas abaixo da linha de pobreza.
+A correla\c{c}\~ao e fortemente negativa, o que faz sentido: \'areas com maior renda tendem a ter menor propor\c{c}\~ao de pessoas abaixo da linh\'a de pobreza.
 
 - **(g)**
 
-A afirmacao esta incorreta. Colinearidade alta entre `lincome` e `prppov` pode inflar erros-padrao e reduzir a precisao das estimativas individuais, mas nao gera vies de MQO nem obriga a retirar uma das variaveis. Se ambas forem relevantes do ponto de vista teorico, podem permanecer no modelo.
+A afirma\c{c}\~ao esta incorreta. Colinearidade alta entre `lincome` e `prppov` pode inflar erros-padr\~ao e reduzir a precis\~ao das estimativas individuais, mas n\~ao gera vi\'es de MQO nem obriga a retirar uma das vari\'aveis. Se ambas forem relevantes do ponto de vista te\'orico, podem permanecer no modelo.
 
 ```{r, echo=FALSE}
 rm(list = ls())
@@ -255,7 +255,7 @@ stargazer(mod5_a, type = "text", digits = 4)
 coef(mod5_a)
 ```
 
-Com isso, a equacao estimada pode ser escrita como:
+Com isso, a equa\c{c}\~ao estimada pode ser escrita como:
 
 $$
 \widehat{\log(psoda)} = -1.463 + 0.0728\,prpblck + 0.137\,lincome + 0.380\,prppov
@@ -263,17 +263,17 @@ $$
 
 Temos \(n =\) `r nobs(mod5_a)` observacoes e \(R^2 \approx\) `r round(summary(mod5_a)$r.squared, 4)`.
 
-Agora vamos verificar se o intercepto e estatisticamente diferente de zero a 5\% e a 1\%.
+Agora vamos verificar se o intercepto e estat\'isticamente diferente de zero a 5\% e a 1\%.
 
 ```{r lista5-a-intercepto}
 coef(summary(mod5_a))["(Intercept)", ]
 ```
 
-O p-valor bilateral do intercepto e aproximadamente `r signif(coef(summary(mod5_a))["(Intercept)", "Pr(>|t|)"], 4)`. Portanto, rejeitamos \(H_0:\beta_0=0\) tanto a 5\% quanto a 1\%.
+O p-valor bilat\'eral do intercepto e aproximadamente `r signif(coef(summary(mod5_a))["(Intercept)", "Pr(>|t|)"], 4)`. Portanto, rejeitamos \(H_0:\beta_0=0\) tanto a 5\% quanto a 1\%.
 
 - **(b)**
 
-Agora calculamos a correlacao entre `lincome` e `prppov` e registramos os p-valores das duas variaveis no modelo estimado em (a).
+Agora calculamos a correla\c{c}\~ao entre `lincome` e `prppov` e registramos os p-valores das duas vari\'aveis no modelo estimado em (a).
 
 ```{r lista5-b-cor}
 cor(discrim$lincome, discrim$prppov, use = "complete.obs")
@@ -283,14 +283,14 @@ cor(discrim$lincome, discrim$prppov, use = "complete.obs")
 coef(summary(mod5_a))[c("lincome", "prppov"), c("Estimate", "Std. Error", "Pr(>|t|)")]
 ```
 
-A correlacao entre `lincome` e `prppov` e aproximadamente `r round(cor(discrim$lincome, discrim$prppov, use = "complete.obs"), 4)`, isto e, fortemente negativa. Mesmo assim, no modelo do item (a), ambas permanecem estatisticamente significantes:
+A correla\c{c}\~ao entre `lincome` e `prppov` e aproximadamente `r round(cor(discrim$lincome, discrim$prppov, use = "complete.obs"), 4)`, isto e, fortemente negativa. Mesmo assim, no modelo do item (a), ambas permanecem estat\'isticamente significantes:
 
-- p-valor bilateral de `lincome`: `r signif(coef(summary(mod5_a))["lincome", "Pr(>|t|)"], 4)`;
-- p-valor bilateral de `prppov`: `r signif(coef(summary(mod5_a))["prppov", "Pr(>|t|)"], 4)`.
+- p-valor bilat\'eral de `lincome`: `r signif(coef(summary(mod5_a))["lincome", "Pr(>|t|)"], 4)`;
+- p-valor bilat\'eral de `prppov`: `r signif(coef(summary(mod5_a))["prppov", "Pr(>|t|)"], 4)`.
 
 - **(c)**
 
-O intercepto mede o valor previsto de \(\log(psoda)\) quando `prpblck = 0`, `lincome = 0` e `prppov = 0`. Em particular, `lincome = 0` significaria `income = 1`, o que nao e um valor economicamente plausivel para a renda mediana de um CEP. Portanto, embora o intercepto seja estatisticamente diferente de zero, ele **nao tem interpretacao economica muito interessante** neste contexto.
+O intercepto mede o valor previsto de \(\log(psoda)\) quando `prpblck = 0`, `lincome = 0` e `prppov = 0`. Em particular, `lincome = 0` significaria `income = 1`, o que n\~ao e um valor econ\^omicamente plaus\'ivel para a renda m\'ediana de um CEP. Portanto, embora o intercepto seja estat\'isticamente diferente de zero, ele **n\~ao tem interpretacao econ\^omica muito interessante** neste contexto.
 
 - **(d)**
 
@@ -316,7 +316,7 @@ t_beta2
 pval_beta2
 ```
 
-Como a estatistica t e aproximadamente `r round(t_beta2, 3)` e o p-valor unilateral e praticamente zero, rejeitamos \(H_0\) ao nivel de 1\%. Ou seja, ha evidencia fortissima de que o coeficiente de `lincome` e menor do que 1.
+Como a estat\'istica t e aproximadamente `r round(t_beta2, 3)` e o p-valor unilat\'eral e pr\'aticamente zero, rejeitamos \(H_0\) ao nivel de 1\%. Ou seja, h\'a evidencia fort\'issima de que o coeficiente de `lincome` e menor do que 1.
 
 - **(e)**
 
@@ -328,40 +328,40 @@ stargazer(mod5_e, type = "text", digits = 4)
 coef(mod5_e)
 ```
 
-Com a nova variavel, a equacao estimada fica:
+Com a nova vari\'avel, a equa\c{c}\~ao estimada fica:
 
 $$
 \widehat{\log(psoda)} = -0.842 + 0.0976\,prpblck - 0.0530\,lincome + 0.0521\,prppov + 0.1213\,lhseval
 $$
 
-O coeficiente de `lhseval` e aproximadamente `0.1213`. Como temos um modelo log-log nessa variavel, ele e uma elasticidade: um aumento de 1\% no valor das casas da regiao esta associado a um aumento de aproximadamente `0.12\%` no preco do refrigerante, ceteris paribus.
+O coeficiente de `lhseval` e aproximadamente `0.1213`. Como temos um modelo log-log nessa vari\'avel, ele e uma elasticidade: um aumento de 1\% no valor das casas da regi\~ao esta associado a um aumento de aproximadamente `0.12\%` no pre\c{c}o do refrigerante, ceteris paribus.
 
-Agora vamos observar o que acontece com a significancia individual de `lincome` e `prppov`.
+Agora vamos observar o que acontece com a signific\^ancia individual de `lincome` e `prppov`.
 
 ```{r lista5-e-individual}
 coef(summary(mod5_e))[c("lincome", "prppov", "lhseval"), c("Estimate", "Std. Error", "Pr(>|t|)")]
 ```
 
-Depois da inclusao de `lhseval`, tanto `lincome` quanto `prppov` deixam de ser individualmente significantes aos niveis usuais:
+Depois da inclus\~ao de `lhseval`, tanto `lincome` quanto `prppov` deixam de ser individualmente significantes aos niveis usuais:
 
 - p-valor de `lincome`: `r signif(coef(summary(mod5_e))["lincome", "Pr(>|t|)"], 4)`;
 - p-valor de `prppov`: `r signif(coef(summary(mod5_e))["prppov", "Pr(>|t|)"], 4)`.
 
 Ja `lhseval` permanece fortemente significante.
 
-Por fim, vamos testar se `lincome` e `prppov` sao conjuntamente significativas.
+Por fim, vamos testar se `lincome` e `prppov` s\~ao conjuntamente significativas.
 
 ```{r lista5-e-conjunto}
 mod5_e_restrito <- lm(lpsoda ~ prpblck + lhseval, data = discrim)
 anova(mod5_e_restrito, mod5_e)
 ```
 
-O p-valor do teste F conjunto e aproximadamente `r signif(anova(mod5_e_restrito, mod5_e)$"Pr(>F)"[2], 4)`. Portanto, rejeitamos a hipotese nula de que os coeficientes de `lincome` e `prppov` sejam ambos zero ao nivel de 5\%.
+O p-valor do teste F conjunto e aproximadamente `r signif(anova(mod5_e_restrito, mod5_e)$"Pr(>F)"[2], 4)`. Portanto, rejeitamos a hip\'otese nula de que os coeficientes de `lincome` e `prppov` sejam ambos zero ao nivel de 5\%.
 
 Em resumo:
 
-- `lincome` e `prppov` nao sao individualmente significantes depois da inclusao de `lhseval`;
-- mas elas sao **conjuntamente significativas** a 5\%.
+- `lincome` e `prppov` n\~ao s\~ao individualmente significantes depois da inclus\~ao de `lhseval`;
+- mas elas s\~ao **conjuntamente significativas** a 5\%.
 
 ```{r, echo=FALSE}
 rm(list = ls())
@@ -381,7 +381,7 @@ data("wage1")
 head(wage1)
 ```
 
-Vamos definir uma funcao simples para medir a assimetria dos residuos.
+Vamos definir uma fun\c{c}\~ao simples para medir a assimetria dos res\'iduos.
 
 ```{r lista6-helper}
 skew_manual <- function(x) {
@@ -393,7 +393,7 @@ skew_manual <- function(x) {
 
 - **(a)**
 
-Estimamos a regressao em nivel e salvamos os residuos.
+Estimamos a regress\~ao em nivel e salvamos os res\'iduos.
 
 ```{r lista6-a-modelo}
 mod6_a <- lm(wage ~ educ + exper + tenure, data = wage1)
@@ -401,7 +401,7 @@ stargazer(mod6_a, type = "text", digits = 4)
 coef(mod6_a)
 ```
 
-Com isso, a equacao estimada pode ser escrita como:
+Com isso, a equa\c{c}\~ao estimada pode ser escrita como:
 
 $$
 \widehat{wage} = -2.873 + 0.599\,educ + 0.022\,exper + 0.169\,tenure
@@ -409,9 +409,9 @@ $$
 
 Logo, mantidos os demais fatores constantes:
 
-- um ano adicional de estudo aumenta o salario horario previsto em aproximadamente US$ 0,60;
-- um ano adicional de experiencia aumenta o salario previsto em cerca de US$ 0,02;
-- um ano adicional de tempo no emprego atual aumenta o salario previsto em cerca de US$ 0,17.
+- um ano adicional de estudo aumenta o sal\'ario horario previsto em aproximadamente US$ 0,60;
+- um ano adicional de experiencia aumenta o sal\'ario previsto em cerca de US$ 0,02;
+- um ano adicional de tempo no emprego atual aumenta o sal\'ario previsto em cerca de US$ 0,17.
 
 ```{r lista6-a-residuos}
 res6_a <- resid(mod6_a)
@@ -431,17 +431,17 @@ hist(
 abline(v = 0, col = "red", lwd = 2)
 ```
 
-No modelo em nivel, os residuos apresentam assimetria positiva forte. Isso aparece tanto visualmente no histograma quanto na medida de assimetria:
+No modelo em nivel, os res\'iduos apresentam assimetria positiva forte. Isso aparece tanto visualmente no histograma quanto na medida de assimetria:
 
-- assimetria aproximada dos residuos: `r round(skew_manual(res6_a), 3)`;
-- valor maximo do residuo: `r round(max(res6_a), 3)`;
-- valor minimo do residuo: `r round(min(res6_a), 3)`.
+- assimetria aproximada dos res\'iduos: `r round(skew_manual(res6_a), 3)`;
+- valor m\'aximo do res\'iduo: `r round(max(res6_a), 3)`;
+- valor m\'inimo do res\'iduo: `r round(min(res6_a), 3)`.
 
-Ou seja, ha uma cauda direita bem mais longa do que a esquerda, o que sugere afastamento da normalidade.
+Ou seja, h\'a uma cauda direita bem mais longa do que a esquerda, o que sugere afastamento da normalidade.
 
 - **(b)**
 
-Agora repetimos o procedimento com `log(wage)` como variavel dependente.
+Agora repetimos o procedimento com `log(wage)` como vari\'avel dependente.
 
 ```{r lista6-b-modelo}
 mod6_b <- lm(lwage ~ educ + exper + tenure, data = wage1)
@@ -449,7 +449,7 @@ stargazer(mod6_b, type = "text", digits = 4)
 coef(mod6_b)
 ```
 
-Agora a equacao estimada fica:
+Agora a equa\c{c}\~ao estimada fica:
 
 $$
 \widehat{\log(wage)} = 0.284 + 0.092\,educ + 0.004\,exper + 0.022\,tenure
@@ -457,9 +457,9 @@ $$
 
 Como o modelo e semilog, os coeficientes podem ser lidos aproximadamente como efeitos percentuais:
 
-- um ano adicional de estudo esta associado a um salario cerca de `r round(100 * coef(mod6_b)["educ"], 2)`% maior;
-- um ano adicional de experiencia esta associado a um salario cerca de `r round(100 * coef(mod6_b)["exper"], 2)`% maior;
-- um ano adicional de tenure esta associado a um salario cerca de `r round(100 * coef(mod6_b)["tenure"], 2)`% maior.
+- um ano adicional de estudo esta associado a um sal\'ario cerca de `r round(100 * coef(mod6_b)["educ"], 2)`% maior;
+- um ano adicional de experiencia esta associado a um sal\'ario cerca de `r round(100 * coef(mod6_b)["exper"], 2)`% maior;
+- um ano adicional de tenure esta associado a um sal\'ario cerca de `r round(100 * coef(mod6_b)["tenure"], 2)`% maior.
 
 ```{r lista6-b-residuos}
 res6_b <- resid(mod6_b)
@@ -479,19 +479,19 @@ hist(
 abline(v = 0, col = "red", lwd = 2)
 ```
 
-Aqui os residuos ficam muito mais simetricos em torno de zero:
+Aqui os res\'iduos ficam muito mais sim\'etricos em torno de zero:
 
-- assimetria aproximada dos residuos: `r round(skew_manual(res6_b), 3)`;
-- valor maximo do residuo: `r round(max(res6_b), 3)`;
-- valor minimo do residuo: `r round(min(res6_b), 3)`.
+- assimetria aproximada dos res\'iduos: `r round(skew_manual(res6_b), 3)`;
+- valor m\'aximo do res\'iduo: `r round(max(res6_b), 3)`;
+- valor m\'inimo do res\'iduo: `r round(min(res6_b), 3)`.
 
-Visualmente, o histograma do modelo semilog fica bem mais proximo de uma distribuicao em forma de sino.
+Visualmente, o histograma do modelo semilog fica bem mais pr\'oximo de uma distribui\c{c}\~ao em forma de sino.
 
 - **(c)**
 
-Comparando os histogramas e as medidas de assimetria, o modelo semilog fica claramente mais proximo de satisfazer a hipotese RLM.6. No modelo em nivel, a assimetria dos residuos e de cerca de `r round(skew_manual(res6_a), 3)`, enquanto no modelo com `log(wage)` ela cai para aproximadamente `r round(skew_manual(res6_b), 3)`.
+Comparando os histogramas e as medidas de assimetria, o modelo semilog fica claramente mais pr\'oximo de satisfazer a hip\'otese RLM.6. No modelo em nivel, a assimetria dos res\'iduos e de cerca de `r round(skew_manual(res6_a), 3)`, enquanto no modelo com `log(wage)` ela cai para aproximadamente `r round(skew_manual(res6_b), 3)`.
 
-A intuicao economica tambem ajuda: salarios em nivel costumam ser bastante assimetricos, com alguns valores muito altos puxando a distribuicao para a direita. Ao tomar log, comprimimos essa cauda longa e obtemos residuos mais equilibrados ao redor de zero. Portanto, a melhor resposta para o item (c) e que a hipotese de normalidade fica mais plausivel no **modelo semilog**.
+A intui\c{c}\~ao econ\^omica tamb\'em ajuda: sal\'arios em nivel costumam ser bastante assim\'etricos, com alguns valores muito altos puxando a distribui\c{c}\~ao para a direita. Ao tomar log, comprimimos essa cauda longa e obtemos res\'iduos mais equilibrados ao redor de zero. Portanto, a melhor resposta para o item (c) e que a hip\'otese de normalidade fica mais plaus\'ivel no **modelo semilog**.
 
 ```{r, echo=FALSE}
 rm(list = ls())
@@ -501,7 +501,7 @@ rm(list = ls())
 
 ## Questao 5)
 
-Agora resolvemos a questao computacional da Lista 7 usando a base `NBASAL`.
+Agora resolvemos a Quest\~ao computacional da Lista 7 usando a base `NBASAL`.
 
 ```{r lista7-setup, warning=FALSE, message=FALSE}
 library(wooldridge)
@@ -513,11 +513,11 @@ head(nbasal)
 
 - **(i)**
 
-Estimamos primeiro a regressao de `points` sobre `exper`, `exper^2`, `age` e `coll`.
+Estimamos primeiro a regress\~ao de `points` sobre `exper`, `exper^2`, `age` e `coll`.
 
 ```{r lista7-i-modelo}
 
-nbasal$exper2 <- nbasal$exper^2 #criando ao invés de usar o I() dentro do modelo
+nbasal$exper2 <- nbasal$exper^2 #criando ao invÃƒÂ©s de usar o I() dentro do modelo
 
 mod7_i <- lm(points ~ exper + I(exper^2) + age + coll, data = nbasal)
 stargazer(mod7_i, type = "text", digits = 4)
@@ -527,13 +527,13 @@ coef(mod7_i)
 
 
 
-Podemos escrever a equacao estimada como:
+Podemos escrever a equa\c{c}\~ao estimada como:
 
 $$
 \widehat{points} = 35.218 + 2.364\,exper - 0.0770\,exper^2 - 1.074\,age - 1.286\,coll
 $$
 
-Assim, `exper` tem efeito positivo no inicio da carreira, mas com retornos decrescentes por causa do termo quadratico negativo. Alem disso, `coll` aparece com coeficiente negativo e estatisticamente significativo.
+Assim, `exper` tem efeito positivo no in\'icio da carreira, mas com retornos decrescentes por causa do termo quadr\'atico negativo. Al\'em disso, `coll` aparece com coeficiente negativo e estat\'isticamente significativo.
 
 - **(ii)**
 
@@ -550,11 +550,11 @@ turning_point <- -coef(mod7_i)["exper"] / (2 * coef(mod7_i)["I(exper^2)"])
 turning_point
 ```
 
-Isto e, aproximadamente `r round(turning_point, 2)` anos de experiencia. Isso ate faz algum sentido economico, porque jogadores muito experientes podem passar do auge fisico e produtivo. Ainda assim, esse ponto esta bem no fim de uma carreira longa na NBA.
+Isto e, aproximadamente `r round(turning_point, 2)` anos de experiencia. Isso at\'e faz algum sentido econ\^omico, porque jogadores muito experientes podem passar do auge fisico e produtivo. Ainda assim, esse ponto esta bem no fim de uma carreira longa na NBA.
 
 - **(iii)**
 
-O coeficiente negativo de `coll` provavelmente reflete selecao por talento. Jogadores mais talentosos muitas vezes entram mais cedo na NBA, sem permanecer muitos anos na universidade. Portanto, condicional a idade e experiencia na liga, mais anos de faculdade podem estar associados a jogadores que demoraram mais para atingir o nivel da NBA, o que ajuda a explicar menor pontuacao media.
+O coeficiente negativo de `coll` provavelmente reflete sele\c{c}\~ao por talento. Jogadores mais talentosos muitas vezes entram mais cedo na NBA, sem permanecer muitos anos na universidade. Portanto, condicional a idade e experiencia na liga, mais anos de faculdade podem estar associados a jogadores que demoraram mais para atingir o nivel da NBA, o que ajuda a explicar menor pontua\c{c}\~ao m\'edia.
 
 - **(iv)**
 
@@ -572,11 +572,11 @@ O p-valor de `age^2` e:
 coef(summary(mod7_iv))["I(age^2)", "Pr(>|t|)"]
 ```
 
-Como esse p-valor e aproximadamente `r signif(coef(summary(mod7_iv))["I(age^2)", "Pr(>|t|)"], 4)`, nao ha evidencia de que o termo quadratico em `age` seja necessario. Isso sugere que, uma vez controlados experiencia e anos de faculdade, a idade nao parece ter um efeito curvo separado relevante sobre `points`.
+Como esse p-valor e aproximadamente `r signif(coef(summary(mod7_iv))["I(age^2)", "Pr(>|t|)"], 4)`, n\~ao h\'a evidencia de que o termo quadr\'atico em `age` seja necessario. Isso sugere que, uma vez controlados experiencia e anos de faculdade, a idade n\~ao parece ter um efeito curvo separado relevante sobre `points`.
 
 - **(v)**
 
-Agora estimamos a regressao de `log(wage)` sobre `points`, `exper`, `exper^2`, `age` e `coll`.
+Agora estimamos a regress\~ao de `log(wage)` sobre `points`, `exper`, `exper^2`, `age` e `coll`.
 
 ```{r lista7-v-modelo}
 mod7_v <- lm(lwage ~ points + exper + I(exper^2) + age + coll, data = nbasal)
@@ -584,7 +584,7 @@ stargazer(mod7_v, type = "text", digits = 4)
 coef(mod7_v)
 ```
 
-A equacao estimada fica:
+A equa\c{c}\~ao estimada fica:
 
 $$
 \widehat{\log(wage)} = 6.779 + 0.0777\,points + 0.2178\,exper - 0.00708\,exper^2 - 0.0481\,age - 0.0403\,coll
@@ -592,22 +592,22 @@ $$
 
 Os resultados sugerem que:
 
-- um ponto adicional por jogo esta associado a um salario cerca de `r round(100 * coef(mod7_v)["points"], 2)`% maior;
+- um ponto adicional por jogo esta associado a um sal\'ario cerca de `r round(100 * coef(mod7_v)["points"], 2)`% maior;
 - experiencia tem efeito positivo, mas decrescente;
-- `age` e `coll` nao sao individualmente significativos nessa especificacao.
+- `age` e `coll` n\~ao s\~ao individualmente significativos nessa especifica\c{c}\~ao.
 
 - **(vi)**
 
-Por fim, testamos se `age` e `coll` sao conjuntamente significativos na regressao do item (v).
+Por fim, testamos se `age` e `coll` s\~ao conjuntamente significativos na regress\~ao do item (v).
 
 ```{r lista7-vi-teste}
 mod7_vi_restrito <- lm(lwage ~ points + exper + I(exper^2), data = nbasal)
 anova(mod7_vi_restrito, mod7_v)
 ```
 
-O p-valor do teste F conjunto e aproximadamente `r signif(anova(mod7_vi_restrito, mod7_v)$"Pr(>F)"[2], 4)`. Portanto, nao rejeitamos a hipotese nula de que `age` e `coll` sejam conjuntamente iguais a zero.
+O p-valor do teste F conjunto e aproximadamente `r signif(anova(mod7_vi_restrito, mod7_v)$"Pr(>F)"[2], 4)`. Portanto, n\~ao rejeitamos a hip\'otese nula de que `age` e `coll` sejam conjuntamente iguais a zero.
 
-Isso sugere que, uma vez controlados produtividade (`points`) e tempo de servico (`exper` e `exper^2`), idade e educacao nao parecem ter efeitos separados estatisticamente detectaveis sobre salario nessa amostra.
+Isso sugere que, uma vez controlados produtividade (`points`) e tempo de servi\c{c}o (`exper` e `exper^2`), idade e educa\c{c}\~ao n\~ao parecem ter efeitos separados estat\'isticamente detect\'aveis sobre sal\'ario nessa amostra.
 
 ```{r, echo=FALSE}
 rm(list = ls())
@@ -617,7 +617,7 @@ rm(list = ls())
 
 ## Questao 5)
 
-Agora resolvemos a questao computacional da Lista 8 usando a base `SLEEP75`.
+Agora resolvemos a Quest\~ao computacional da Lista 8 usando a base `SLEEP75`.
 
 ```{r lista8-setup, warning=FALSE, message=FALSE}
 library(wooldridge)
@@ -631,7 +631,7 @@ head(sleep75)
 
 - **(i)**
 
-Vamos estimar a equacao separadamente para homens e mulheres.
+Vamos estimar a equa\c{c}\~ao separadamente para homens e mulheres.
 
 ```{r lista8-i-modelos}
 mod8_h <- lm(sleep ~ totwrk + educ + age + I(age^2) + yngkid,
@@ -643,11 +643,11 @@ stargazer(mod8_h, mod8_m, type = "text", digits = 4,
           column.labels = c("Homens", "Mulheres"))
 ```
 
-Em ambos os grupos, esperamos que `totwrk` tenha efeito negativo sobre `sleep`: mais minutos de trabalho por semana devem reduzir o tempo de sono. A comparacao das duas equacoes permite ver se esse efeito, bem como os efeitos de `educ`, `age` e `yngkid`, mudam muito por genero.
+Em ambos os grupos, esperamos que `totwrk` tenh\'a efeito negativo sobre `sleep`: mais minutos de trabalho por semana devem reduzir o tempo de sono. A compara\c{c}\~ao das duas equa\c{c}\~oes permite ver se esse efeito, bem como os efeitos de `educ`, `age` e `yngkid`, mudam muito por g\^enero.
 
 - **(ii)**
 
-Agora fazemos o teste de Chow na forma sugerida pelo enunciado: um modelo restrito com os mesmos coeficientes para homens e mulheres, contra um modelo irrestrito com intercepto diferente e todas as interacoes com `male`.
+Agora fazemos o teste de Chow na forma sugerida pelo enunciado: um modelo restrito com os mesmos coeficientes para homens e mulheres, contra um modelo irrestrito com intercepto diferente e todas as intera\c{c}\~oes com `male`.
 
 ```{r lista8-ii-chow}
 mod8_r <- lm(sleep ~ totwrk + educ + age + I(age^2) + yngkid, data = sleep75)
@@ -661,16 +661,16 @@ mod8_u <- lm(
 anova(mod8_r, mod8_u)
 ```
 
-Aqui o numero de restricoes e `6`: uma para o intercepto e cinco para as inclinacoes. Assim, os graus de liberdade relevantes sao:
+Aqui o n\'umero de restri\c{c}\~oes e `6`: uma para o intercepto e cinco para as inclina\c{c}\~oes. Assim, os graus de liberdade relevantes s\~ao:
 
 - no numerador: `6`;
 - no denominador: `r df.residual(mod8_u)`.
 
-O p-valor do teste e `r signif(anova(mod8_r, mod8_u)$"Pr(>F)"[2], 4)`. Portanto, a decisao a 5\% vem diretamente desse valor.
+O p-valor do teste e `r signif(anova(mod8_r, mod8_u)$"Pr(>F)"[2], 4)`. Portanto, a decis\~ao a 5\% vem diretamente desse valor.
 
 - **(iii)**
 
-Agora permitimos apenas interceptos diferentes e testamos se os termos de interacao sao conjuntamente significativos.
+Agora permitimos apenas interceptos diferentes e testamos se os termos de intera\c{c}\~ao s\~ao conjuntamente significativos.
 
 ```{r lista8-iii-interacoes}
 mod8_int <- lm(sleep ~ male + totwrk + educ + age + I(age^2) + yngkid,
@@ -679,13 +679,13 @@ mod8_int <- lm(sleep ~ male + totwrk + educ + age + I(age^2) + yngkid,
 anova(mod8_int, mod8_u)
 ```
 
-Neste caso, o numero de restricoes e `5`, correspondendo as cinco inclinacoes adicionais. O p-valor do teste e `r signif(anova(mod8_int, mod8_u)$"Pr(>F)"[2], 4)`.
+Neste caso, o n\'umero de restri\c{c}\~oes e `5`, correspondendo as cinco inclina\c{c}\~oes adicionais. O p-valor do teste e `r signif(anova(mod8_int, mod8_u)$"Pr(>F)"[2], 4)`.
 
 - **(iv)**
 
-No item (ii), rejeitamos a hipotese nula de igualdade completa entre as equacoes de homens e mulheres. No item (iii), nao rejeitamos a hipotese nula de que as inclinacoes sejam iguais entre os grupos.
+No item (ii), rejeitamos a hip\'otese nula de igualdade completa entre as equa\c{c}\~oes de homens e mulheres. No item (iii), n\~ao rejeitamos a hip\'otese nula de que as inclina\c{c}\~oes sejam iguais entre os grupos.
 
-Portanto, o modelo final deve permitir **apenas interceptos diferentes por genero**, mantendo as inclinacoes iguais. Em outras palavras, a especificacao escolhida e a do modelo `mod8_int`.
+Portanto, o modelo final deve permitir **apenas interceptos diferentes por g\^enero**, mantendo as inclina\c{c}\~oes iguais. Em outras palavras, a especifica\c{c}\~ao escolhida e a do modelo `mod8_int`.
 
 ```{r, echo=FALSE}
 rm(list = ls())
@@ -696,7 +696,7 @@ rm(list = ls())
 
 ## Questao 5)
 
-Agora resolvemos a questao computacional da Lista 9 com a base `CHARITY`.
+Agora resolvemos a Quest\~ao computacional da Lista 9 com a base `CHARITY`.
 
 ```{r lista9-setup, warning=FALSE, message=FALSE}
 library(wooldridge)
@@ -708,7 +708,7 @@ head(charity)
 
 - **(i)**
 
-Vamos comecar estimando o modelo de probabilidade linear com `respond`, `resplast` e `avggift`.
+Vamos come\c{c}ar estimando o modelo de probabilidade linear com `respond`, `resplast` e `avggift`.
 
 ```{r lista9-i-modelo}
 mod9_i <- lm(respond ~ resplast + avggift, data = charity)
@@ -717,20 +717,17 @@ stargazer(mod9_i, type = "text", digits = 4)
 coef(mod9_i)
 ```
 
-O coeficiente de `resplast` mede a diferenca na probabilidade de responder a nova correspondencia entre quem respondeu e quem nao respondeu a correspondencia anterior, mantendo `avggift` fixa.
+O coeficiente de `resplast` mede a diferen\c{c}a na probabilidade de responder a nova correspond\^encia entre quem respondeu e quem n\~ao respondeu a correspond\^encia anterior, mantendo `avggift` fixa.
 
 - **(ii)**
 
-Para avaliar se `avggift` afeta a probabilidade de resposta, basta olhar seu coeficiente e p-valor na regressao acima.
+Para avaliar se `avggift` afeta a probabilidade de resposta, basta olhar seu coeficiente e p-valor na regress\~ao acima.
 
 ```{r lista9-ii-avggift}
 coef(summary(mod9_i))["avggift", ]
 ```
 
-O p-valor de `avggift` e `r signif(coef(summary(mod9_i))["avggift", "Pr(>|t|)"], 4)`. Portanto:
-
-- se esse p-valor for menor que 0,05, concluimos que `avggift` afeta a probabilidade de resposta;
-- se esse p-valor for maior ou igual a 0,05, concluimos que `avggift` nao e estatisticamente relevante nessa regressao.
+O p-valor de `avggift` e `r signif(coef(summary(mod9_i))["avggift", "Pr(>|t|)"], 4)`, que e `r ifelse(coef(summary(mod9_i))["avggift", "Pr(>|t|)"] < 0.05, "menor", "nao menor")` que `0,05`. Portanto, `r ifelse(coef(summary(mod9_i))["avggift", "Pr(>|t|)"] < 0.05, "rejeitamos a hipotese nula de coeficiente zero e concluimos que avggift afeta a probabilidade de resposta", "nao rejeitamos a hipotese nula de coeficiente zero e concluimos que avggift nao e estatisticamente relevante nessa regressao")`.
 
 - **(iii)**
 
@@ -743,11 +740,11 @@ stargazer(mod9_iii, type = "text", digits = 4)
 coef(mod9_iii)
 ```
 
-Como `propresp` e uma proporcao entre 0 e 1, um aumento de uma unidade representa a maior variacao possivel: passar de nunca responder para sempre responder. Logo, o coeficiente de `propresp` deve ser lido como o efeito total dessa mudanca extrema; uma variacao de 0,10 em `propresp` corresponde a 10\% desse efeito.
+Como `propresp` e uma propor\c{c}\~ao entre 0 e 1, um aumento de uma unidade representa a maior varia\c{c}\~ao poss\'ivel: passar de nunca responder para sempre responder. Logo, o coeficiente de `propresp` deve ser lido como o efeito total dessa mudan\c{c}a extrema; uma varia\c{c}\~ao de 0,10 em `propresp` corresponde a 10\% desse efeito.
 
 - **(iv)**
 
-Agora comparamos o coeficiente de `resplast` antes e depois da inclusao de `propresp`.
+Agora comparamos o coeficiente de `resplast` antes e depois da inclus\~ao de `propresp`.
 
 ```{r lista9-iv-comparacao}
 c(
@@ -756,7 +753,7 @@ c(
 )
 ```
 
-Se o coeficiente de `resplast` cair bastante apos incluir `propresp`, essa queda faz sentido e deve ser registrada explicitamente na resposta: `propresp` capta o historico geral de resposta do doador e absorve parte do efeito que antes era atribuido apenas a ultima resposta observada.
+O coeficiente de `resplast` passa de `r round(coef(mod9_i)["resplast"], 4)` para `r round(coef(mod9_iii)["resplast"], 4)`, uma varia\c{c}\~ao de `r round(coef(mod9_iii)["resplast"] - coef(mod9_i)["resplast"], 4)`. Portanto, `r ifelse(abs(coef(mod9_iii)["resplast"]) < abs(coef(mod9_i)["resplast"]), "o efeito de resplast diminui apos a inclusao de propresp, o que faz sentido porque propresp absorve parte do historico de resposta do doador", "o efeito de resplast nao diminui apos a inclusao de propresp, indicando que propresp nao absorveu parte relevante desse efeito nesta amostra")`.
 
 - **(v)**
 
@@ -769,9 +766,9 @@ stargazer(mod9_v, type = "text", digits = 4)
 coef(mod9_v)
 ```
 
-O coeficiente estimado de `mailsyear` e `r round(coef(mod9_v)["mailsyear"], 4)`. Portanto, uma correspondencia adicional por ano altera a probabilidade prevista de resposta em aproximadamente `r round(100 * coef(mod9_v)["mailsyear"], 2)` pontos percentuais, mantidas as demais variaveis fixas.
+O coeficiente estimado de `mailsyear` e `r round(coef(mod9_v)["mailsyear"], 4)`. Portanto, uma correspond\^encia adicional por ano altera a probabilidade prevista de resposta em aproximadamente `r round(100 * coef(mod9_v)["mailsyear"], 2)` pontos percentuais, mantidas as demais vari\'aveis fixas.
 
-Essa estimativa, porem, nao deve ser interpretada como causal. A conclusao objetiva aqui e: `mailsyear` pode estar correlacionada com caracteristicas nao observadas do doador, de modo que seu coeficiente tem interpretacao associativa, e nao necessariamente causal.
+Essa estimativa, porem, n\~ao deve ser interpretada como causal. A conclus\~ao objetiva aqui e: `mailsyear` pode estar correlacionada com caracteristicas n\~ao observadas do doador, de modo que seu coeficiente tem interpretacao associativa, e n\~ao necessariamente causal.
 
 ```{r, echo=FALSE}
 rm(list = ls())
@@ -781,7 +778,7 @@ rm(list = ls())
 
 ## Questao 5)
 
-Agora resolvemos a questao computacional da Lista 10 com a base `FERTIL2`.
+Agora resolvemos a Quest\~ao computacional da Lista 10 com a base `FERTIL2`.
 
 ```{r lista10-setup, warning=FALSE, message=FALSE}
 library(wooldridge)
@@ -795,7 +792,7 @@ head(fertil2)
 
 - **(i)**
 
-Primeiro estimamos o modelo pedido e registramos erros padrao usuais e robustos.
+Primeiro estimamos o modelo pedido e registramos erros padr\~ao usuais e robustos.
 
 ```{r lista10-i-modelo}
 mod10_i <- lm(children ~ age + I(age^2) + educ + electric + urban, data = fertil2)
@@ -804,11 +801,11 @@ stargazer(mod10_i, type = "text", digits = 4)
 coeftest(mod10_i, vcov. = vcovHC(mod10_i, type = "HC1"))
 ```
 
-O ponto principal aqui e comparar os erros padrao usuais com os robustos. Em geral, eles nao precisam ser sempre maiores: a heteroscedasticidade pode aumentar alguns e reduzir outros.
+O ponto principal aqui e comparar os erros padr\~ao usuais com os robustos. Em geral, eles n\~ao precisam ser sempre maiores: a heteroscedasticidade pode aumentar alguns e reduzir outros.
 
 - **(ii)**
 
-Agora adicionamos tres dummies de religiao.
+Agora adicionamos tres dummies de religi\~ao.
 
 ```{r lista10-ii-modelo}
 mod10_ii <- lm(children ~ age + I(age^2) + educ + electric + urban +
@@ -824,19 +821,19 @@ waldtest(mod10_i, mod10_ii, vcov = vcovHC(mod10_ii, type = "HC1"), test = "F")
 
 Com isso, obtemos:
 
-- o teste \(F\) usual da significancia conjunta das tres dummies;
-- e o teste robusto a heteroscedasticidade para as mesmas restricoes.
+- o teste \(F\) usual da signific\^ancia conjunta das tres dummies;
+- e o teste robusto a heteroscedasticidade para as mesmas restri\c{c}\~oes.
 
-Os p-valores desses dois testes sao:
+Os p-valores desses dois testes s\~ao:
 
 - teste \(F\) usual: `r signif(anova(mod10_i, mod10_ii)$"Pr(>F)"[2], 4)`;
-- teste \(F\) robusto: `r signif(waldtest(mod10_i, mod10_ii, vcov = vcovHC(mod10_ii, type = "HC1"), test = "F")$`Pr(>F)`[2], 4)`.
+- teste \(F\) robusto: `r signif(waldtest(mod10_i, mod10_ii, vcov = vcovHC(mod10_ii, type = "HC1"), test = "F")[2, "Pr(>F)"], 4)`.
 
-Portanto, a decisao sobre a significancia conjunta das dummies de religiao deve ser dada diretamente com base nesses dois valores.
+O p-valor usual e `r signif(anova(mod10_i, mod10_ii)$"Pr(>F)"[2], 4)`, que e `r ifelse(anova(mod10_i, mod10_ii)$"Pr(>F)"[2] < 0.05, "menor", "nao menor")` que `0,05`. O p-valor robusto e `r signif(waldtest(mod10_i, mod10_ii, vcov = vcovHC(mod10_ii, type = "HC1"), test = "F")[2, "Pr(>F)"], 4)`, que e `r ifelse(waldtest(mod10_i, mod10_ii, vcov = vcovHC(mod10_ii, type = "HC1"), test = "F")[2, "Pr(>F)"] < 0.05, "menor", "nao menor")` que `0,05`. Portanto, `r ifelse(anova(mod10_i, mod10_ii)$"Pr(>F)"[2] < 0.05, "rejeitamos a hipotese nula de insignificancia conjunta das dummies de religiao pelo teste usual", "nao rejeitamos a hipotese nula de insignificancia conjunta das dummies de religiao pelo teste usual")`; e `r ifelse(waldtest(mod10_i, mod10_ii, vcov = vcovHC(mod10_ii, type = "HC1"), test = "F")[2, "Pr(>F)"] < 0.05, "tambem rejeitamos essa hipotese pelo teste robusto", "nao rejeitamos essa hipotese pelo teste robusto")`.
 
 - **(iii)**
 
-Agora avaliamos a heteroscedasticidade a partir da regressao auxiliar sobre os residuos ao quadrado.
+Agora avaliamos a heteroscedasticidade a partir da regress\~ao auxiliar sobre os residuos ao quadrado.
 
 ```{r lista10-iii-auxiliar}
 uhat10 <- resid(mod10_ii)
@@ -848,14 +845,11 @@ summary(mod10_aux)
 anova(lm(I(uhat10^2) ~ 1), mod10_aux)
 ```
 
-O p-valor desse teste auxiliar e `r signif(anova(lm(I(uhat10^2) ~ 1), mod10_aux)$"Pr(>F)"[2], 4)`. Portanto:
-
-- se esse p-valor for menor que 0,05, rejeitamos homocedasticidade;
-- se esse p-valor for maior ou igual a 0,05, nao rejeitamos homocedasticidade.
+O p-valor desse teste auxiliar e `r signif(anova(lm(I(uhat10^2) ~ 1), mod10_aux)$"Pr(>F)"[2], 4)`, que e `r ifelse(anova(lm(I(uhat10^2) ~ 1), mod10_aux)$"Pr(>F)"[2] < 0.05, "menor", "nao menor")` que `0,05`. Portanto, `r ifelse(anova(lm(I(uhat10^2) ~ 1), mod10_aux)$"Pr(>F)"[2] < 0.05, "rejeitamos homocedasticidade e concluimos que ha evidencia de heterocedasticidade", "nao rejeitamos homocedasticidade")`.
 
 - **(iv)**
 
-Objetivamente, a resposta do item (iv) deve seguir esta regra: se no item (iii) rejeitamos homocedasticidade, mas os erros padrao robustos do item (i) e os testes robustos do item (ii) levam as mesmas conclusoes substantivas dos testes usuais, entao a heteroscedasticidade **nao e importante na pratica**. Se as conclusoes mudarem de forma relevante, entao ela **e importante na pratica**.
+No item (iii), `r ifelse(anova(lm(I(uhat10^2) ~ 1), mod10_aux)$"Pr(>F)"[2] < 0.05, "rejeitamos homocedasticidade", "nao rejeitamos homocedasticidade")`. Comparando os resultados usuais e robustos dos itens (i) e (ii), a conclus\~ao final e: `r ifelse((anova(lm(I(uhat10^2) ~ 1), mod10_aux)$"Pr(>F)"[2] < 0.05) && ((anova(mod10_i, mod10_ii)$"Pr(>F)"[2] < 0.05) == (waldtest(mod10_i, mod10_ii, vcov = vcovHC(mod10_ii, type = "HC1"), test = "F")[2, "Pr(>F)"] < 0.05)), "a heterocedasticidade nao e importante na pratica, porque as conclusoes substantivas nao mudam", ifelse(anova(lm(I(uhat10^2) ~ 1), mod10_aux)$"Pr(>F)"[2] < 0.05, "a heterocedasticidade e importante na pratica, porque altera as conclusoes entre os procedimentos usual e robusto", "a heterocedasticidade nao se mostra um problema empiricamente relevante nesta aplicacao"))`.
 
 ```{r, echo=FALSE}
 rm(list = ls())
@@ -865,7 +859,7 @@ rm(list = ls())
 
 ## Questao 5)
 
-Agora resolvemos a questao computacional da Lista 11 com a base `ECONMATH`.
+Agora resolvemos a Quest\~ao computacional da Lista 11 com a base `ECONMATH`.
 
 ```{r lista11-setup, warning=FALSE, message=FALSE}
 library(wooldridge)
@@ -879,7 +873,7 @@ head(econmath)
 
 - **(i)**
 
-Primeiro, identificamos quantos estudantes nao possuem nota de `act`.
+Primeiro, identificamos quantos estudantes n\~ao possuem nota de `act`.
 
 ```{r lista11-i-missing}
 econmath$actmiss <- as.integer(is.na(econmath$act))
@@ -907,11 +901,11 @@ mean_act0
 mean_act
 ```
 
-Como `act0` coloca zero nos casos ausentes, sua media tende a ser menor do que a media de `act` calculada apenas entre observacoes validas.
+Como `act0` coloca zero nos casos ausentes, sua m\'edia tende a ser menor do que a m\'edia de `act` calculada apenas entre observacoes validas.
 
 - **(iii)**
 
-Agora estimamos a regressao simples de `score` sobre `act` usando apenas casos completos e calculamos o erro padrao robusto.
+Agora estimamos a regress\~ao simples de `score` sobre `act` usando apenas casos completos e calculamos o erro padr\~ao robusto.
 
 ```{r lista11-iii-modelo}
 mod11_iii <- lm(score ~ act, data = econmath, subset = !is.na(act))
@@ -920,7 +914,7 @@ stargazer(mod11_iii, type = "text", digits = 4)
 coeftest(mod11_iii, vcov. = vcovHC(mod11_iii, type = "HC1"))
 ```
 
-O coeficiente de `act` nesta regressao mede quanto a nota final do curso aumenta, em media, para um ponto adicional no ACT, usando somente os alunos para os quais essa nota foi observada.
+O coeficiente de `act` nesta regress\~ao mede quanto a nota final do curso aumenta, em m\'edia, para um ponto adicional no ACT, usando somente os alunos para os quais essa nota foi observada.
 
 - **(iv)**
 
@@ -933,7 +927,7 @@ stargazer(mod11_iv, type = "text", digits = 4)
 coeftest(mod11_iv, vcov. = vcovHC(mod11_iv, type = "HC1"))
 ```
 
-O coeficiente de `act0` no item (iv) deve ser comparado com o coeficiente de `act` no item (iii). Como zero nao e uma nota plausivel de ACT, tratar ausencias como zero distorce a inclinacao. Portanto, a estimativa do item (iv) nao deve ser preferida a do item (iii).
+O coeficiente de `act0` no item (iv) deve ser comparado com o coeficiente de `act` no item (iii). Como zero n\~ao e uma nota plaus\'ivel de ACT, tratar ausencias como zero distorce a inclina\c{c}\~ao. Portanto, a estimativa do item (iv) n\~ao deve ser preferida a do item (iii).
 
 - **(v)**
 
@@ -946,15 +940,15 @@ stargazer(mod11_v, type = "text", digits = 4)
 coeftest(mod11_v, vcov. = vcovHC(mod11_v, type = "HC1"))
 ```
 
-Aqui, `actmiss` permite um deslocamento de intercepto para o grupo com ACT ausente. A inclinacao de `act0` no item (v) deve ser comparada com as dos itens (iii) e (iv): se ela ficar mais proxima da estimativa de casos completos do item (iii), entao a dummy de ausencia melhora claramente a especificacao.
+Aqui, `actmiss` permite um deslocamento de intercepto para o grupo com ACT ausente. A inclina\c{c}\~ao estimada de `act0` no item (v) e `r round(coef(mod11_v)["act0"], 4)`, contra `r round(coef(mod11_iii)["act"], 4)` no item (iii) e `r round(coef(mod11_iv)["act0"], 4)` no item (iv). Portanto, `r ifelse(abs(coef(mod11_v)["act0"] - coef(mod11_iii)["act"]) < abs(coef(mod11_iv)["act0"] - coef(mod11_iii)["act"]), "a inclusao de actmiss melhora a especificacao, pois aproxima a inclinacao daquela obtida com casos completos", "a inclusao de actmiss nao melhora a especificacao de forma clara nesta amostra")`.
 
 - **(vi)**
 
-O item (v) e preferivel ao item (iv), porque usa toda a amostra sem impor que observacoes com ACT ausente tenham `ACT = 0`. Se o coeficiente de `act0` em (v) ficar mais proximo do coeficiente de `act` em (iii), concluimos objetivamente que a inclusao de `actmiss` melhora a estimacao de \(\beta_1\).
+O coeficiente de `act0` em (v) fica a `r round(abs(coef(mod11_v)["act0"] - coef(mod11_iii)["act"]), 4)` da estimativa de casos completos, enquanto em (iv) essa distancia e `r round(abs(coef(mod11_iv)["act0"] - coef(mod11_iii)["act"]), 4)`. Portanto, `r ifelse(abs(coef(mod11_v)["act0"] - coef(mod11_iii)["act"]) < abs(coef(mod11_iv)["act0"] - coef(mod11_iii)["act"]), "o uso de todos os casos com a dummy actmiss melhora a estimacao de beta_1", "o uso de todos os casos com a dummy actmiss nao melhora a estimacao de beta_1 em relacao ao item (iv)")`.
 
 - **(vii)**
 
-Por fim, adicionamos `colgpa` as especificacoes dos itens (iii) e (v).
+Por fim, adicionamos `colgpa` as especifica\c{c}\~oes dos itens (iii) e (v).
 
 ```{r lista11-vii-modelos}
 mod11_vii_cc <- lm(score ~ act + colgpa, data = econmath, subset = !is.na(act))
@@ -967,8 +961,9 @@ coeftest(mod11_vii_cc, vcov. = vcovHC(mod11_vii_cc, type = "HC1"))
 coeftest(mod11_vii_full, vcov. = vcovHC(mod11_vii_full, type = "HC1"))
 ```
 
-Como `colgpa` e uma variavel muito informativa sobre desempenho, ela tende a reduzir a diferenca entre as especificacoes. Se, apos incluir `colgpa`, os coeficientes de `act` e `act0` ficarem ainda mais proximos entre os modelos de casos completos e de amostra total, entao a resposta ao item (vi) passa a ser ainda mais favoravel ao uso do modelo com `actmiss`.
+No modelo com `colgpa`, a distancia entre a inclina\c{c}\~ao de casos completos e a da amostra total com `actmiss` e `r round(abs(coef(mod11_vii_full)["act0"] - coef(mod11_vii_cc)["act"]), 4)`. Sem `colgpa`, essa distancia era `r round(abs(coef(mod11_v)["act0"] - coef(mod11_iii)["act"]), 4)`. Portanto, `r ifelse(abs(coef(mod11_vii_full)["act0"] - coef(mod11_vii_cc)["act"]) < abs(coef(mod11_v)["act0"] - coef(mod11_iii)["act"]), "apos incluir colgpa, a resposta ao item (vi) fica ainda mais favoravel ao uso do modelo com actmiss", "apos incluir colgpa, a resposta ao item (vi) nao fica mais favoravel ao uso do modelo com actmiss")`.
 
 ```{r, echo=FALSE}
 rm(list = ls())
 ```
+
