@@ -1,0 +1,143 @@
+\documentclass[12pt,letterpaper,onecolumn]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt,tmargin=1.2in]{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+\thispagestyle{empty}
+
+\begin{document}
+
+\begingroup
+    \centering
+    \LARGE Exercícios Extras - Econometria I - 2026\\[0.5em]
+    \large Selecionados das Listas 5 a 11 \par
+\endgroup
+\rule{\textwidth}{0.4pt}
+
+\begin{questions}
+
+\question \textbf{L10 (2(8.7))} Considere um modelo em nível de empregado,
+\[
+y_{i,e} = \beta_0 + \beta_1 x_{i,e,1} + \beta_2 x_{i,e,2} + \cdots + \beta_k x_{i,e,k} + f_i + v_{i,e},
+\]
+em que a variável não observada \(f_i\) é um ``efeito da empresa'' para cada empregado da empresa \(i\). O termo de erro \(v_{i,e}\) é específico do empregado e da empresa. O erro de combinação é \(u_{i,e} = f_i + v_{i,e}\), como na equação (8.28).
+\begin{enumerate}[label=(\roman*)]
+    \item Suponha que \(\operatorname{Var}(f_i)=\sigma_f^2\), \(\operatorname{Var}(v_{i,e})=\sigma_v^2\), e que \(f_i\) e \(v_{i,e}\) sejam não correlacionadas. Demonstre que \(\operatorname{Var}(u_{i,e})=\sigma_f^2+\sigma_v^2\). Chame esse valor de \(\sigma^2\).
+    \item Agora suponha que, para \(e \neq g\), \(v_{i,e}\) e \(v_{i,g}\) sejam não correlacionadas. Demonstre que \(\operatorname{Cov}(u_{i,e},u_{i,g})=\sigma_f^2\).
+    \item Seja
+    \[
+    \bar{u}_i = m_i^{-1}\sum_{e=1}^{m_i} u_{i,e}
+    \]
+    a média dos erros de combinação em determinada empresa. Demonstre que
+    \[
+    \operatorname{Var}(\bar{u}_i)=\sigma_f^2+\frac{\sigma_v^2}{m_i}.
+    \]
+    \item Detalhe a relevância do item (iii) para a estimação por MQP usando dados nivelados pela média da empresa, em que o peso usado para a observação \(i\) é o tamanho da empresa.
+\end{enumerate}
+
+\vspace{0.7cm}
+
+\question \textbf{L6 (2(ANPEC, 2012))} Usando uma base de dados que tem informações de 65.535 trabalhadores, queremos verificar se existe desigualdade salarial entre os setores da economia. Considere que a economia está dividida em quatro setores: indústria, comércio, serviços e construção. Cada um dos trabalhadores está em um dos quatro setores e eles são mutuamente exclusivos. Seja \(Y_i\) o salário mensal do trabalhador \(i\) e definimos para cada setor uma variável binária que é igual a 1 se o trabalhador pertence ao setor e 0 caso contrário. Estimando um modelo linear de regressão, obtemos o seguinte resultado:
+
+\[
+\hat{Y}_i = 4{,}00 + 0{,}12\,educ_i + 0{,}03\,idade_i + 0{,}40\,homem_i - 0{,}05\,DI_i - 0{,}15\,DC_i - 0{,}25\,DCons_i
+\]
+\vspace{-0.8cm}
+\[
+\quad (0{,}02)\quad (0{,}008)\quad (0{,}0001)\qquad (0{,}0005)\qquad (0{,}0011)\qquad (0{,}003)\qquad (0{,}005)
+\]
+\[
+R^2 = 0{,}83
+\]
+
+Em que \textit{educ} representa o número de anos de estudo de cada trabalhador, \textit{idade} é medida em anos, \textit{homem} é uma variável binária que assume valor igual a 1 se é homem e 0 caso contrário, \(DI\) representa a dummy para indústria, \(DC\) para comércio e \(DCons\) para construção. Entre parênteses encontra-se o erro-padrão de cada estimativa.
+
+Baseado nas informações anteriores, julgue as seguintes afirmativas:
+\begin{enumerate}[label=(\arabic*)]
+    \item Com base nos resultados anteriores é possível rejeitar ao nível de 5\% de significância a hipótese nula de que o salário do setor da indústria é igual ao salário do setor de serviços para trabalhadores com o mesmo nível educacional, a mesma idade e do mesmo sexo. A hipótese alternativa é que os salários nestes setores sejam diferentes.
+    \item Com base nos resultados anteriores é possível rejeitar ao nível de 5\% de significância a hipótese nula de que o salário no setor de construção é igual ao salário no setor de comércio, mantendo educação, idade e sexo fixos. A hipótese alternativa é que os salários nesses setores sejam diferentes.
+    \item Com base nos resultados anteriores, é possível rejeitar ao nível de 5\% de significância a hipótese nula de que os salários nos 4 setores da economia são iguais, mantendo constante educação, idade e sexo.
+    \item Os resultados do modelo anterior permitem testar a hipótese nula de que o retorno salarial entre homem e mulher é diferente para cada nível educacional, ao nível de 5\% de significância.
+    \item Com base nos resultados anteriores, podemos testar a hipótese de que o intercepto do modelo linear de salário em função de educação, idade e setor para homem é diferente do intercepto do mesmo modelo linear de salário para mulher.
+\end{enumerate}
+
+
+\vspace{0.7cm}
+
+\question \textbf{L9 (2(7.9))} Seja \(d\) uma variável \textit{dummy} (binária) e \(z\) uma variável quantitativa. Considere o modelo
+\[
+y = \beta_0 + \delta_0 d + \beta_1 z + \delta_1 d \cdot z + u;
+\]
+essa é uma versão geral de um modelo com uma interação entre uma variável \textit{dummy} e uma variável quantitativa. [Um exemplo está na equação (7.17).]
+\begin{enumerate}[label=(\roman*)]
+    \item Como isso não alterará nada importante, defina o erro com valor zero, \(u=0\). Então, quando \(d=0\), podemos escrever o relacionamento entre \(y\) e \(z\) como a função \(f_0(z)=\beta_0+\beta_1 z\). Escreva essa mesma relação quando \(d=1\), em que você deve usar \(f_1(z)\) no lado esquerdo para denotar a função linear de \(z\).
+    \item Considerando \(\delta_1 \neq 0\) (o que significa que as duas não são paralelas), demonstre que o valor de \(z^\ast\) é tal que \(f_0(z^\ast)=f_1(z^\ast)\) e \(z^\ast = -\delta_0/\delta_1\). Esse é o ponto no qual as duas linhas se cruzam [como na Figura 7.2(b)]. Demonstre que \(z^\ast\) será positivo se, e somente se, \(\delta_0\) e \(\delta_1\) tiverem sinais opostos.
+    \item Usando os dados contidos no arquivo \texttt{TWOYEAR}, a seguinte equação poderá ser estimada:
+    \[
+    \widehat{\log(wage)} = 2{,}289 - 0{,}357\,female + 0{,}050\,totcoll + 0{,}030\,female \cdot totcoll
+    \]
+    \[
+    \hspace{2.0cm} (0{,}011)\hspace{1.2cm}(0{,}015)\hspace{1.1cm}(0{,}003)\hspace{1.0cm}(0{,}005)
+    \]
+    \[
+    n = 6{,}763,\; R^2 = 0{,}202
+    \]
+    em que todos os coeficientes e erros-padrão foram arredondados com três casas decimais. Usando essa equação, encontre o valor de \textit{totcoll} de tal forma que os valores previstos de \(\log(wage)\) sejam os mesmos tanto para homens quanto para mulheres.
+    \item Com base na equação do item (iii), as mulheres podem, de forma realística, obter educação superior de modo que seus ganhos alcancem os dos homens? Explique.
+\end{enumerate}
+
+\vspace{0.7cm}
+
+\question \textbf{Questão nova: desempenho em matemática e especificação do modelo}
+
+Suponha que uma pesquisadora esteja interessada em estudar o desempenho em matemática de escolas usando dados do arquivo \texttt{MEAPSINGLE}, de Wooldridge. A variável dependente é \textit{math4}, a porcentagem de alunos da quarta série aprovados no teste de matemática. A principal variável explicativa é \textit{lexppp}, o logaritmo dos gastos por estudante. A pesquisadora estima diferentes especificações por MQO. Os resultados hipotéticos estão na tabela abaixo.
+
+\begin{center}
+\small
+\begin{tabular}{lccccc}
+\toprule
+& \multicolumn{5}{c}{Variável dependente: \textit{math4}} \\
+\cmidrule(lr){2-6}
+Regressores & (1) & (2) & (3) & (4) & (5) \\
+\midrule
+\textit{lexppp} & 6{,}85 & 9{,}01 & 1{,}93 & 68{,}40 & 11{,}40 \\
+& (3{,}10) & (4{,}04) & (2{,}82) & (41{,}20) & (4{,}35) \\[0.15cm]
+\textit{lexppp}\(^2\) & -- & -- & -- & -3{,}45 & -- \\
+& -- & -- & -- & (2{,}18) & -- \\[0.15cm]
+\textit{free} & -- & -0{,}422 & -0{,}060 & -0{,}419 & 0{,}820 \\
+& -- & (0{,}071) & (0{,}054) & (0{,}071) & (0{,}410) \\[0.15cm]
+\textit{lmedinc} & -- & -0{,}752 & -10{,}78 & -0{,}710 & -1{,}10 \\
+& -- & (5{,}358) & (3{,}76) & (5{,}30) & (5{,}22) \\[0.15cm]
+\textit{pctsgle} & -- & -0{,}274 & -0{,}397 & -0{,}270 & -0{,}250 \\
+& -- & (0{,}161) & (0{,}111) & (0{,}160) & (0{,}158) \\[0.15cm]
+\textit{read4} & -- & -- & 0{,}667 & -- & -- \\
+& -- & -- & (0{,}042) & -- & -- \\[0.15cm]
+\textit{lexppp}\(\times\)\textit{free} & -- & -- & -- & -- & -0{,}145 \\
+& -- & -- & -- & -- & (0{,}052) \\[0.15cm]
+Constante & 18{,}30 & 24{,}49 & 149{,}38 & -271{,}20 & 4{,}80 \\
+& (25{,}10) & (59{,}24) & (41{,}70) & (193{,}60) & (61{,}50) \\
+\midrule
+Observações & 229 & 229 & 229 & 229 & 229 \\
+\(R^2\) & 0{,}031 & 0{,}472 & 0{,}749 & 0{,}478 & 0{,}486 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent \textit{Variáveis:} \textit{math4} = porcentagem de aprovação no teste de matemática; \textit{lexppp} = log dos gastos por estudante; \textit{free} = porcentagem de alunos elegíveis para merenda gratuita; \textit{lmedinc} = log da renda mediana do distrito; \textit{pctsgle} = porcentagem de alunos de famílias monoparentais; \textit{read4} = porcentagem de aprovação no teste de leitura.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Compare as estimativas do coeficiente de \textit{lexppp} nas colunas (1), (2) e (3). O que muda quando controles socioeconômicos são adicionados? O que muda quando \textit{read4} é adicionada?
+    \item Usando a coluna (2), interprete o coeficiente de \textit{lexppp}. Qual é o efeito estimado de um aumento de 10\% nos gastos por estudante sobre \textit{math4}? Esse efeito é estatisticamente significante ao nível de 5\%?
+    \item Compare as colunas (2) e (4). A inclusão do termo quadrático \textit{lexppp}\(^2\) parece importante? Com base na coluna (4), em que valor de \textit{lexppp} o efeito marginal dos gastos se torna zero?
+    \item A coluna (3) tem \(R^2\) muito maior do que a coluna (2). Explique por que, apesar disso, a coluna (2) pode ser mais adequada caso o objetivo seja estimar o efeito causal dos gastos por estudante sobre o desempenho em matemática.
+    \item Na coluna (5), o modelo inclui a interação \textit{lexppp}\(\times\)\textit{free}. Escreva o efeito marginal de \textit{lexppp} sobre \textit{math4}. Calcule esse efeito quando \textit{free}=20 e quando \textit{free}=60. O que essa especificação sugere sobre a relação entre gastos e desempenho em escolas com maior proporção de alunos pobres?
+\end{enumerate}
+
+\end{questions}
+
+\end{document}

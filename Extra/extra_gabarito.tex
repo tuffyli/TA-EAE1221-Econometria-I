@@ -1,0 +1,447 @@
+\documentclass[12pt,letterpaper,onecolumn]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt,tmargin=1.2in]{geometry}
+\usepackage{enumitem}
+
+\thispagestyle{empty}
+
+\begin{document}
+
+\begingroup
+    \centering
+    \LARGE Gabarito - Exercícios Extras\\[0.5em]
+    \large Econometria I - 2026 \par
+\endgroup
+\rule{\textwidth}{0.4pt}
+
+\begin{questions}
+
+\question \textbf{L10 (2(8.7))}
+
+Como \(u_{i,e}=f_i+v_{i,e}\), todo o exercício consiste em aplicar propriedades de variância e covariância.
+
+\begin{enumerate}[label=(\roman*)]
+    \item Temos
+    \[
+    \operatorname{Var}(u_{i,e})
+    =
+    \operatorname{Var}(f_i+v_{i,e}).
+    \]
+    Pela fórmula da variância da soma,
+    \[
+    \operatorname{Var}(f_i+v_{i,e})
+    =
+    \operatorname{Var}(f_i)+\operatorname{Var}(v_{i,e})
+    +2\operatorname{Cov}(f_i,v_{i,e}).
+    \]
+    Como \(f_i\) e \(v_{i,e}\) são não correlacionadas,
+    \[
+    \operatorname{Cov}(f_i,v_{i,e})=0.
+    \]
+    Logo,
+    \[
+    \operatorname{Var}(u_{i,e})
+    =
+    \sigma_f^2+\sigma_v^2.
+    \]
+    Chamando esse valor de \(\sigma^2\),
+    \[
+    \sigma^2=\sigma_f^2+\sigma_v^2.
+    \]
+
+    \item Para dois empregados diferentes da mesma firma,
+    \[
+    u_{i,e}=f_i+v_{i,e}
+    \quad\text{e}\quad
+    u_{i,g}=f_i+v_{i,g}.
+    \]
+    Portanto,
+    \[
+    \operatorname{Cov}(u_{i,e},u_{i,g})
+    =
+    \operatorname{Cov}(f_i+v_{i,e},f_i+v_{i,g}).
+    \]
+    Expandindo:
+    \[
+    \operatorname{Cov}(u_{i,e},u_{i,g})
+    =
+    \operatorname{Cov}(f_i,f_i)
+    +
+    \operatorname{Cov}(f_i,v_{i,g})
+    +
+    \operatorname{Cov}(v_{i,e},f_i)
+    +
+    \operatorname{Cov}(v_{i,e},v_{i,g}).
+    \]
+    O primeiro termo é
+    \[
+    \operatorname{Cov}(f_i,f_i)=\operatorname{Var}(f_i)=\sigma_f^2.
+    \]
+    Os demais termos são zero pelas hipóteses do enunciado. Assim,
+    \[
+    \operatorname{Cov}(u_{i,e},u_{i,g})=\sigma_f^2.
+    \]
+    A intuição é que empregados da mesma firma compartilham o mesmo componente não observado \(f_i\).
+
+    \item A média dos erros na firma é
+    \[
+    \bar{u}_i=\frac{1}{m_i}\sum_{e=1}^{m_i}u_{i,e}.
+    \]
+    Substituindo \(u_{i,e}=f_i+v_{i,e}\),
+    \[
+    \bar{u}_i
+    =
+    \frac{1}{m_i}\sum_{e=1}^{m_i}(f_i+v_{i,e})
+    =
+    \frac{1}{m_i}\sum_{e=1}^{m_i}f_i
+    +
+    \frac{1}{m_i}\sum_{e=1}^{m_i}v_{i,e}.
+    \]
+    Como \(f_i\) é comum a todos os empregados da firma,
+    \[
+    \frac{1}{m_i}\sum_{e=1}^{m_i}f_i=f_i.
+    \]
+    Logo,
+    \[
+    \bar{u}_i=f_i+\frac{1}{m_i}\sum_{e=1}^{m_i}v_{i,e}.
+    \]
+    Então,
+    \[
+    \operatorname{Var}(\bar{u}_i)
+    =
+    \operatorname{Var}\left(f_i+\frac{1}{m_i}\sum_{e=1}^{m_i}v_{i,e}\right).
+    \]
+    Como \(f_i\) é não correlacionado com os \(v_{i,e}\),
+    \[
+    \operatorname{Var}(\bar{u}_i)
+    =
+    \operatorname{Var}(f_i)
+    +
+    \operatorname{Var}\left(\frac{1}{m_i}\sum_{e=1}^{m_i}v_{i,e}\right).
+    \]
+    A primeira parcela é \(\sigma_f^2\). Para a segunda,
+    \[
+    \operatorname{Var}\left(\frac{1}{m_i}\sum_{e=1}^{m_i}v_{i,e}\right)
+    =
+    \frac{1}{m_i^2}\operatorname{Var}\left(\sum_{e=1}^{m_i}v_{i,e}\right).
+    \]
+    Como os \(v\)'s são não correlacionados entre empregados diferentes,
+    \[
+    \operatorname{Var}\left(\sum_{e=1}^{m_i}v_{i,e}\right)
+    =
+    \sum_{e=1}^{m_i}\operatorname{Var}(v_{i,e})
+    =
+    m_i\sigma_v^2.
+    \]
+    Portanto,
+    \[
+    \operatorname{Var}(\bar{u}_i)
+    =
+    \sigma_f^2+\frac{m_i\sigma_v^2}{m_i^2}
+    =
+    \sigma_f^2+\frac{\sigma_v^2}{m_i}.
+    \]
+
+    \item A expressão
+    \[
+    \operatorname{Var}(\bar{u}_i)=\sigma_f^2+\frac{\sigma_v^2}{m_i}
+    \]
+    mostra que firmas maiores têm menor variância apenas na parte idiossincrática, \(\sigma_v^2/m_i\). A parte comum da firma, \(\sigma_f^2\), não desaparece quando \(m_i\) aumenta.
+
+    Por isso, se usamos dados agregados pela média da firma, o peso ótimo em MQP deve ser inversamente proporcional a
+    \[
+    \sigma_f^2+\frac{\sigma_v^2}{m_i}.
+    \]
+    Usar simplesmente \(m_i\) como peso só seria adequado se \(\sigma_f^2=0\). Caso contrário, firmas grandes receberiam peso excessivo.
+\end{enumerate}
+
+\vspace{0.8cm}
+
+\question \textbf{L6 (2(ANPEC, 2012))}
+
+A categoria omitida é \textbf{serviços}, pois aparecem dummies para indústria, comércio e construção. Assim, os coeficientes de \(DI\), \(DC\) e \(DCons\) medem diferenças salariais em relação ao setor de serviços, mantendo constantes educação, idade e sexo.
+
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{Verdadeiro.} A hipótese é
+    \[
+    H_0:\beta_{DI}=0
+    \quad\text{contra}\quad
+    H_1:\beta_{DI}\neq 0.
+    \]
+    O coeficiente estimado é \(-0{,}05\), com erro-padrão \(0{,}0011\). Logo,
+    \[
+    t=\frac{-0{,}05}{0{,}0011}\approx -45{,}45.
+    \]
+    Como \(|t|\) é muito maior que \(1{,}96\), rejeitamos \(H_0\) ao nível de 5\%.
+
+    \item \textbf{Não é possível concluir apenas com a tabela dada.} A hipótese correta é
+    \[
+    H_0:\beta_{DCons}=\beta_{DC}.
+    \]
+    Ou seja,
+    \[
+    H_0:\beta_{DCons}-\beta_{DC}=0.
+    \]
+    A diferença estimada é
+    \[
+    -0{,}25-(-0{,}15)=-0{,}10.
+    \]
+    Porém, para testar essa diferença, precisamos do erro-padrão de \(\hat{\beta}_{DCons}-\hat{\beta}_{DC}\), que depende também da covariância entre os dois estimadores:
+    \[
+    \operatorname{Var}(\hat{\beta}_{DCons}-\hat{\beta}_{DC})
+    =
+    \operatorname{Var}(\hat{\beta}_{DCons})
+    +
+    \operatorname{Var}(\hat{\beta}_{DC})
+    -
+    2\operatorname{Cov}(\hat{\beta}_{DCons},\hat{\beta}_{DC}).
+    \]
+    A tabela não fornece essa covariância.
+
+    \item \textbf{Não é possível concluir apenas com a tabela dada.} A hipótese de igualdade entre os quatro setores é
+    \[
+    H_0:\beta_{DI}=\beta_{DC}=\beta_{DCons}=0.
+    \]
+    Isso exige um teste \(F\) conjunto. A tabela mostra erros-padrão individuais, mas não fornece a estatística \(F\), nem o \(R^2\) do modelo restrito, nem a matriz de variância-covariância necessária.
+
+    \item \textbf{Falso.} Para testar se o retorno salarial de homem e mulher é diferente para cada nível educacional, precisaríamos de uma interação entre sexo e educação, por exemplo:
+    \[
+    homem_i\cdot educ_i.
+    \]
+    O modelo apresentado só permite diferença de intercepto entre homens e mulheres, pois inclui apenas a dummy \(homem_i\), sem interação com educação.
+
+    \item \textbf{Verdadeiro.} O coeficiente de \(homem_i\) mede a diferença de intercepto entre homens e mulheres, mantendo educação, idade e setor constantes. A hipótese seria
+    \[
+    H_0:\beta_{homem}=0.
+    \]
+    Como
+    \[
+    t=\frac{0{,}40}{0{,}0005}=800,
+    \]
+    rejeitaríamos fortemente a hipótese nula de igualdade dos interceptos.
+\end{enumerate}
+
+\vspace{0.8cm}
+
+\question \textbf{L6 (3(5.1))}
+
+O estimador do intercepto é
+\[
+\hat{\beta}_0=\bar{y}-\hat{\beta}_1\bar{x}_1.
+\]
+Tomando limite em probabilidade:
+\[
+\operatorname{plim}\hat{\beta}_0
+=
+\operatorname{plim}(\bar{y}-\hat{\beta}_1\bar{x}_1).
+\]
+Pelas propriedades de plim:
+\[
+\operatorname{plim}\hat{\beta}_0
+=
+\operatorname{plim}\bar{y}
+-
+\operatorname{plim}(\hat{\beta}_1\bar{x}_1).
+\]
+Pela Lei dos Grandes Números,
+\[
+\operatorname{plim}\bar{y}=E[y]
+\quad\text{e}\quad
+\operatorname{plim}\bar{x}_1=E[x_1].
+\]
+Como \(\hat{\beta}_1\) é consistente,
+\[
+\operatorname{plim}\hat{\beta}_1=\beta_1.
+\]
+Logo,
+\[
+\operatorname{plim}(\hat{\beta}_1\bar{x}_1)
+=
+\beta_1E[x_1].
+\]
+Portanto,
+\[
+\operatorname{plim}\hat{\beta}_0
+=
+E[y]-\beta_1E[x_1].
+\]
+Como, no modelo populacional,
+\[
+\beta_0=E[y]-\beta_1E[x_1],
+\]
+concluímos que
+\[
+\operatorname{plim}\hat{\beta}_0=\beta_0.
+\]
+Assim, \(\hat{\beta}_0\) é consistente.
+
+\vspace{0.8cm}
+
+\question \textbf{L9 (2(7.9))}
+
+\begin{enumerate}[label=(\roman*)]
+    \item Se \(u=0\), o modelo é
+    \[
+    y=\beta_0+\delta_0d+\beta_1z+\delta_1dz.
+    \]
+    Para \(d=0\),
+    \[
+    f_0(z)=\beta_0+\beta_1z.
+    \]
+    Para \(d=1\),
+    \[
+    f_1(z)=\beta_0+\delta_0+\beta_1z+\delta_1z
+    =
+    (\beta_0+\delta_0)+(\beta_1+\delta_1)z.
+    \]
+
+    \item O ponto de cruzamento satisfaz
+    \[
+    f_0(z^\ast)=f_1(z^\ast).
+    \]
+    Então,
+    \[
+    \beta_0+\beta_1z^\ast
+    =
+    \beta_0+\delta_0+\beta_1z^\ast+\delta_1z^\ast.
+    \]
+    Cancelando \(\beta_0\) e \(\beta_1z^\ast\),
+    \[
+    0=\delta_0+\delta_1z^\ast.
+    \]
+    Portanto,
+    \[
+    z^\ast=-\frac{\delta_0}{\delta_1}.
+    \]
+    Para \(z^\ast>0\), \(-\delta_0/\delta_1\) precisa ser positivo. Isso ocorre se, e somente se, \(\delta_0\) e \(\delta_1\) tiverem sinais opostos.
+
+    \item Para homens, \(\textit{female}=0\):
+    \[
+    \widehat{\log(wage)}_{\text{homens}}
+    =
+    2{,}289+0{,}050\,totcoll.
+    \]
+    Para mulheres, \(\textit{female}=1\):
+    \[
+    \widehat{\log(wage)}_{\text{mulheres}}
+    =
+    2{,}289-0{,}357+(0{,}050+0{,}030)totcoll
+    =
+    1{,}932+0{,}080\,totcoll.
+    \]
+    Igualando:
+    \[
+    2{,}289+0{,}050\,totcoll
+    =
+    1{,}932+0{,}080\,totcoll.
+    \]
+    Logo,
+    \[
+    0{,}357=0{,}030\,totcoll
+    \quad\Rightarrow\quad
+    totcoll=11{,}9.
+    \]
+
+    \item O valor \(11{,}9\) anos de educação superior é muito elevado. Assim, embora o retorno de \textit{totcoll} seja maior para mulheres, a igualdade prevista ocorre apenas em um nível pouco realista de educação superior. Portanto, não parece plausível dizer que mulheres alcançariam os salários previstos dos homens apenas aumentando \textit{totcoll} dentro de níveis usuais.
+\end{enumerate}
+
+\vspace{0.8cm}
+
+\question \textbf{Questão nova: desempenho em matemática e especificação do modelo}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Na coluna (1), o coeficiente de \textit{lexppp} é \(6{,}85\). Na coluna (2), após adicionar controles socioeconômicos, ele aumenta para \(9{,}01\). Isso indica que a especificação simples não capturava adequadamente diferenças entre escolas.
+
+    Na coluna (3), ao adicionar \textit{read4}, o coeficiente cai para \(1{,}93\). Como desempenho em leitura e matemática são fortemente relacionados, \textit{read4} absorve boa parte da variação em \textit{math4}. Porém, se \textit{read4} também for resultado dos mesmos investimentos escolares, controlar por ela pode retirar parte do efeito total dos gastos.
+
+    \item Na coluna (2), o coeficiente de \textit{lexppp} é \(9{,}01\). Como \textit{lexppp} é log dos gastos por estudante, um aumento aproximado de 10\% nos gastos altera \textit{math4} em
+    \[
+    9{,}01\cdot 0{,}10=0{,}901
+    \]
+    ponto percentual aproximadamente. Usando a forma mais exata,
+    \[
+    9{,}01\cdot \log(1{,}10)
+    =
+    9{,}01\cdot 0{,}0953
+    \approx 0{,}86.
+    \]
+    Logo, um aumento de 10\% nos gastos está associado a aumento de cerca de \(0{,}86\) a \(0{,}90\) ponto percentual na aprovação em matemática.
+
+    Para a significância:
+    \[
+    t=\frac{9{,}01}{4{,}04}\approx 2{,}23.
+    \]
+    Como \(2{,}23>1{,}96\), o coeficiente é estatisticamente significante ao nível de 5\% em um teste bilateral aproximado.
+
+    \item Na coluna (4), o modelo é quadrático em \textit{lexppp}. O efeito marginal é
+    \[
+    \frac{\partial math4}{\partial lexppp}
+    =
+    68{,}40+2(-3{,}45)lexppp.
+    \]
+    Portanto,
+    \[
+    \frac{\partial math4}{\partial lexppp}
+    =
+    68{,}40-6{,}90lexppp.
+    \]
+    O efeito marginal se torna zero quando
+    \[
+    68{,}40-6{,}90lexppp=0.
+    \]
+    Logo,
+    \[
+    lexppp=\frac{68{,}40}{6{,}90}\approx 9{,}91.
+    \]
+    O termo quadrático tem estatística \(t\):
+    \[
+    t=\frac{-3{,}45}{2{,}18}\approx -1{,}58.
+    \]
+    Como \(|t|<1{,}96\), ele não é significante ao nível de 5\%. Assim, a evidência para incluir o termo quadrático é fraca.
+
+    \item A coluna (3) tem \(R^2\) maior porque \textit{read4} explica muito da variação em \textit{math4}. Contudo, um \(R^2\) maior não garante melhor estimação causal.
+
+    Se o objetivo é estimar o efeito causal dos gastos sobre matemática, \textit{read4} pode ser uma variável ``ruim'' de controle, pois leitura pode ser afetada pelos mesmos gastos escolares. Ao controlar por \textit{read4}, podemos bloquear parte do canal pelo qual os gastos afetam o desempenho acadêmico. Por isso, a coluna (2), mesmo com menor \(R^2\), pode ser mais apropriada para interpretar o efeito total dos gastos.
+
+    \item Na coluna (5), o modelo contém
+    \[
+    math4=\cdots+\beta_1lexppp+\beta_6(lexppp\cdot free)+\cdots.
+    \]
+    Logo, o efeito marginal de \textit{lexppp} é
+    \[
+    \frac{\partial math4}{\partial lexppp}
+    =
+    \beta_1+\beta_6free.
+    \]
+    Usando a tabela:
+    \[
+    \frac{\partial math4}{\partial lexppp}
+    =
+    11{,}40-0{,}145free.
+    \]
+    Se \(\textit{free}=20\),
+    \[
+    11{,}40-0{,}145(20)
+    =
+    11{,}40-2{,}90
+    =
+    8{,}50.
+    \]
+    Se \(\textit{free}=60\),
+    \[
+    11{,}40-0{,}145(60)
+    =
+    11{,}40-8{,}70
+    =
+    2{,}70.
+    \]
+    Portanto, a especificação sugere que o efeito positivo dos gastos é menor em escolas com maior proporção de alunos elegíveis à merenda gratuita. Como \textit{free} é uma proxy de pobreza, isso pode indicar que escolas mais pobres enfrentam outras barreiras que reduzem a efetividade marginal dos gastos.
+\end{enumerate}
+
+\end{questions}
+
+\end{document}

@@ -855,3 +855,115 @@ No item (iii), `r ifelse(anova(lm(I(uhat10^2) ~ 1), mod10_aux)$"Pr(>F)"[2] < 0.0
 rm(list = ls())
 ```
 
+# Lista 11
+
+## Questao 5)
+
+Agora resolvemos a Quest\~ao computacional da Lista 11 com a base `ECONMATH`.
+
+```{r lista11-setup, warning=FALSE, message=FALSE}
+library(wooldridge)
+library(stargazer)
+library(lmtest)
+library(sandwich)
+
+data("econmath")
+head(econmath)
+```
+
+- **(i)** 
+
+Primeiro, identificamos quantos estudantes n\~ao possuem nota de `act`.
+
+```{r lista11-i-missing}
+econmath$actmiss <- as.integer(is.na(econmath$act))
+
+n_missing_act <- sum(econmath$actmiss)
+frac_missing_act <- mean(econmath$actmiss)
+
+n_missing_act
+frac_missing_act
+```
+
+Logo, ha `r n_missing_act` estudantes com `act` ausente, o que corresponde a aproximadamente `r round(100 * frac_missing_act, 2)`\% da amostra.
+
+- **(ii)**
+
+Agora criamos `act0`, que coincide com `act` quando ela e observada e vale zero quando `act` esta ausente.
+
+```{r lista11-ii-act0}
+econmath$act0 <- ifelse(is.na(econmath$act), 0, econmath$act)
+
+mean_act0 <- mean(econmath$act0)
+mean_act <- mean(econmath$act, na.rm = TRUE)
+
+mean_act0
+mean_act
+```
+
+Como `act0` coloca zero nos casos ausentes, sua m\'edia tende a ser menor do que a m\'edia de `act` calculada apenas entre observacoes validas.
+
+- **(iii)**
+
+Agora estimamos a regress\~ao simples de `score` sobre `act` usando apenas casos completos e calculamos o erro padr\~ao robusto.
+
+```{r lista11-iii-modelo}
+mod11_iii <- lm(score ~ act, data = econmath, subset = !is.na(act))
+summary(mod11_iii)
+stargazer(mod11_iii, type = "text", digits = 4)
+coeftest(mod11_iii, vcov. = vcovHC(mod11_iii, type = "HC1"))
+```
+
+O coeficiente de `act` nesta regress\~ao mede quanto a nota final do curso aumenta, em m\'edia, para um ponto adicional no ACT, usando somente os alunos para os quais essa nota foi observada.
+
+- **(iv)**
+
+Agora usamos todos os casos, substituindo `act` por `act0`.
+
+```{r lista11-iv-modelo}
+mod11_iv <- lm(score ~ act0, data = econmath)
+summary(mod11_iv)
+stargazer(mod11_iv, type = "text", digits = 4)
+coeftest(mod11_iv, vcov. = vcovHC(mod11_iv, type = "HC1"))
+```
+
+O coeficiente de `act0` no item (iv) deve ser comparado com o coeficiente de `act` no item (iii). Como zero n\~ao e uma nota plaus\'ivel de ACT, tratar ausencias como zero distorce a inclina\c{c}\~ao. Portanto, a estimativa do item (iv) n\~ao deve ser preferida a do item (iii).
+
+- **(v)**
+
+Agora incluimos tambem a dummy `actmiss`.
+
+```{r lista11-v-modelo}
+mod11_v <- lm(score ~ act0 + actmiss, data = econmath)
+summary(mod11_v)
+stargazer(mod11_v, type = "text", digits = 4)
+coeftest(mod11_v, vcov. = vcovHC(mod11_v, type = "HC1"))
+```
+
+Aqui, `actmiss` permite um deslocamento de intercepto para o grupo com ACT ausente. A inclina\c{c}\~ao estimada de `act0` no item (v) e `r round(coef(mod11_v)["act0"], 4)`, contra `r round(coef(mod11_iii)["act"], 4)` no item (iii) e `r round(coef(mod11_iv)["act0"], 4)` no item (iv). Portanto, `r ifelse(abs(coef(mod11_v)["act0"] - coef(mod11_iii)["act"]) < abs(coef(mod11_iv)["act0"] - coef(mod11_iii)["act"]), "a inclusao de actmiss melhora a especificacao, pois aproxima a inclinacao daquela obtida com casos completos", "a inclusao de actmiss nao melhora a especificacao de forma clara nesta amostra")`.
+
+- **(vi)**
+
+O coeficiente de `act0` em (v) fica a `r round(abs(coef(mod11_v)["act0"] - coef(mod11_iii)["act"]), 4)` da estimativa de casos completos, enquanto em (iv) essa distancia e `r round(abs(coef(mod11_iv)["act0"] - coef(mod11_iii)["act"]), 4)`. Portanto, `r ifelse(abs(coef(mod11_v)["act0"] - coef(mod11_iii)["act"]) < abs(coef(mod11_iv)["act0"] - coef(mod11_iii)["act"]), "o uso de todos os casos com a dummy actmiss melhora a estimacao de beta_1", "o uso de todos os casos com a dummy actmiss nao melhora a estimacao de beta_1 em relacao ao item (iv)")`.
+
+- **(vii)**
+
+Por fim, adicionamos `colgpa` as especifica\c{c}\~oes dos itens (iii) e (v).
+
+```{r lista11-vii-modelos}
+mod11_vii_cc <- lm(score ~ act + colgpa, data = econmath, subset = !is.na(act))
+mod11_vii_full <- lm(score ~ act0 + actmiss + colgpa, data = econmath)
+
+stargazer(mod11_vii_cc, mod11_vii_full, type = "text", digits = 4,
+          column.labels = c("Casos completos", "Todos os casos"))
+
+coeftest(mod11_vii_cc, vcov. = vcovHC(mod11_vii_cc, type = "HC1"))
+coeftest(mod11_vii_full, vcov. = vcovHC(mod11_vii_full, type = "HC1"))
+```
+
+No modelo com `colgpa`, a distancia entre a inclina\c{c}\~ao de casos completos e a da amostra total com `actmiss` e `r round(abs(coef(mod11_vii_full)["act0"] - coef(mod11_vii_cc)["act"]), 4)`. Sem `colgpa`, essa distancia era `r round(abs(coef(mod11_v)["act0"] - coef(mod11_iii)["act"]), 4)`. Portanto, `r ifelse(abs(coef(mod11_vii_full)["act0"] - coef(mod11_vii_cc)["act"]) < abs(coef(mod11_v)["act0"] - coef(mod11_iii)["act"]), "apos incluir colgpa, a resposta ao item (vi) fica ainda mais favoravel ao uso do modelo com actmiss", "apos incluir colgpa, a resposta ao item (vi) nao fica mais favoravel ao uso do modelo com actmiss")`.
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
