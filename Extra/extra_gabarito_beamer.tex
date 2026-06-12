@@ -90,13 +90,17 @@ u_{i,e}=f_i+v_{i,e}.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Questão 1(i): variância de \(u_{i,e}\)}
+\begin{frame}{Questão 1(i): variância de \(u_{i,e}\) (1/2)}
 \step{Começamos com a definição do erro composto:}
 \stepmath{\operatorname{Var}(u_{i,e})=\operatorname{Var}(f_i+v_{i,e}).}
 \step{Aplicamos a fórmula da variância da soma:}
 \stepmath{\operatorname{Var}(f_i+v_{i,e})=\operatorname{Var}(f_i)+\operatorname{Var}(v_{i,e})+2\operatorname{Cov}(f_i,v_{i,e}).}
 \step{Pela hipótese do enunciado, \(f_i\) e \(v_{i,e}\) são não correlacionados.}
 \stepmath{\operatorname{Cov}(f_i,v_{i,e})=0.}
+\end{frame}
+
+\begin{frame}{Questão 1(i): variância de \(u_{i,e}\) (2/2)}
+\step{Substituindo \(\operatorname{Cov}(f_i,v_{i,e})=0\) na expressão anterior, obtemos:}
 \step{Logo, obtemos:}
 \stepmath{\operatorname{Var}(u_{i,e})=\sigma_f^2+\sigma_v^2.}
 \step{Se chamarmos esse valor de \(\sigma^2\), então:}
@@ -118,7 +122,7 @@ u_{i,g}=f_i+v_{i,g}.}
 \step{Interpretação: empregados da mesma firma compartilham o componente não observado \(f_i\).}
 \end{frame}
 
-\begin{frame}{Questão 1(iii): variância da média da firma}
+\begin{frame}{Questão 1(iii): variância da média da firma (1/2)}
 \step{A média dos erros na firma é:}
 \stepmath{\bar{u}_i=\frac{1}{m_i}\sum_{e=1}^{m_i}u_{i,e}.}
 \step{Substituindo \(u_{i,e}=f_i+v_{i,e}\):}
@@ -131,7 +135,8 @@ u_{i,g}=f_i+v_{i,g}.}
 \stepmath{\operatorname{Var}\left(\frac{1}{m_i}\sum_{e=1}^{m_i}v_{i,e}\right)=\frac{1}{m_i^2}\operatorname{Var}\left(\sum_{e=1}^{m_i}v_{i,e}\right).}
 \end{frame}
 
-\begin{frame}{Questão 1(iii): fechando a conta}
+\begin{frame}{Questão 1(iii): variância da média da firma (2/2)}
+\step{Continuando a conta do slide anterior:}
 \step{Como os \(v_{i,e}\) são não correlacionados entre si:}
 \stepmath{\operatorname{Var}\left(\sum_{e=1}^{m_i}v_{i,e}\right)=\sum_{e=1}^{m_i}\operatorname{Var}(v_{i,e})=m_i\sigma_v^2.}
 \step{Substituindo na expressão anterior:}
