@@ -1,0 +1,150 @@
+\documentclass[12pt,letterpaper,onecolumn]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt,tmargin=1.2in]{geometry}
+\usepackage{xcolor}
+\usepackage[brazilian]{babel}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+
+\renewenvironment{solution}
+{\par\noindent\textbf{R:}\enspace\color{blue}}
+{\par\color{black}}
+
+\thispagestyle{empty}
+
+\begin{document}
+
+\begingroup
+    \centering
+    \LARGE Lista 12 - Econometria I - 2026\\[0.5em]
+    \large Prof: André Luiz Pereira Mancha \par
+    \large Monitor: Tuffy Licciardi Issa \par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}
+\newcommand{\qstar}{\hspace{-0.6em}\textsuperscript{*}\hspace{0.2em}}
+
+\begin{questions}
+
+\question\qstar (17.2, \citep{wooldridge2016}) Defina \textit{grad} como uma variável \textit{dummy} que indica se um estudante-atleta de uma grande universidade se formará dentro de cinco anos. Sejam \textit{hsGPA} a nota média no ensino médio e \textit{SAT} a pontuação total no exame SAT. Defina \textit{study} como o número médio de horas por semana passadas em uma sala de estudo organizada. Suponha que, usando os dados de 420 estudantes-atletas, obtenha-se o seguinte modelo logit:
+\[
+P(grad = 1 \mid hsGPA, SAT, study)
+=
+\Lambda(-1{,}17 + 0{,}24\,hsGPA + 0{,}00058\,SAT + 0{,}073\,study),
+\]
+em que \(\Lambda(z)=\exp(z)/[1+\exp(z)]\) é a função logit.
+\begin{enumerate}[label=(\roman*)]
+    \item Mantendo fixos \(hsGPA\) em \(3{,}0\) e \(SAT\) em \(1.200\), calcule a diferença estimada na probabilidade de formatura de alguém que tenha passado dez horas por semana em uma sala de estudo e de alguém que tenha passado cinco horas por semana.
+    \item Explique.
+\end{enumerate}
+
+\vspace{0.7cm}
+
+\question (17.5, \citep{wooldridge2016}) Defina \textit{patents} como o número de patentes requeridas por uma firma durante determinado ano. Assuma que o valor esperado condicional de \textit{patents}, dados \textit{sales} e \(PD\), é
+\[
+E(patents \mid sales,PD)=\exp\{\beta_0+\beta_1\log(sales)+\beta_2 PD+\beta_3 PD^2\},
+\]
+em que \textit{sales} representa as vendas anuais da firma e \(PD\) é o total de gastos com pesquisa e desenvolvimento nos últimos três anos.
+\begin{enumerate}[label=(\roman*)]
+    \item Como você estimaria os \(\beta_j\)? Escreva sua resposta detalhando a natureza de \textit{patents}.
+    \item Como você interpreta \(\beta_1\)?
+    \item Encontre o efeito parcial de \(PD\) sobre \(E(patents \mid sales,PD)\).
+\end{enumerate}
+
+\vspace{0.7cm}
+
+\question\qstar (17.6, \citep{wooldridge2016}) Considere uma função de poupança familiar para a população de todas as famílias dos Estados Unidos:
+\[
+sav = \beta_0 + \beta_1 inc + \beta_2 hsize + \beta_3 educ + \beta_4 age + u,
+\]
+em que \textit{hsize} é o tamanho da família, \textit{educ} são anos de escolaridade do chefe da família e \textit{age} é a idade do chefe da família. Assuma que
+\[
+E(u \mid inc,hsize,educ,age)=0.
+\]
+\begin{enumerate}[label=(\roman*)]
+    \item Suponha que a amostra inclua apenas famílias cujo chefe tenha mais de 25 anos. Se usarmos o MQO nessa amostra, obteremos estimadores não viesados dos \(\beta_j\)? Explique.
+\end{enumerate}
+
+\vspace{0.7cm}
+
+\question\qstar (17.8, \citep{wooldridge2016}) Considere o problema de avaliação de programas, em que \(y(0)\) e \(y(1)\) são os resultados potenciais sem e com tratamento, respectivamente. Seja \(w\) o indicador binário de tratamento. Sob as funções médias condicionais, defina
+\[
+m_0(x)=E[y(0)\mid x]
+\qquad \text{e} \qquad
+m_1(x)=E[y(1)\mid x].
+\]
+Lembre-se de que o efeito médio do tratamento é
+\[
+\tau_{ate}=\mu_1-\mu_0=E[y(1)]-E[y(0)]
+\]
+e que também pode ser escrito como
+\[
+\tau_{ate}=E[m_1(x)]-E[m_0(x)].
+\]
+\begin{enumerate}[label=(\roman*)]
+    \item Explique por que
+    \[
+    \tau_{ate}=n^{-1}\sum_{i=1}^{n}\big[m_1(x_i)-m_0(x_i)\big]
+    \]
+    se \(x_1,\ldots,x_n\) forem tratados como uma amostra aleatória.
+    \item Se você conhecesse as funções \(m_0(x)\) e \(m_1(x)\) e dispusesse de uma amostra aleatória \(x_1,\ldots,x_n\), explique por que
+    \[
+    \hat{\tau}_{ate}=n^{-1}\sum_{i=1}^{n}\big[m_1(x_i)-m_0(x_i)\big]
+    \]
+    seria um estimador não viesado de \(\tau_{ate}\).
+    \item Agora considere os modelos \(m_0(x,\theta_0)\) e \(m_1(x,\theta_1)\), em que \(\theta_0\) e \(\theta_1\) são parâmetros e estimadores \(\hat{\theta}_0\) e \(\hat{\theta}_1\). Defina
+    \[
+    \hat{\tau}_{ate}=n^{-1}\sum_{i=1}^{n}\big[m_1(x_i,\hat{\theta}_1)-m_0(x_i,\hat{\theta}_0)\big].
+    \]
+    Como você estimaria \(\tau_{ate}\)?
+    \item Defina a resposta observada como de costume:
+    \[
+    y=(1-w)y(0)+wy(1).
+    \]
+    Mostre que, se \(w\) é independente de \([y(0),y(1)]\) condicional em \(x\), então
+    \[
+    E(y\mid w,x)=(1-w)m_0(x)+wm_1(x).
+    \]
+    Portanto,
+    \[
+    E(y\mid w=0,x)=m_0(x)
+    \qquad \text{e} \qquad
+    E(y\mid w=1,x)=m_1(x).
+    \]
+    \item Se \(y(0)\) e \(y(1)\) seguirem modelos logit ou probit com probabilidades de resposta:
+    \[
+    G(\alpha_0+x'\beta_0)
+    \qquad \text{e} \qquad
+    G(\alpha_1+x'\beta_1),
+    \]
+    respectivamente, como você estimaria todos os parâmetros? Como você estimaria \(\tau_{ate}\)?
+\end{enumerate}
+
+\vspace{0.7cm}
+
+\question\qstar (17.C1, \citep{wooldridge2016}) Use os dados de \texttt{PNTSPRD} neste exercício. A variável \textit{favwin} é binária e vale um se o time favorito vence a partida. Um modelo de probabilidade linear para estimar a probabilidade de o time favorito vencer é:
+\[
+P(favwin=1\mid spread)=\beta_0+\beta_1 spread.
+\]
+\begin{enumerate}[label=(\roman*)]
+    \item Explique por que, caso a aposta incorpore todas as informações relevantes, esperaríamos \(\beta_0=0{,}5\).
+    \item Estime o modelo do item (i) por MQO. Teste \(H_0:\beta_0=0{,}5\) em relação a uma alternativa bilateral. Use erros padrão usuais e robustos em relação à heteroscedasticidade.
+    \item Qual é a probabilidade estimada de o time favorito vencer quando \(spread=10\) e ela é estatisticamente significante?
+    \item Agora, estime um modelo Probit para \(P(favwin=1\mid spread)\). Interprete e teste a hipótese nula de que o intercepto é zero. [Dica: lembre-se de que \(\Phi(0)=0{,}5\).]
+    \item Use o modelo Probit para estimar a probabilidade de que o time favorito vença, caso \(spread=10\). Compare esse resultado com a estimativa MQO do item (iii).
+    \item Adicione as variáveis \textit{favhome}, \textit{fav25} e \textit{und25} ao modelo Probit e teste a significância conjunta dessas variáveis usando o teste de razão de verossimilhança (quantos gl estão na distribuição qui-quadrado?). Interprete esse resultado, focando na possibilidade de que o \textit{spread} incorpore todas as informações observáveis antes de um jogo.
+\end{enumerate}
+
+\end{questions}
+
+\bibliographystyle{apalike}
+\bibliography{refs}
+\end{document}
