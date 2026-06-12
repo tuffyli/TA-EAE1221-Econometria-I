@@ -1,6 +1,5 @@
 \babel@toc {brazilian}{}\relax 
 \beamer@sectionintoc {1}{L10 (2(8.7))}{3}{0}{1}
 \beamer@sectionintoc {2}{L6 (ANPEC 2012)}{43}{0}{2}
-\beamer@sectionintoc {3}{L6 (3(5.1))}{65}{0}{3}
-\beamer@sectionintoc {4}{L9 (2(7.9))}{84}{0}{4}
-\beamer@sectionintoc {5}{Questão nova}{114}{0}{5}
+\beamer@sectionintoc {3}{L9 (2(7.9))}{65}{0}{3}
+\beamer@sectionintoc {4}{Questão nova}{95}{0}{4}

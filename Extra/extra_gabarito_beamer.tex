@@ -197,7 +197,7 @@ H_1:\beta_{DI}\neq 0.}
 \step{\highlight{Resposta objetiva}: não é possível concluir apenas com a tabela dada.}
 \end{frame}
 
-\begin{frame}{Questão 2(3), (4) e (5)}
+\begin{frame}{Questão 2(3) e 2(4)}
 \begin{block}{Item (3)}
 Para testar igualdade entre os quatro setores, precisamos de um teste \(F\) conjunto:
 \[
@@ -209,7 +209,9 @@ Com a tabela fornecida, \highlight{não é possível concluir}.
 \begin{block}{Item (4)}
 O modelo \highlight{não} permite testar se o retorno da educação difere entre homens e mulheres, porque não há interação \(homem \times educ\).
 \end{block}
-\pause
+\end{frame}
+
+\begin{frame}{Questão 2(5): diferença de intercepto entre homens e mulheres}
 \begin{block}{Item (5)}
 O coeficiente de \(homem\) mede diferença de intercepto entre homens e mulheres. Como
 \[
@@ -219,38 +221,9 @@ rejeitamos fortemente a igualdade dos interceptos.
 \end{block}
 \end{frame}
 
-\section{L6 (3(5.1))}
-
-\begin{frame}{Questão 3: consistência do intercepto}
-\step{Partimos da fórmula do intercepto em regressão simples:}
-\stepmath{\hat{\beta}_0=\bar{y}-\hat{\beta}_1\bar{x}_1.}
-\step{Tomando limite em probabilidade:}
-\stepmath{\operatorname{plim}\hat{\beta}_0=\operatorname{plim}(\bar{y}-\hat{\beta}_1\bar{x}_1).}
-\step{Usando propriedades de \(\operatorname{plim}\):}
-\stepmath{\operatorname{plim}\hat{\beta}_0=\operatorname{plim}\bar{y}-\operatorname{plim}(\hat{\beta}_1\bar{x}_1).}
-\step{Pela Lei dos Grandes Números,}
-\stepmath{\operatorname{plim}\bar{y}=E[y]
-\qquad\text{e}\qquad
-\operatorname{plim}\bar{x}_1=E[x_1].}
-\step{Como \(\hat{\beta}_1\) é consistente,}
-\stepmath{\operatorname{plim}\hat{\beta}_1=\beta_1.}
-\end{frame}
-
-\begin{frame}{Questão 3: conclusão}
-\step{Logo,}
-\stepmath{\operatorname{plim}(\hat{\beta}_1\bar{x}_1)=\beta_1E[x_1].}
-\step{Substituindo:}
-\stepmath{\operatorname{plim}\hat{\beta}_0=E[y]-\beta_1E[x_1].}
-\step{Mas, no modelo populacional,}
-\stepmath{\beta_0=E[y]-\beta_1E[x_1].}
-\step{Portanto,}
-\stepmath{\operatorname{plim}\hat{\beta}_0=\beta_0.}
-\step{\highlight{Conclusão}: \(\hat{\beta}_0\) é consistente.}
-\end{frame}
-
 \section{L9 (2(7.9))}
 
-\begin{frame}{Questão 4(i): função para \(d=0\) e \(d=1\)}
+\begin{frame}{Questão 3(i): função para \(d=0\) e \(d=1\)}
 \step{Com \(u=0\), o modelo fica:}
 \stepmath{y=\beta_0+\delta_0d+\beta_1z+\delta_1dz.}
 \step{Quando \(d=0\):}
@@ -262,7 +235,7 @@ rejeitamos fortemente a igualdade dos interceptos.
 \step{Ou seja, a dummy altera tanto o intercepto quanto a inclinação quando \(\delta_1\neq 0\).}
 \end{frame}
 
-\begin{frame}{Questão 4(ii): ponto de cruzamento}
+\begin{frame}{Questão 3(ii): ponto de cruzamento}
 \step{O cruzamento ocorre quando:}
 \stepmath{f_0(z^\ast)=f_1(z^\ast).}
 \step{Substituindo as expressões:}
@@ -275,7 +248,7 @@ rejeitamos fortemente a igualdade dos interceptos.
 \step{\highlight{Conclusão}: isso ocorre se, e somente se, \(\delta_0\) e \(\delta_1\) tiverem sinais opostos.}
 \end{frame}
 
-\begin{frame}{Questão 4(iii): igualdade salarial prevista}
+\begin{frame}{Questão 3(iii): igualdade salarial prevista}
 \step{Para homens, \(female=0\):}
 \stepmath{\widehat{\log(wage)}_{h}=2{,}289+0{,}050\,totcoll.}
 \step{Para mulheres, \(female=1\):}
@@ -290,7 +263,7 @@ rejeitamos fortemente a igualdade dos interceptos.
 totcoll=11{,}9.}
 \end{frame}
 
-\begin{frame}{Questão 4(iv): interpretação econômica}
+\begin{frame}{Questão 3(iv): interpretação econômica}
 \begin{itemize}
     \item O ponto de igualdade salarial previsto aparece em \highlight{11,9 anos} de ensino superior.
     \item Esse valor é muito alto para ser considerado realista no contexto usual do banco de dados.
@@ -300,7 +273,7 @@ totcoll=11{,}9.}
 
 \section{Questão nova}
 
-\begin{frame}{Questão 5: tabela e leitura geral}
+\begin{frame}{Questão 4: tabela e leitura geral}
 \small
 \begin{center}
 \begin{tabular}{lcc}
@@ -324,7 +297,7 @@ Regressor & Coluna (2) & Coluna (5) \\
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Questão 5(a): comparando colunas (1), (2) e (3)}
+\begin{frame}{Questão 4(a): comparando colunas (1), (2) e (3)}
 \begin{itemize}
     \item Na coluna (1), o coeficiente de \textit{lexppp} é \(6{,}85\).
     \item Na coluna (2), após adicionar controles socioeconômicos, ele sobe para \(9{,}01\).
@@ -338,7 +311,7 @@ Regressor & Coluna (2) & Coluna (5) \\
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Questão 5(b): efeito de 10\% nos gastos}
+\begin{frame}{Questão 4(b): efeito de 10\% nos gastos}
 \step{Na coluna (2), o coeficiente de \textit{lexppp} é \(9{,}01\).}
 \step{Como a regressora está em log, um aumento aproximado de 10\% implica:}
 \stepmath{9{,}01\times 0{,}10=0{,}901.}
@@ -350,7 +323,7 @@ Regressor & Coluna (2) & Coluna (5) \\
 \step{Como \(2{,}23>1{,}96\), o efeito é significante a 5\% em teste bilateral aproximado.}
 \end{frame}
 
-\begin{frame}{Questão 5(c): termo quadrático}
+\begin{frame}{Questão 4(c): termo quadrático}
 \step{Na coluna (4), o efeito marginal é:}
 \stepmath{\frac{\partial math4}{\partial lexppp}=68{,}40+2(-3{,}45)lexppp.}
 \step{Simplificando:}
@@ -364,7 +337,7 @@ Regressor & Coluna (2) & Coluna (5) \\
 \step{Como \(|t|<1{,}96\), a evidência para incluir o termo quadrático é fraca a 5\%.}
 \end{frame}
 
-\begin{frame}{Questão 5(d): por que a coluna (2) pode ser melhor que a (3)?}
+\begin{frame}{Questão 4(d): por que a coluna (2) pode ser melhor que a (3)?}
 \begin{itemize}
     \item A coluna (3) tem \(R^2\) bem maior porque \textit{read4} explica muito da variação em \textit{math4}.
     \item Mas \(R^2\) maior não significa estimativa causal melhor.
@@ -373,7 +346,7 @@ Regressor & Coluna (2) & Coluna (5) \\
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Questão 5(e): interação entre gastos e pobreza}
+\begin{frame}{Questão 4(e): interação entre gastos e pobreza}
 \step{Na coluna (5), o modelo inclui a interação \(\textit{lexppp}\times \textit{free}\).}
 \step{Então, o efeito marginal de \textit{lexppp} é:}
 \stepmath{\frac{\partial math4}{\partial lexppp}=\beta_1+\beta_6\,free.}
