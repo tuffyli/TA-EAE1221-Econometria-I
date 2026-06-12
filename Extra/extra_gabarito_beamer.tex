@@ -1,0 +1,402 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+
+\definecolor{navy}{HTML}{0F172A}
+\definecolor{blueaccent}{HTML}{2563EB}
+\definecolor{tealaccent}{HTML}{0F766E}
+\definecolor{cream}{HTML}{F8FAFC}
+\definecolor{softgray}{HTML}{E2E8F0}
+\definecolor{textgray}{HTML}{334155}
+\definecolor{gold}{HTML}{B45309}
+
+\setbeamercolor{background canvas}{bg=cream}
+\setbeamercolor{normal text}{fg=textgray,bg=cream}
+\setbeamercolor{frametitle}{fg=cream,bg=navy}
+\setbeamercolor{title}{fg=cream,bg=navy}
+\setbeamercolor{structure}{fg=blueaccent}
+\setbeamercolor{block title}{fg=cream,bg=blueaccent}
+\setbeamercolor{block body}{fg=textgray,bg=white}
+\setbeamercolor{alerted text}{fg=gold}
+\setbeamercolor{footline}{fg=cream,bg=navy}
+
+\setbeamerfont{title}{series=\bfseries,size=\Large}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+\setbeamerfont{block title}{series=\bfseries}
+
+\setbeamertemplate{itemize item}{\color{blueaccent}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{tealaccent}$\bullet$}
+
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.78\paperwidth,ht=2.8ex,dp=1.2ex,leftskip=1em]{footline}%
+      Econometria I 2026 \hspace{0.6em}|\hspace{0.6em} Gabarito comentado da lista extra
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.22\paperwidth,ht=2.8ex,dp=1.2ex,rightskip=1em plus1fil]{footline}%
+      \insertframenumber/\inserttotalframenumber
+    \end{beamercolorbox}%
+  }%
+}
+
+\newcommand{\step}[1]{\vspace{0.25em}\uncover<+->{#1\par}}
+\newcommand{\stepmath}[1]{\vspace{0.3em}\uncover<+->{\[
+#1
+\]}}
+\newcommand{\highlight}[1]{\textcolor{blueaccent}{\textbf{#1}}}
+
+\title{Gabarito da Lista Extra}
+\subtitle{Resoluções passo a passo}
+\author{Econometria I}
+\date{2026}
+
+\begin{document}
+
+\begin{frame}[plain]
+    \titlepage
+\end{frame}
+
+\begin{frame}{Roteiro}
+\tableofcontents
+\end{frame}
+
+\section{L10 (2(8.7))}
+
+\begin{frame}{Questão 1: estrutura do problema}
+\begin{block}{Modelo}
+\[
+y_{i,e}=\beta_0+\beta_1x_{i,e,1}+\cdots+\beta_kx_{i,e,k}+f_i+v_{i,e},
+\qquad
+u_{i,e}=f_i+v_{i,e}.
+\]
+\end{block}
+\pause
+\begin{itemize}
+    \item \(f_i\): efeito não observado da firma \(i\).
+    \item \(v_{i,e}\): componente idiossincrático do empregado \(e\).
+    \item A ideia central é decompor variâncias e covariâncias usando \(u_{i,e}=f_i+v_{i,e}\).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Questão 1(i): variância de \(u_{i,e}\)}
+\step{Começamos com a definição do erro composto:}
+\stepmath{\operatorname{Var}(u_{i,e})=\operatorname{Var}(f_i+v_{i,e}).}
+\step{Aplicamos a fórmula da variância da soma:}
+\stepmath{\operatorname{Var}(f_i+v_{i,e})=\operatorname{Var}(f_i)+\operatorname{Var}(v_{i,e})+2\operatorname{Cov}(f_i,v_{i,e}).}
+\step{Pela hipótese do enunciado, \(f_i\) e \(v_{i,e}\) são não correlacionados.}
+\stepmath{\operatorname{Cov}(f_i,v_{i,e})=0.}
+\step{Logo, obtemos:}
+\stepmath{\operatorname{Var}(u_{i,e})=\sigma_f^2+\sigma_v^2.}
+\step{Se chamarmos esse valor de \(\sigma^2\), então:}
+\stepmath{\sigma^2=\sigma_f^2+\sigma_v^2.}
+\end{frame}
+
+\begin{frame}{Questão 1(ii): covariância entre empregados da mesma firma}
+\step{Para \(e\neq g\), escrevemos:}
+\stepmath{u_{i,e}=f_i+v_{i,e}
+\qquad\text{e}\qquad
+u_{i,g}=f_i+v_{i,g}.}
+\step{Então:}
+\stepmath{\operatorname{Cov}(u_{i,e},u_{i,g})=\operatorname{Cov}(f_i+v_{i,e},f_i+v_{i,g}).}
+\step{Expandindo a covariância:}
+\stepmath{\operatorname{Cov}(u_{i,e},u_{i,g})=\operatorname{Cov}(f_i,f_i)+\operatorname{Cov}(f_i,v_{i,g})+\operatorname{Cov}(v_{i,e},f_i)+\operatorname{Cov}(v_{i,e},v_{i,g}).}
+\step{O primeiro termo é \(\operatorname{Var}(f_i)=\sigma_f^2\).}
+\step{Os outros três termos são zero pelas hipóteses do exercício.}
+\stepmath{\operatorname{Cov}(u_{i,e},u_{i,g})=\sigma_f^2.}
+\step{Interpretação: empregados da mesma firma compartilham o componente não observado \(f_i\).}
+\end{frame}
+
+\begin{frame}{Questão 1(iii): variância da média da firma}
+\step{A média dos erros na firma é:}
+\stepmath{\bar{u}_i=\frac{1}{m_i}\sum_{e=1}^{m_i}u_{i,e}.}
+\step{Substituindo \(u_{i,e}=f_i+v_{i,e}\):}
+\stepmath{\bar{u}_i=\frac{1}{m_i}\sum_{e=1}^{m_i}(f_i+v_{i,e})=f_i+\frac{1}{m_i}\sum_{e=1}^{m_i}v_{i,e}.}
+\step{Agora calculamos a variância:}
+\stepmath{\operatorname{Var}(\bar{u}_i)=\operatorname{Var}\left(f_i+\frac{1}{m_i}\sum_{e=1}^{m_i}v_{i,e}\right).}
+\step{Como \(f_i\) é não correlacionado com os \(v_{i,e}\):}
+\stepmath{\operatorname{Var}(\bar{u}_i)=\operatorname{Var}(f_i)+\operatorname{Var}\left(\frac{1}{m_i}\sum_{e=1}^{m_i}v_{i,e}\right).}
+\step{A primeira parcela é \(\sigma_f^2\). Na segunda:}
+\stepmath{\operatorname{Var}\left(\frac{1}{m_i}\sum_{e=1}^{m_i}v_{i,e}\right)=\frac{1}{m_i^2}\operatorname{Var}\left(\sum_{e=1}^{m_i}v_{i,e}\right).}
+\end{frame}
+
+\begin{frame}{Questão 1(iii): fechando a conta}
+\step{Como os \(v_{i,e}\) são não correlacionados entre si:}
+\stepmath{\operatorname{Var}\left(\sum_{e=1}^{m_i}v_{i,e}\right)=\sum_{e=1}^{m_i}\operatorname{Var}(v_{i,e})=m_i\sigma_v^2.}
+\step{Substituindo na expressão anterior:}
+\stepmath{\operatorname{Var}\left(\frac{1}{m_i}\sum_{e=1}^{m_i}v_{i,e}\right)=\frac{m_i\sigma_v^2}{m_i^2}=\frac{\sigma_v^2}{m_i}.}
+\step{Portanto:}
+\stepmath{\operatorname{Var}(\bar{u}_i)=\sigma_f^2+\frac{\sigma_v^2}{m_i}.}
+\step{\highlight{Conclusão}: a parte idiossincrática cai com \(m_i\), mas o efeito comum da firma não desaparece.}
+\end{frame}
+
+\begin{frame}{Questão 1(iv): relevância para MQP}
+\begin{itemize}
+    \item A variância do erro médio da firma é
+    \[
+    \operatorname{Var}(\bar{u}_i)=\sigma_f^2+\frac{\sigma_v^2}{m_i}.
+    \]
+    \item Portanto, firmas maiores geram observações médias mais precisas apenas na parte \(\sigma_v^2/m_i\).
+    \item O peso eficiente em MQP deve ser inversamente proporcional a essa variância:
+    \[
+    \frac{1}{\sigma_f^2+\sigma_v^2/m_i}.
+    \]
+    \item Usar simplesmente \(m_i\) como peso só seria correto se \(\sigma_f^2=0\).
+\end{itemize}
+\end{frame}
+
+\section{L6 (ANPEC 2012)}
+
+\begin{frame}{Questão 2: leitura do modelo}
+\begin{block}{Equação estimada}
+\[
+\hat{Y}_i = 4{,}00 + 0{,}12\,educ_i + 0{,}03\,idade_i + 0{,}40\,homem_i - 0{,}05\,DI_i - 0{,}15\,DC_i - 0{,}25\,DCons_i
+\]
+\end{block}
+\pause
+\begin{itemize}
+    \item A categoria omitida é \highlight{serviços}.
+    \item Logo, \(DI\), \(DC\) e \(DCons\) medem diferenças salariais relativamente a serviços.
+    \item Sempre mantemos fixos educação, idade e sexo.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Questão 2(1): indústria versus serviços}
+\step{A hipótese testada é:}
+\stepmath{H_0:\beta_{DI}=0
+\qquad\text{contra}\qquad
+H_1:\beta_{DI}\neq 0.}
+\step{O coeficiente estimado é \(-0{,}05\) e o erro-padrão é \(0{,}0011\).}
+\step{Então, a estatística \(t\) é:}
+\stepmath{t=\frac{-0{,}05}{0{,}0011}\approx -45{,}45.}
+\step{Como \(|t| \gg 1{,}96\), rejeitamos \(H_0\) a 5\%.}
+\step{\highlight{Resposta objetiva}: a afirmativa é verdadeira.}
+\end{frame}
+
+\begin{frame}{Questão 2(2): construção versus comércio}
+\step{Agora a hipótese correta é:}
+\stepmath{H_0:\beta_{DCons}=\beta_{DC}.}
+\step{Equivalentemente:}
+\stepmath{H_0:\beta_{DCons}-\beta_{DC}=0.}
+\step{A diferença estimada é:}
+\stepmath{-0{,}25-(-0{,}15)=-0{,}10.}
+\step{Mas o teste depende do erro-padrão da diferença.}
+\stepmath{\operatorname{Var}(\hat{\beta}_{DCons}-\hat{\beta}_{DC})=\operatorname{Var}(\hat{\beta}_{DCons})+\operatorname{Var}(\hat{\beta}_{DC})-2\operatorname{Cov}(\hat{\beta}_{DCons},\hat{\beta}_{DC}).}
+\step{A tabela não informa a covariância entre os estimadores.}
+\step{\highlight{Resposta objetiva}: não é possível concluir apenas com a tabela dada.}
+\end{frame}
+
+\begin{frame}{Questão 2(3), (4) e (5)}
+\begin{block}{Item (3)}
+Para testar igualdade entre os quatro setores, precisamos de um teste \(F\) conjunto:
+\[
+H_0:\beta_{DI}=\beta_{DC}=\beta_{DCons}=0.
+\]
+Com a tabela fornecida, \highlight{não é possível concluir}.
+\end{block}
+\pause
+\begin{block}{Item (4)}
+O modelo \highlight{não} permite testar se o retorno da educação difere entre homens e mulheres, porque não há interação \(homem \times educ\).
+\end{block}
+\pause
+\begin{block}{Item (5)}
+O coeficiente de \(homem\) mede diferença de intercepto entre homens e mulheres. Como
+\[
+t=\frac{0{,}40}{0{,}0005}=800,
+\]
+rejeitamos fortemente a igualdade dos interceptos.
+\end{block}
+\end{frame}
+
+\section{L6 (3(5.1))}
+
+\begin{frame}{Questão 3: consistência do intercepto}
+\step{Partimos da fórmula do intercepto em regressão simples:}
+\stepmath{\hat{\beta}_0=\bar{y}-\hat{\beta}_1\bar{x}_1.}
+\step{Tomando limite em probabilidade:}
+\stepmath{\operatorname{plim}\hat{\beta}_0=\operatorname{plim}(\bar{y}-\hat{\beta}_1\bar{x}_1).}
+\step{Usando propriedades de \(\operatorname{plim}\):}
+\stepmath{\operatorname{plim}\hat{\beta}_0=\operatorname{plim}\bar{y}-\operatorname{plim}(\hat{\beta}_1\bar{x}_1).}
+\step{Pela Lei dos Grandes Números,}
+\stepmath{\operatorname{plim}\bar{y}=E[y]
+\qquad\text{e}\qquad
+\operatorname{plim}\bar{x}_1=E[x_1].}
+\step{Como \(\hat{\beta}_1\) é consistente,}
+\stepmath{\operatorname{plim}\hat{\beta}_1=\beta_1.}
+\end{frame}
+
+\begin{frame}{Questão 3: conclusão}
+\step{Logo,}
+\stepmath{\operatorname{plim}(\hat{\beta}_1\bar{x}_1)=\beta_1E[x_1].}
+\step{Substituindo:}
+\stepmath{\operatorname{plim}\hat{\beta}_0=E[y]-\beta_1E[x_1].}
+\step{Mas, no modelo populacional,}
+\stepmath{\beta_0=E[y]-\beta_1E[x_1].}
+\step{Portanto,}
+\stepmath{\operatorname{plim}\hat{\beta}_0=\beta_0.}
+\step{\highlight{Conclusão}: \(\hat{\beta}_0\) é consistente.}
+\end{frame}
+
+\section{L9 (2(7.9))}
+
+\begin{frame}{Questão 4(i): função para \(d=0\) e \(d=1\)}
+\step{Com \(u=0\), o modelo fica:}
+\stepmath{y=\beta_0+\delta_0d+\beta_1z+\delta_1dz.}
+\step{Quando \(d=0\):}
+\stepmath{f_0(z)=\beta_0+\beta_1z.}
+\step{Quando \(d=1\):}
+\stepmath{f_1(z)=\beta_0+\delta_0+\beta_1z+\delta_1z.}
+\step{Agrupando termos:}
+\stepmath{f_1(z)=(\beta_0+\delta_0)+(\beta_1+\delta_1)z.}
+\step{Ou seja, a dummy altera tanto o intercepto quanto a inclinação quando \(\delta_1\neq 0\).}
+\end{frame}
+
+\begin{frame}{Questão 4(ii): ponto de cruzamento}
+\step{O cruzamento ocorre quando:}
+\stepmath{f_0(z^\ast)=f_1(z^\ast).}
+\step{Substituindo as expressões:}
+\stepmath{\beta_0+\beta_1z^\ast=\beta_0+\delta_0+\beta_1z^\ast+\delta_1z^\ast.}
+\step{Cancelando os termos comuns:}
+\stepmath{0=\delta_0+\delta_1z^\ast.}
+\step{Isolando \(z^\ast\):}
+\stepmath{z^\ast=-\frac{\delta_0}{\delta_1}.}
+\step{Para \(z^\ast>0\), a razão \(-\delta_0/\delta_1\) precisa ser positiva.}
+\step{\highlight{Conclusão}: isso ocorre se, e somente se, \(\delta_0\) e \(\delta_1\) tiverem sinais opostos.}
+\end{frame}
+
+\begin{frame}{Questão 4(iii): igualdade salarial prevista}
+\step{Para homens, \(female=0\):}
+\stepmath{\widehat{\log(wage)}_{h}=2{,}289+0{,}050\,totcoll.}
+\step{Para mulheres, \(female=1\):}
+\stepmath{\widehat{\log(wage)}_{m}=2{,}289-0{,}357+(0{,}050+0{,}030)totcoll.}
+\step{Simplificando:}
+\stepmath{\widehat{\log(wage)}_{m}=1{,}932+0{,}080\,totcoll.}
+\step{Igualamos as duas expressões:}
+\stepmath{2{,}289+0{,}050\,totcoll=1{,}932+0{,}080\,totcoll.}
+\step{Logo,}
+\stepmath{0{,}357=0{,}030\,totcoll
+\qquad\Rightarrow\qquad
+totcoll=11{,}9.}
+\end{frame}
+
+\begin{frame}{Questão 4(iv): interpretação econômica}
+\begin{itemize}
+    \item O ponto de igualdade salarial previsto aparece em \highlight{11,9 anos} de ensino superior.
+    \item Esse valor é muito alto para ser considerado realista no contexto usual do banco de dados.
+    \item Portanto, embora o retorno marginal de \textit{totcoll} seja maior para mulheres, a equiparação prevista exige um nível pouco plausível de escolaridade superior.
+\end{itemize}
+\end{frame}
+
+\section{Questão nova}
+
+\begin{frame}{Questão 5: tabela e leitura geral}
+\small
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Regressor & Coluna (2) & Coluna (5) \\
+\midrule
+\textit{lexppp} & 9,01\,(4,04) & 11,40\,(4,35) \\
+\textit{free} & -0,422\,(0,071) & 0,820\,(0,410) \\
+\textit{lmedinc} & -0,752\,(5,358) & -1,10\,(5,22) \\
+\textit{pctsgle} & -0,274\,(0,161) & -0,250\,(0,158) \\
+\textit{read4} & -- & -- \\
+\textit{lexppp} $\times$ \textit{free} & -- & -0,145\,(0,052) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\pause
+\normalsize
+\begin{itemize}
+    \item A lógica do exercício é comparar especificações.
+    \item O foco é distinguir \highlight{bom ajuste} de \highlight{interpretação causal}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Questão 5(a): comparando colunas (1), (2) e (3)}
+\begin{itemize}
+    \item Na coluna (1), o coeficiente de \textit{lexppp} é \(6{,}85\).
+    \item Na coluna (2), após adicionar controles socioeconômicos, ele sobe para \(9{,}01\).
+    \item Isso sugere que a regressão simples deixava de controlar diferenças importantes entre escolas.
+\end{itemize}
+\pause
+\begin{itemize}
+    \item Na coluna (3), ao incluir \textit{read4}, o coeficiente cai para \(1{,}93\).
+    \item Como leitura e matemática caminham juntas, \textit{read4} absorve grande parte da variação de \textit{math4}.
+    \item Mas \textit{read4} também pode ser afetada pelos próprios gastos escolares, então ela pode ser um controle inadequado se a meta for estimar o efeito causal total.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Questão 5(b): efeito de 10\% nos gastos}
+\step{Na coluna (2), o coeficiente de \textit{lexppp} é \(9{,}01\).}
+\step{Como a regressora está em log, um aumento aproximado de 10\% implica:}
+\stepmath{9{,}01\times 0{,}10=0{,}901.}
+\step{Usando a forma mais precisa:}
+\stepmath{9{,}01\times \log(1{,}10)=9{,}01\times 0{,}0953\approx 0{,}86.}
+\step{Logo, o efeito estimado é um aumento entre \(0{,}86\) e \(0{,}90\) ponto percentual em \textit{math4}.}
+\step{Agora a significância estatística:}
+\stepmath{t=\frac{9{,}01}{4{,}04}\approx 2{,}23.}
+\step{Como \(2{,}23>1{,}96\), o efeito é significante a 5\% em teste bilateral aproximado.}
+\end{frame}
+
+\begin{frame}{Questão 5(c): termo quadrático}
+\step{Na coluna (4), o efeito marginal é:}
+\stepmath{\frac{\partial math4}{\partial lexppp}=68{,}40+2(-3{,}45)lexppp.}
+\step{Simplificando:}
+\stepmath{\frac{\partial math4}{\partial lexppp}=68{,}40-6{,}90\,lexppp.}
+\step{Igualamos a zero para achar o ponto de máximo:}
+\stepmath{68{,}40-6{,}90\,lexppp=0.}
+\step{Então:}
+\stepmath{lexppp=\frac{68{,}40}{6{,}90}\approx 9{,}91.}
+\step{Para avaliar a importância do termo quadrático:}
+\stepmath{t=\frac{-3{,}45}{2{,}18}\approx -1{,}58.}
+\step{Como \(|t|<1{,}96\), a evidência para incluir o termo quadrático é fraca a 5\%.}
+\end{frame}
+
+\begin{frame}{Questão 5(d): por que a coluna (2) pode ser melhor que a (3)?}
+\begin{itemize}
+    \item A coluna (3) tem \(R^2\) bem maior porque \textit{read4} explica muito da variação em \textit{math4}.
+    \item Mas \(R^2\) maior não significa estimativa causal melhor.
+    \item Se \textit{read4} também responde aos mesmos investimentos escolares, controlá-la pode retirar parte do efeito dos gastos.
+    \item Assim, a coluna (2) pode ser mais adequada para medir o efeito total de \textit{lexppp} sobre desempenho em matemática.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Questão 5(e): interação entre gastos e pobreza}
+\step{Na coluna (5), o modelo inclui a interação \(\textit{lexppp}\times \textit{free}\).}
+\step{Então, o efeito marginal de \textit{lexppp} é:}
+\stepmath{\frac{\partial math4}{\partial lexppp}=\beta_1+\beta_6\,free.}
+\step{Substituindo os coeficientes da tabela:}
+\stepmath{\frac{\partial math4}{\partial lexppp}=11{,}40-0{,}145\,free.}
+\step{Se \(free=20\):}
+\stepmath{11{,}40-0{,}145(20)=11{,}40-2{,}90=8{,}50.}
+\step{Se \(free=60\):}
+\stepmath{11{,}40-0{,}145(60)=11{,}40-8{,}70=2{,}70.}
+\step{\highlight{Interpretação}: o efeito positivo dos gastos é menor em escolas com maior proporção de alunos pobres.}
+\end{frame}
+
+\begin{frame}{Fechamento}
+\begin{block}{Mensagem central da lista extra}
+\begin{itemize}
+    \item Em modelos com dummies e interações, a interpretação correta depende da categoria base e das combinações lineares.
+    \item Em problemas com efeitos não observados, a estrutura da variância importa para escolher bons pesos.
+    \item Em especificação de modelos, \highlight{mais controles} e \highlight{maior \(R^2\)} não garantem automaticamente uma interpretação causal melhor.
+\end{itemize}
+\end{block}
+\vspace{0.6em}
+\centering
+\Large \textcolor{tealaccent}{Fim do gabarito comentado}
+\end{frame}
+
+\end{document}
