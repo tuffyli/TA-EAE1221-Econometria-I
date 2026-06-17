@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.10)  11 MAY 2026 20:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.17)  17 JUN 2026 18:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./Lista_11_Gabarito.tex
 (Lista_11_Gabarito.tex
-LaTeX2e <2025-11-01>
-L3 programming layer <2025-12-24>
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/exam\exam.cls
 Document Class: exam 2023/07/09 Version 2.704 by Philip Hirschhorn
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
@@ -16,17 +16,17 @@ Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
 File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count275
-\c@section=\count276
-\c@subsection=\count277
-\c@subsubsection=\count278
-\c@paragraph=\count279
-\c@subparagraph=\count280
-\c@figure=\count281
-\c@table=\count282
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
-\bibindent=\dimen148
+\bibindent=\dimen150
 )
 \@extrawidth=\skip51
 \@rightmargin=\skip52
@@ -40,40 +40,40 @@ File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \covfp@exhd=\skip60
 \covrun@exft=\skip61
 \covfp@exft=\skip62
-\c@num@coverpages=\count283
-\c@latest@ques=\count284
-\c@ques@end=\count285
-\c@last@object=\count286
-\c@incmp@ques=\count287
-\c@next@ques=\count288
-\c@next@page=\count289
-\c@tmp@hlfcntr=\count290
-\c@ifpos@cntr=\count291
-\c@question=\count292
-\c@partno=\count293
-\c@subpart=\count294
-\c@subsubpart=\count295
-\c@choice=\count296
-\c@numpoints=\count297
-\c@numbonuspoints=\count298
-\c@pointsof@thisquestion=\count299
-\c@bonuspointsof@thisquestion=\count300
-\c@numquestions=\count301
-\c@numparts=\count302
-\c@numsubparts=\count303
-\c@numsubsubparts=\count304
-\c@Curr@Page=\count305
-\c@@pagepoints=\count306
-\c@@pagebonuspoints=\count307
-\c@pageof@pagepoints=\count308
-\c@pageof@pagebonuspoints=\count309
-\c@latest@points=\count310
-\c@latest@bonuspoints=\count311
+\c@num@coverpages=\count284
+\c@latest@ques=\count285
+\c@ques@end=\count286
+\c@last@object=\count287
+\c@incmp@ques=\count288
+\c@next@ques=\count289
+\c@next@page=\count290
+\c@tmp@hlfcntr=\count291
+\c@ifpos@cntr=\count292
+\c@question=\count293
+\c@partno=\count294
+\c@subpart=\count295
+\c@subsubpart=\count296
+\c@choice=\count297
+\c@numpoints=\count298
+\c@numbonuspoints=\count299
+\c@pointsof@thisquestion=\count300
+\c@bonuspointsof@thisquestion=\count301
+\c@numquestions=\count302
+\c@numparts=\count303
+\c@numsubparts=\count304
+\c@numsubsubparts=\count305
+\c@Curr@Page=\count306
+\c@@pagepoints=\count307
+\c@@pagebonuspoints=\count308
+\c@pageof@pagepoints=\count309
+\c@pageof@pagebonuspoints=\count310
+\c@latest@points=\count311
+\c@latest@bonuspoints=\count312
 \pageinfo@commands=\toks17
 \temp@toks=\toks18
 \pagepoint@commands=\toks19
 \point@toks=\toks20
-\c@ques@object=\count312
+\c@ques@object=\count313
 \marginpointssep=\skip63
 \rightpointsmargin=\skip64
 \choice@toks=\toks21
@@ -87,26 +87,26 @@ File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \gridsize=\skip72
 \gridlinewidth=\skip73
 \minboxheight=\skip74
-\c@@iterator=\count313
+\c@@iterator=\count314
 \@cellwidth=\skip75
-\c@tbl@points=\count314
-\c@tbl@bonuspoints=\count315
-\c@pq@index=\count316
-\c@pq@index@pts=\count317
-\c@pq@index@bpts=\count318
-\c@num@cols=\count319
-\c@num@rows=\count320
-\c@current@row=\count321
-\c@cols@done=\count322
-\c@exam@saved@eqnum=\count323
+\c@tbl@points=\count315
+\c@tbl@bonuspoints=\count316
+\c@pq@index=\count317
+\c@pq@index@pts=\count318
+\c@pq@index@bpts=\count319
+\c@num@cols=\count320
+\c@num@rows=\count321
+\c@current@row=\count322
+\c@cols@done=\count323
+\c@exam@saved@eqnum=\count324
 \exam@box=\box53
-\saved@totalleftmargin=\dimen149
-\@sollistdepth=\count324
-\exam@FrameRule=\dimen150
-\exam@FrameSep=\dimen151
+\saved@totalleftmargin=\dimen151
+\@sollistdepth=\count325
+\exam@FrameRule=\dimen152
+\exam@FrameSep=\dimen153
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
-Package: amsmath 2025/07/09 v2.17z AMS math features
+Package: amsmath 2026/05/19 v2.18d AMS math features
 \@mathmargin=\skip76
 
 For additional information on amsmath, use the `?' option.
@@ -116,23 +116,23 @@ Package: amstext 2024/11/17 v2.01 AMS text
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks22
-\ex@=\dimen152
+\ex@=\dimen154
 ))
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen153
+\pmbraise@=\dimen155
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count325
+\inf@bad=\count326
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count326
-\leftroot@=\count327
+\uproot@=\count327
+\leftroot@=\count328
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count328
-\DOTSCASE@=\count329
+\classnum@=\count329
+\DOTSCASE@=\count330
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
@@ -142,36 +142,36 @@ LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen154
+\big@size=\dimen156
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count330
+\macc@depth=\count331
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count331
+\c@MaxMatrixCols=\count332
 \dotsspace@=\muskip17
-\c@parentequation=\count332
-\dspbrk@lvl=\count333
+\c@parentequation=\count333
+\dspbrk@lvl=\count334
 \tag@help=\toks23
-\row@=\count334
-\column@=\count335
-\maxfields@=\count336
+\row@=\count335
+\column@=\count336
+\maxfields@=\count337
 \andhelp@=\toks24
-\eqnshift@=\dimen155
-\alignsep@=\dimen156
-\tagshift@=\dimen157
-\tagwidth@=\dimen158
-\totwidth@=\dimen159
-\lineht@=\dimen160
+\eqnshift@=\dimen157
+\alignsep@=\dimen158
+\tagshift@=\dimen159
+\tagwidth@=\dimen160
+\totwidth@=\dimen161
+\lineht@=\dimen162
 \@envbody=\toks25
 \multlinegap=\skip77
 \multlinetaggap=\skip78
 \mathdisplay@stack=\toks26
-LaTeX Info: Redefining \[ on input line 2950.
-LaTeX Info: Redefining \] on input line 2951.
+LaTeX Info: Redefining \[ on input line 2965.
+LaTeX Info: Redefining \] on input line 2966.
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
@@ -185,10 +185,10 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )) (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.st
 y
-Package: geometry 2020/01/02 v5.9 Page Geometry
+Package: geometry 2026/03/07 v6.0 Page Geometry
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
-Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+Package: keyval 2026-05-17 v1.15 key=value parser (DPC)
 \KV@toks@=\toks27
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
@@ -197,17 +197,17 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
-\Gm@cnth=\count337
-\Gm@cntv=\count338
-\c@Gm@tempcnt=\count339
-\Gm@bindingoffset=\dimen161
-\Gm@wd@mp=\dimen162
-\Gm@odd@mp=\dimen163
-\Gm@even@mp=\dimen164
-\Gm@layoutwidth=\dimen165
-\Gm@layoutheight=\dimen166
-\Gm@layouthoffset=\dimen167
-\Gm@layoutvoffset=\dimen168
+\Gm@cnth=\count338
+\Gm@cntv=\count339
+\c@Gm@tempcnt=\count340
+\Gm@bindingoffset=\dimen163
+\Gm@wd@mp=\dimen164
+\Gm@odd@mp=\dimen165
+\Gm@even@mp=\dimen166
+\Gm@layoutwidth=\dimen167
+\Gm@layoutheight=\dimen168
+\Gm@layouthoffset=\dimen169
+\Gm@layoutvoffset=\dimen170
 \Gm@dimlist=\toks28
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
@@ -233,32 +233,32 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 ) (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
-Package: babel 2025/12/11 v25.17 The multilingual framework for LuaLaTeX, pdfLa
-TeX and XeLaTeX
-\babel@savecnt=\count340
+Package: babel 2026/05/20 v26.8 The multilingual framework for LuaLaTeX, pdfLaT
+eX and XeLaTeX
+\babel@savecnt=\count341
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
-ne 2068.
+ne 2084.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
-ne 2070.
+ne 2086.
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
-e 2072.
+e 2088.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
-e 2073.
+e 2089.
 LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
-on input line 2074.
+on input line 2090.
 LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
-on input line 2076.
+on input line 2092.
 LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
-on input line 2101.
-\U@D=\dimen169
+on input line 2117.
+\U@D=\dimen171
 \l@unhyphenated=\language79
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count341
+\bbl@dirlevel=\count342
 Package babel Info: Configuration files are deprecated, as
 (babel)             they can break document portability.
-(babel)             Reported on input line 4196.
+(babel)             Reported on input line 4228.
 
 *************************************
 * Local config file bblopts.cfg used
@@ -272,10 +272,10 @@ babel-brazil.tex)
 
 Package babel Warning: Name 'brazil' is deprecated.
 (babel)                Use 'brazilian' instead.
-(babel)                Reported on input line 4320.
+(babel)                Reported on input line 4356.
 
 Package babel Info: Importing font and identification data for brazil
-(babel)             from babel-pt-BR.ini. Reported on input line 4320.
+(babel)             from babel-pt-BR.ini. Reported on input line 4356.
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/babel-portuges\brazilia
 n.ldf
@@ -289,39 +289,39 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip79
 \bibsep=\skip80
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count342
+\c@NAT@ctr=\count343
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip81
-\enit@outerparindent=\dimen170
+\enit@outerparindent=\dimen172
 \enit@toks=\toks29
 \enit@inbox=\box56
-\enit@count@id=\count343
-\enitdp@description=\count344
+\enit@count@id=\count344
+\enitdp@description=\count345
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen171
-\lightrulewidth=\dimen172
-\cmidrulewidth=\dimen173
-\belowrulesep=\dimen174
-\belowbottomsep=\dimen175
-\aboverulesep=\dimen176
-\abovetopsep=\dimen177
-\cmidrulesep=\dimen178
-\cmidrulekern=\dimen179
-\defaultaddspace=\dimen180
-\@cmidla=\count345
-\@cmidlb=\count346
-\@aboverulesep=\dimen181
-\@belowrulesep=\dimen182
-\@thisruleclass=\count347
-\@lastruleclass=\count348
-\@thisrulewidth=\dimen183
+\heavyrulewidth=\dimen173
+\lightrulewidth=\dimen174
+\cmidrulewidth=\dimen175
+\belowrulesep=\dimen176
+\belowbottomsep=\dimen177
+\aboverulesep=\dimen178
+\abovetopsep=\dimen179
+\cmidrulesep=\dimen180
+\cmidrulekern=\dimen181
+\defaultaddspace=\dimen182
+\@cmidla=\count346
+\@cmidlb=\count347
+\@aboverulesep=\dimen183
+\@belowrulesep=\dimen184
+\@thisruleclass=\count348
+\@lastruleclass=\count349
+\@thisrulewidth=\dimen185
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
-Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+Package: hyperref 2026-04-24 v7.01q Hypertext links for LaTeX
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
@@ -354,7 +354,7 @@ Package pdftexcmds Info: \pdfdraftmode found.
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
-Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
@@ -366,48 +366,48 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count349
+\c@section@level=\count350
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count350
+\etb@tempcnta=\count351
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
 ty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
-\@linkdim=\dimen184
-\Hy@linkcounter=\count351
-\Hy@pagecounter=\count352
+\@linkdim=\dimen186
+\Hy@linkcounter=\count352
+\Hy@pagecounter=\count353
  (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
-File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2026-04-24 v7.01q Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count353
+\Hy@SavedSpaceFactor=\count354
  (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
-File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2026-04-24 v7.01q Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Hyper figures OFF on input line 4195.
-Package hyperref Info: Link nesting OFF on input line 4200.
-Package hyperref Info: Hyper index ON on input line 4203.
-Package hyperref Info: Plain pages OFF on input line 4210.
-Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Hyper figures OFF on input line 4199.
+Package hyperref Info: Link nesting OFF on input line 4204.
+Package hyperref Info: Hyper index ON on input line 4207.
+Package hyperref Info: Plain pages OFF on input line 4214.
+Package hyperref Info: Backreferencing OFF on input line 4219.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4462.
-\c@Hy@tempcnt=\count354
+Package hyperref Info: Bookmarks ON on input line 4466.
+\c@Hy@tempcnt=\count355
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4801.
-\XeTeXLinkMargin=\dimen185
+LaTeX Info: Redefining \url on input line 4805.
+\XeTeXLinkMargin=\dimen187
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -417,26 +417,26 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count355
-\Field@Width=\dimen186
-\Fld@charsize=\dimen187
-Package hyperref Info: Hyper figures OFF on input line 6078.
-Package hyperref Info: Link nesting OFF on input line 6083.
-Package hyperref Info: Hyper index ON on input line 6086.
-Package hyperref Info: backreferencing OFF on input line 6093.
-Package hyperref Info: Link coloring OFF on input line 6098.
-Package hyperref Info: Link coloring with OCG OFF on input line 6103.
-Package hyperref Info: PDF/A mode OFF on input line 6108.
-\Hy@abspage=\count356
-\c@Item=\count357
-\c@Hfootnote=\count358
+\Fld@menulength=\count356
+\Field@Width=\dimen188
+\Fld@charsize=\dimen189
+Package hyperref Info: Hyper figures OFF on input line 6091.
+Package hyperref Info: Link nesting OFF on input line 6096.
+Package hyperref Info: Hyper index ON on input line 6099.
+Package hyperref Info: backreferencing OFF on input line 6106.
+Package hyperref Info: Link coloring OFF on input line 6111.
+Package hyperref Info: Link coloring with OCG OFF on input line 6116.
+Package hyperref Info: PDF/A mode OFF on input line 6121.
+\Hy@abspage=\count357
+\c@Item=\count358
+\c@Hfootnote=\count359
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
-File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
-\Fld@listcount=\count359
-\c@bookmark@seq@number=\count360
+File: hpdftex.def 2026-04-24 v7.01q Hyperref driver for pdfTeX
+\Fld@listcount=\count360
+\c@bookmark@seq@number=\count361
 
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
 echeck.sty
@@ -453,8 +453,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
-File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count361
+File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count362
 ) (Lista_11_Gabarito.aux
 Package babel Info: 'brazil' activates 'portuges' shorthands.
 (babel)             Reported on input line 12.
@@ -518,16 +518,16 @@ LaTeX Font Info:    ... okay on input line 19.
 (C:\Users\tuffy\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count362
-\scratchdimen=\dimen188
+\scratchcounter=\count363
+\scratchdimen=\dimen190
 \scratchbox=\box57
-\nofMPsegments=\count363
-\nofMParguments=\count364
+\nofMPsegments=\count364
+\nofMParguments=\count365
 \everyMPshowfont=\toks30
-\MPscratchCnt=\count365
-\MPscratchDim=\dimen189
-\MPnumerator=\count366
-\makeMPintoPDFobject=\count367
+\MPscratchCnt=\count366
+\MPscratchDim=\dimen191
+\MPnumerator=\count367
+\makeMPintoPDFobject=\count368
 \everyMPtoPDFconversion=\toks31
 )
 Package hyperref Info: Link coloring OFF on input line 19.
@@ -589,20 +589,20 @@ Overfull \hbox (111.95982pt too wide) detected at line 70
 This exam contains 5 questions with 0 parts, 0 subparts, and 0 subsubparts.
 (Lista_11_Gabarito.aux)
  ***********
-LaTeX2e <2025-11-01>
-L3 programming layer <2025-12-24>
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
  ***********
 Package rerunfilecheck Info: File `Lista_11_Gabarito.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13265 strings out of 467871
- 204651 string characters out of 5418376
- 662517 words of memory out of 5000000
- 41971 multiletter control sequences out of 15000+600000
+ 13304 strings out of 467509
+ 206401 string characters out of 5408780
+ 670492 words of memory out of 5000000
+ 42368 multiletter control sequences out of 15000+600000
  634392 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,79p,671b,729s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,10n,79p,671b,786s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx12.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmmi12.pfb><C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -615,9 +615,9 @@ Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/
 tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><
 C:/Users/tuffy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbol
 s/msbm10.pfb>
-Output written on Lista_11_Gabarito.pdf (5 pages, 128457 bytes).
+Output written on Lista_11_Gabarito.pdf (5 pages, 128789 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
- 35 named destinations out of 1000 (max. 500000)
+ 123 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
